@@ -1,0 +1,38 @@
+<h1>Här lägger vi till en ny faktura</h1>
+<h3>Kundkort</h3>
+<div ng-controller="clientCtrl as client">
+     <table>
+      <tr>
+        <td>Kundnr</td>
+        <td><input type="number" {{client.clientNo}}></td>
+      </tr>
+      <tr>
+        <td>Företagsnamn</td>
+        <td><input type="text" ng-model="client.companyName"></td>
+      </tr>
+      <tr>
+        <td>Adress</td>
+        <td><input type="text" ng-model="client.address1"></td>
+      </tr>
+      <tr>
+        <td>Adress</td>
+        <td><input type="text" ng-model="client.address2"></td>
+      </tr>
+      <tr>
+        <td>Postnummer</td>
+        <td><input type="number" ng-model="client.postCode"></td>
+      </tr>
+      <tr>
+        <td>Postort</td>
+        <td><input type="text" ng-model="client.postAddress"></td>
+      </tr>
+      <td>Kontaktperson</td>
+      <td><input type="text" ng-model="client.contact"></td>
+      </tr>
+      <tr>
+        <td>Telefonnummer</td>
+        <td><input type="number" ng-model="client.phoneNumber"></td>
+
+      </tr>
+    </table>
+</div>
