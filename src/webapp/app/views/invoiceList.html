@@ -1,0 +1,14 @@
+<h1>Här skall fakturorna listas!</h1>
+<div ng-controller="invoiceListCtrl as invoiceList">
+  <table>
+    <tr>
+      <th>Rad</th>
+      <th>Artikel</th>
+    </tr>
+
+    <tr ng-repeat="invoice in invoiceList.invoice">
+      <td>{{invoice.lineNo}}</td>
+      <td>{{invoice.item}}</td>
+    </tr>
+  </table>
+</div>

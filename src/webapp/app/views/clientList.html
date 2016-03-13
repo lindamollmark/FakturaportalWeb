@@ -1,0 +1,27 @@
+
+<h1>Kundlista</h1>
+<div ng-controller="clientListCtrl as clientList">
+    <table>
+      <tr>
+        <th>Kundnr</th>
+        <th>Företagsnamn</th>
+        <th>Adress</th>
+        <th>Postnummer</th>
+        <th>Postort</th>
+        <th>Kontaktperson</th>
+        <th>Telefonnummer</th>
+      </tr>
+
+      <tr ng-repeat="client in clientList.client">
+        <td>{{client.clientNo}}</td>
+        <td>{{client.companyName}}</td>
+        <td> {{client.address1}}</td>
+        <td>{{client.postCode}}</td>
+        <td>{{client.postAddress}}</td>
+        <td>{{client.contact}}</td>
+        <td>{{client.phoneNumber}}</td>
+
+</tr>
+    </table>
+</div>
+
