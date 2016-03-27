@@ -17,7 +17,7 @@ angular.module('springBootClientApp')
 
     $scope.save = function(){
       client = $scope.client;
-      $http({method: 'POST', url:'/views/newClient/', data: client});
+      $http({method: 'POST', url:'http://localhost:8080/views/newClient', data: client});
       //var promise = clientService.save(client);
 
       alert(client.companyName);
@@ -56,7 +56,7 @@ angular.module('springBootClientApp')
   .controller('clientCtrl', function() {
     var self = this;
 
-    var aClient = [{
+    var aClient = {
       clientNo: 1,
       companyName: 'Berggrens',
       address1: 'Lokesväg 16',
@@ -64,8 +64,7 @@ angular.module('springBootClientApp')
       postAddress: 'Ösmo',
       contact: 'Kenneth',
       phoneNumber: '0739823191'
-    }
-    ];
+    };
     self.client = aClient;
   });
 

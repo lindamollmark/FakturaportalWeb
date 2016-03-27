@@ -1,10 +1,10 @@
 <h1>Här lägger vi till en ny faktura</h1>
 <h3>Kundkort</h3>
-<div ng-controller="clientCtrl as client">
+<div ng-controller="clientCtrl as clientCtrl">
      <table>
       <tr>
         <td>Kundnr</td>
-        <td><input type="number" {{client.clientNo}}></td>
+        <td><input type="number" value="{{clientCtrl.client.clientNo}}"></td>
       </tr>
       <tr>
         <td>Företagsnamn</td>

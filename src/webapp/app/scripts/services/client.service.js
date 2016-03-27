@@ -13,7 +13,7 @@
 //  clientService.$inject = ['$http'];
 function clientService($resource){
 
-  var restURL = 'http://localhost:8080/#/newClient/';
+  var restURL = 'http://localhost:8080/#/newClient';
 
   var service = {
     save: save
