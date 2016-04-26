@@ -16,21 +16,26 @@ angular.module('springBootClientApp')
     var client = {};
 
     $scope.save = function(){
+      // TODO Flytta metod till servicen.
       client = $scope.client;
       $http({method: 'POST', url:'http://localhost:8080/views/newClient', data: client});
       //var promise = clientService.save(client);
-
+      $scope.client = {};
+     $scope.newClientForm.$setPristine();
     };
   });
 
 angular.module('springBootClientApp')
-  .controller('clientListCtrl', function($http) {
+  .controller('clientListCtrl', function($http, $scope, $location) {
     var self = this;
     $http({method: 'get', url:'http://localhost:8080/views/clientlist'}).then(function(response){
      var clientList = angular.fromJson(response.data);
       self.client = clientList;
     });
-  
+$scope.openClient = function(id){
+  alert("ClientId = " + id);
+  $location.url('#/client/' + id);
+};
   });
 
 angular.module('springBootClientApp')

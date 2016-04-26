@@ -12,7 +12,7 @@
         <th>Telefonnummer</th>
       </tr>
 
-      <tr ng-repeat="client in clientList.client">
+      <tr ng-repeat="client in clientList.client" ng-click="openClient(client.id)">
         <td>{{client.clientNo}}</td>
         <td>{{client.companyName}}</td>
         <td> {{client.address1}}</td>
