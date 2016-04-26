@@ -33,8 +33,9 @@ angular.module('springBootClientApp')
       self.client = clientList;
     });
 $scope.openClient = function(id){
-  alert("ClientId = " + id);
-  $location.url('#/client/' + id);
+  var url = $location.url;
+  $location.path('/clientView/').replace();
+
 };
   });
 
