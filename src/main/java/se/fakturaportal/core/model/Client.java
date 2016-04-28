@@ -4,7 +4,7 @@ package se.fakturaportal.core.model;
  * Created by Linda on 2016-03-12.
  */
 public class Client {
-    int id;
+    Long id;
     String clientNo;
     String companyName;
     String address1;
@@ -14,11 +14,11 @@ public class Client {
     String contact;
     String phoneNumber;
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

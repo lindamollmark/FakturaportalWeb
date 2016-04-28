@@ -80,4 +80,10 @@ body {
   .jumbotron {
     border-bottom: 0;
   }
+  div.absolute {
+    position: fixed;
+    top: 400px;
+    right: 20px;
+
+  }
 }

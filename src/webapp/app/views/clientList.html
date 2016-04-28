@@ -11,14 +11,16 @@
         <th>Telefonnummer</th>
       </tr>
 
-      <tr ng-repeat="client in clientList.client" ng-click="openClient(client.id)">
-        <td>{{client.clientNo}}</td>
+      <tr ng-repeat="client in clientList.client">
+
+        <td><a href="#/clientView{{client.id}}"> {{client.clientNo}}</a></td>
         <td>{{client.companyName}}</td>
         <td> {{client.address1}}</td>
         <td>{{client.postCode}}</td>
         <td>{{client.postAddress}}</td>
         <td>{{client.contact}}</td>
         <td>{{client.phoneNumber}}</td>
+
 
 </tr>
     </table>

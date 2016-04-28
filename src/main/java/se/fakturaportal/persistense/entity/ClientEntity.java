@@ -13,7 +13,7 @@ public class ClientEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    Long id;
     String clientNo;
     String companyName;
     String address1;

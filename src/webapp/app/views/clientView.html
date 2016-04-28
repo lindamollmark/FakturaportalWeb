@@ -1,1 +1,47 @@
-<h1>Hej, Här ska infor om kunden dyka upp!</h1>
+<h1>Kund</h1>
+<div ng-controller="clientCtrl as clientCtrl">
+  <form name="clientForm" ng-submit="update()">
+  <table>
+    <tr>
+      <td>Kundnr</td>
+      <td><input type="text" ng-model="client.clientNo"></td>
+    </tr>
+    <tr>
+      <td>Företagsnamn</td>
+      <td><input type="text" ng-model="client.companyName"></td>
+    </tr>
+    <tr>
+      <td>Adress</td>
+      <td><input type="text" ng-model="client.address1"></td>
+    </tr>
+    <tr>
+      <td>Adress</td>
+      <td><input type="text" ng-model="client.address2"></td>
+    </tr>
+    <tr>
+      <td>Postnummer</td>
+      <td><input type="text" ng-model="client.postCode"></td>
+    </tr>
+    <tr>
+      <td>Postort</td>
+      <td><input type="text" ng-model="client.postAddress"></td>
+    </tr>
+    <td>Kontaktperson</td>
+    <td><input type="text" ng-model="client.contact"></td>
+    </tr>
+    <tr>
+      <td>Telefonnummer</td>
+      <td><input type="text" ng-model="client.phoneNumber"></td>
+
+    </tr>
+  </table>
+
+  <div class="absolute">
+    <a href="#/newInvoice{{client}}"> <button>Faktura</button></a>
+  <button ng-click="delete()">Ta Bort</button>
+  <input type="submit" value="Spara"/>
+  </div>
+    </form>
+
+
+</div>

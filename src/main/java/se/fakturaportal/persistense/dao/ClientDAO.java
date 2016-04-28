@@ -1,6 +1,7 @@
 package se.fakturaportal.persistense.dao;
 
 import org.springframework.data.repository.CrudRepository;
+import se.fakturaportal.core.model.Client;
 import se.fakturaportal.persistense.entity.ClientEntity;
 
 import javax.transaction.Transactional;

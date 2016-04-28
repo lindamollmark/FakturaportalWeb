@@ -45,6 +45,14 @@ angular
         templateUrl: 'views/newInvoice.html',
         controller: 'newInvoiceCtrl'
       })
+      .when('/newInvoice:param', {
+        templateUrl: 'views/newInvoice.html',
+        controller: 'newInvoiceCtrl'
+      })
+      .when('/clientView:param', {
+      templateUrl: 'views/clientView.html',
+      controller: 'clientCtrl'
+    })
       .otherwise({
         redirectTo: '/'
       });

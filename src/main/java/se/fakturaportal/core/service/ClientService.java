@@ -34,4 +34,26 @@ public class ClientService {
         }
         return clients;
     }
+
+    public Client fetchClient(String clientID) {
+        Long id = Long.valueOf(clientID);
+        ClientEntity ce = clientDAO.findOne(id);
+        Client client = ce.toModel();
+        return client;
+    }
+
+    public void deleteClient(String clientId) {
+        System.out.println("i servicen och ska deleata " + clientId);
+        Long id = Long.valueOf(clientId);
+        clientDAO.delete(id);
+    }
+
+    public Client updateClient(Client aClient) {
+        ClientEntity ce = clientDAO.findOne(aClient.getId());
+
+        ce = ce.fromModel(aClient);
+        ClientEntity saved = clientDAO.save(ce);
+        Client c = saved.toModel();
+        return c;
+    }
 }

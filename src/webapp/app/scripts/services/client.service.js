@@ -8,10 +8,8 @@
     .module('springBootClientApp.services.client', [])
     .factory('clientService', clientService);
 
-  clientService.$inject = ['$resource'];
-//angular.module.factory('clientService', clientService);
-//  clientService.$inject = ['$http'];
-function clientService($resource){
+  clientService.$inject = ['$http'];
+function clientService($http){
 
   var restURL = 'http://localhost:8080/#/newClient';
 
@@ -19,18 +17,11 @@ function clientService($resource){
     save: save
   };
 
-  var privateAPI = {};
-
-
   return service;
 
   function save(theClient){
-    var client = $resource(restURL,
-      {
-        method: 'JSONP',
-        client: '@client'
-      });
-    client.post({Client: theClient});
+    $http({method: 'POST', url:'http://localhost:8080/views/newClient', data: theClient});
+
 
   }
 }
