@@ -82,8 +82,8 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <version>2.4</version>
                 <configuration>
-                    <warSourceDirectory>WebContent</warSourceDirectory>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <warName>Fakturaportal</warName>
+
                 </configuration>
             </plugin>
         </plugins>

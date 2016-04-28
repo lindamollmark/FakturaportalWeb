@@ -1,0 +1,41 @@
+
+  <h1>Här ska vi lägga in nya kunder!</h1>
+    <div ng-controller="newClientCtrl">
+    <form name="newClientForm" ng-submit="save()">
+ <table>
+   <tr>
+     <td>Kundnr</td>
+     <td><input type="number" ng-model="client.clientNo"></td>
+     </tr>
+   <tr>
+  <td>Företagsnamn</td>
+     <td><input type="text" ng-model="client.companyName"></td>
+   </tr>
+   <tr>
+  <td>Adress</td>
+     <td><input type="text" ng-model="client.address1"></td>
+   </tr>
+   <tr>
+  <td>Adress</td>
+     <td><input type="text" ng-model="client.address2"></td>
+   </tr>
+   <tr>
+  <td>Postnummer</td>
+     <td><input type="number" ng-model="client.postCode"></td>
+   </tr>
+   <tr>
+  <td>Postort</td>
+     <td><input type="text" ng-model="client.postAddress"></td>
+   </tr>
+   <td>Kontaktperson</td>
+   <td><input type="text" ng-model="client.contact"></td>
+   </tr>
+   <tr>
+  <td>Telefonnummer</td>
+     <td><input type="number" ng-model="client.phoneNumber"></td>
+
+   </tr>
+ </table>
+      <input type="submit" value="SPARA">
+    </form>
+    </div>
