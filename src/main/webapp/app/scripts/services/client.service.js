@@ -11,18 +11,30 @@
   clientService.$inject = ['$http'];
 function clientService($http){
 
-  var restURL = 'http://localhost:8080/#/newClient';
-
   var service = {
-    save: save
+    save: save,
+    remove: remove,
+    getClientList: getClientList,
+    updateClient: updateClient
   };
 
   return service;
 
   function save(theClient){
     $http({method: 'POST', url:'http://localhost:8080/views/newClient', data: theClient});
+  }
 
+  function remove(theClient){
+    $http({method: 'POST', url:'http://localhost:8080/views/deleteClient', data: clientID});
+  }
 
+  function getClientList(){
+    return $http({method: 'get', url:'http://localhost:8080/views/clientlist'});
+
+  }
+
+  function  updateClient(theClient){
+  return $http({method: 'POST', url:'http://localhost:8080/views/updateClient', data: theClient});
   }
 }
 })();

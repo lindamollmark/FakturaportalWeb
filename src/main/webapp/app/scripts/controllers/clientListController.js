@@ -1,7 +1,7 @@
 angular.module('springBootClientApp')
-  .controller('clientListCtrl', function($http) {
+  .controller('clientListCtrl', function($http, clientService) {
     var self = this;
-    $http({method: 'get', url:'http://localhost:8080/views/clientlist'}).then(function(response){
+   clientService.getClientList().then(function(response){
       self.client = angular.fromJson(response.data);
     });
   });

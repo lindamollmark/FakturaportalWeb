@@ -5,7 +5,7 @@ package se.fakturaportal.core.model;
  */
 public class Client {
     Long id;
-    String clientNo;
+    int clientNo;
     String companyName;
     String address1;
     String address2;
@@ -22,11 +22,11 @@ public class Client {
         this.id = id;
     }
 
-    public String getClientNo() {
+    public int getClientNo() {
         return clientNo;
     }
 
-    public void setClientNo(String clientNo) {
+    public void setClientNo(int clientNo) {
         this.clientNo = clientNo;
     }
 

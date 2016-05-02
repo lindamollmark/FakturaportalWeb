@@ -1,6 +1,7 @@
 package se.fakturaportal.core.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import se.fakturaportal.core.model.Client;
 import se.fakturaportal.persistense.dao.ClientDAO;
@@ -27,7 +28,8 @@ public class ClientService {
 
     public List<Client> getClients() {
         List<Client> clients = new ArrayList<>();
-        Iterable<ClientEntity> clientEntitys = clientDAO.findAll();
+//        Iterable<ClientEntity> clientEntitys = clientDAO.findAll();
+        Iterable<ClientEntity> clientEntitys = clientDAO.findAll(new Sort(Sort.Direction.ASC, "clientNo"));
         for (ClientEntity ce : clientEntitys) {
             Client client = ce.toModel();
             clients.add(client);

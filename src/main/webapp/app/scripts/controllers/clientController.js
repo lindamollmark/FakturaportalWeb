@@ -12,7 +12,7 @@
  */
 //, clientService
 angular.module('springBootClientApp')
-  .controller('clientCtrl', function($scope, $routeParams, $http) {
+  .controller('clientCtrl', function($scope, $routeParams, $http, clientService, $window) {
     var self = this;
 
 
@@ -20,27 +20,24 @@ angular.module('springBootClientApp')
     var clientID = {clientId: id};
 
     $http({method: 'POST', url:'http://localhost:8080/views/clientView', data: clientID}).then(function(response){
-      var client = angular.fromJson(response.data);
-      $scope.client = client;
+      $scope.client = angular.fromJson(response.data);
+
     });
 
     $scope.delete = function(){
-      $http({method: 'POST', url:'http://localhost:8080/views/deleteClient', data: clientID});
+      clientService.remove(clientID);
+      //$http({method: 'POST', url:'http://localhost:8080/views/deleteClient', data: clientID});
     }
 
     $scope.update = function(){
       var client = {};
       client = $scope.client;
-      $http({method: 'POST', url:'http://localhost:8080/views/updateClient', data: client}).then(function(response){
-        var clientList = angular.fromJson(response.data);
-        self.client = clientList;
+     clientService.updateClient(client).then(function(response){
+        self.client = angular.fromJson(response.data);
+       $scope.updateMessage = "Kund uppdaterad";
       });
     }
-    $scope.invoiceDiv = false;
-    $scope.makeInvoice = function () {
-      //If DIV is visible it will be hidden and vice versa.
-      $scope.invoiceDiv = $scope.invoiceDiv ? false : true;
-    }
+
   });
 
 

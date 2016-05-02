@@ -1,5 +1,6 @@
+<div style="color: #FF0000">{{updateMessage}}</div>
 <h1>Kund</h1>
-<div ng-controller="clientCtrl as clientCtrl">
+<div >
   <form name="clientForm" ng-submit="update()">
   <table>
     <tr>
@@ -38,7 +39,7 @@
 
   <div class="absolute">
     <a href="#/newInvoice{{client}}"> <button>Faktura</button></a>
-  <button ng-click="delete()">Ta Bort</button>
+    <a href="#/clientList"><button ng-click="delete()">Ta Bort</button></a>
   <input type="submit" value="Spara"/>
   </div>
     </form>
