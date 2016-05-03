@@ -12,14 +12,14 @@
  */
 //, clientService
 angular.module('springBootClientApp')
-  .controller('clientCtrl', function($scope, $routeParams, $http, clientService, $window) {
+  .controller('clientCtrl', function($scope, $routeParams, $http, clientService) {
     var self = this;
 
 
     var id = $routeParams.param;
     var clientID = {clientId: id};
 
-    $http({method: 'POST', url:'http://localhost:8080/views/clientView', data: clientID}).then(function(response){
+    clientService.fetchClient(clientID).then(function(response){
       $scope.client = angular.fromJson(response.data);
 
     });

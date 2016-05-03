@@ -5,6 +5,6 @@
   'use strict';
 
   angular
-    .module('springBootClientApp.services', ['springBootClientApp.services.rest','springBootClientApp.services.client' ]);
+    .module('springBootClientApp.services', ['springBootClientApp.services.rest', 'springBootClientApp.services.invoice','springBootClientApp.services.client']);
 })();
 

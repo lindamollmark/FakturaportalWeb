@@ -41,10 +41,10 @@ angular
         templateUrl: 'app/views/invoiceList.html',
         controller: 'invoiceListCtrl'
       })
-      .when('/newInvoice', {
-        templateUrl: 'app/views/newInvoice.html',
-        controller: 'newInvoiceCtrl'
-      })
+      //.when('/newInvoice', {
+      //  templateUrl: 'app/views/newInvoice.html',
+      //  controller: 'newInvoiceCtrl'
+      //})
       .when('/newInvoice:param', {
         templateUrl: 'app/views/newInvoice.html',
         controller: 'newInvoiceCtrl'

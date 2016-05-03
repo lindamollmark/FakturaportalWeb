@@ -11,59 +11,54 @@
  * Controller of the webappApp
  */
 angular.module('springBootClientApp')
-  .controller('invoiceListCtrl', function() {
-    var self = this;
-
-    var invoiceList = [{
-      lineNo: 1254,
-      item: 'test'
-    },
-      {
-        lineNo: 1255,
-        item: 'test2'
-
-      }
-    ];
-    self.invoice = invoiceList;
-  });
-//
-//angular.module('springBootClientApp')
-//  .controller('newInvoiceCtrl', function() {
-//    var self = this;
-//
-//    var invoiceList = [{
-//      lineNo: 1254,
-//      item: 'test'
-//    },
-//      {
-//        lineNo: 1255,
-//        item: 'test2'
-//
-//      }
-//    ];
-//    self.invoice = invoiceList;
-//  });
+  .controller('newInvoiceCtrl', function($routeParams, $scope, clientService, invoiceService) {
+    var vm = this;
+    $scope.invoiceRows = [];
+    $scope.invoice = {invoiceNo: 0};
 
 
-angular.module('springBootClientApp')
-  .controller('newInvoiceCtrl', function($routeParams) {
-    var self = this;
-    self.client = $routeParams.param;
-    self.invoiceRows = [];
+    //var client = {
+    //  clientNo: 1,
+    //  companyName: "Linda Test"
+    //};
 
-    for(var i = 1; i < 11; i++){
+    var id  = $routeParams.param;
+    var clientID = {clientId: id};
+
+    clientService.fetchClient(clientID).then(function(response){
+      $scope.client = angular.fromJson(response.data);
+    });
+
+    $scope.saveInvoice = function(){
+      var invoice = $scope.invoice;
+ var invoiceRows = $scope.invoiceRows;
+      invoiceService.save(invoice, $scope.client, invoiceRows );
+    }
+
+
+    //vm.client = client;
+
+
+    for(var i = 1; i < 15; i++){
       var invoiceRow = {
         rowNo: i,
-        articleNo:'',
+        articleNo: 45,
         quantity: 0,
         description: '',
         unitPrice:0,
-        total: 0
+        editing: false
       };
-      self.invoiceRows.push(invoiceRow);
+      $scope.invoiceRows.push(invoiceRow);
 
     }
+    $scope.editRows = function (row) {
+      row.editing = true;
+    }
 
+    $scope.doneEditing = function (row) {
+      row.editing = false;
+      //dong some background ajax calling for persistence...
+    };
   });
 
 

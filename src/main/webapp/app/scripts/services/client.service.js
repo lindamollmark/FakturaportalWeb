@@ -12,6 +12,7 @@
 function clientService($http){
 
   var service = {
+    fetchClient: fetchClient,
     save: save,
     remove: remove,
     getClientList: getClientList,
@@ -19,6 +20,10 @@ function clientService($http){
   };
 
   return service;
+
+  function fetchClient(clientID){
+ return $http({method: 'POST', url:'http://localhost:8080/views/clientView', data: clientID});
+  }
 
   function save(theClient){
     $http({method: 'POST', url:'http://localhost:8080/views/newClient', data: theClient});
