@@ -10,34 +10,34 @@
        </tr>
       <tr>
         <td>Kundnr</td>
-        <td><input type="text" ng-model="client.clientNo"></td>
+        <td><input type="text" ng-model="invoice.client.clientNo"></td>
       </tr>
       <tr>
         <td>Företagsnamn</td>
-        <td><input type="text" ng-model="client.companyName"></td>
+        <td><input type="text" ng-model="invoice.client.companyName"></td>
       </tr>
       <tr>
         <td>Adress</td>
-        <td><input type="text" ng-model="client.address1"></td>
+        <td><input type="text" ng-model="invoice.client.address1"></td>
       </tr>
       <tr>
         <td>Adress</td>
-        <td><input type="text" ng-model="client.address2"></td>
+        <td><input type="text" ng-model="invoice.client.address2"></td>
       </tr>
       <tr>
         <td>Postnummer</td>
-        <td><input type="text" ng-model="client.postCode"></td>
+        <td><input type="text" ng-model="invoice.client.postCode"></td>
       </tr>
       <tr>
         <td>Postort</td>
-        <td><input type="text" ng-model="client.postAddress"></td>
+        <td><input type="text" ng-model="invoice.client.postAddress"></td>
       </tr>
       <td>Kontaktperson</td>
-      <td><input type="text" ng-model="client.contact"></td>
+      <td><input type="text" ng-model="invoice.client.contact"></td>
       </tr>
       <tr>
         <td>Telefonnummer</td>
-        <td><input type="text" ng-model="client.phoneNumber"></td>
+        <td><input type="text" ng-model="invoice.client.phoneNumber"></td>
 
       </tr>
     </table>
@@ -54,12 +54,12 @@
     <td>Total</td>
     </thead>
     <tbody>
-   <tr ng-repeat="rows in invoiceRows">
+   <tr ng-repeat="rows in invoice.invoiceRows" init="rowNo=0">
      <td width="3%">{{rows.rowNo}}</td>
-    <td width="15%" contenteditable="true">{{rows.articleNo}}</td>
-    <td width="15%" contenteditable="true">{{rows.quantity}}</td>
-    <td width="25%" contenteditable="true">{{rows.description}}</td>
-    <td width="15%" contenteditable="true">{{rows.unitPrice}}</td>
+     <td><input type="text" ng-model="rows.articleNo" style="border: none; background-color: inherit"></td>
+     <td><input type="number" ng-model="rows.quantity" style="border: none; background-color: inherit"></td>
+     <td><input type="text" ng-model="rows.description" ng-click="rows.rowNo = $index + 1"  style="border: none; background-color: inherit"></td>
+     <td><input type="number" ng-model="rows.unitPrice" style="border: none; background-color: inherit"></td>
       <td width="15%">{{rows.quantity*rows.unitPrice }}</td>
    </tr>
 

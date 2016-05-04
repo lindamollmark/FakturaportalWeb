@@ -24,11 +24,16 @@ public class ClientEntity {
     String phoneNumber;
 
     public ClientEntity fromModel(Client aClient) {
-
+if(aClient.getId() > 0){
+    this.id = aClient.getId();
+}
         this.clientNo = aClient.getClientNo();
         this.companyName = aClient.getCompanyName();
         this.address1 = aClient.getAddress1();
-        this.address2 = aClient.getAddress2();
+        if(aClient.getAddress2() != null){
+            this.address2 = aClient.getAddress2();
+        }
+
         this.postCode = aClient.getPostCode();
         this.postAddress = aClient.getPostAddress();
         this.contact = aClient.getContact();

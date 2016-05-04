@@ -12,7 +12,6 @@ import javax.transaction.Transactional;
  */
 @Transactional
 public interface ClientDAO extends JpaRepository<ClientEntity, Long> {
-//    public interface ClientDAO extends CrudRepository<ClientEntity, Long> {
 
 
     }

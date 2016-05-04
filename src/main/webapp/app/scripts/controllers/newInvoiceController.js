@@ -13,8 +13,11 @@
 angular.module('springBootClientApp')
   .controller('newInvoiceCtrl', function($routeParams, $scope, clientService, invoiceService) {
     var vm = this;
-    $scope.invoiceRows = [];
-    $scope.invoice = {invoiceNo: 0};
+   var invoiceRows = [];
+    var client = {};
+    $scope.invoice = {invoiceNo: 0,
+    client: client,
+    invoiceRows: invoiceRows};
 
 
     //var client = {
@@ -26,39 +29,35 @@ angular.module('springBootClientApp')
     var clientID = {clientId: id};
 
     clientService.fetchClient(clientID).then(function(response){
-      $scope.client = angular.fromJson(response.data);
+      $scope.invoice.client = angular.fromJson(response.data);
     });
 
     $scope.saveInvoice = function(){
       var invoice = $scope.invoice;
- var invoiceRows = $scope.invoiceRows;
-      invoiceService.save(invoice, $scope.client, invoiceRows );
+ var ir = invoice.invoiceRows;
+      var rowsToSave = [];
+      _.forEach(ir, function(invoiceRow){
+        if (invoiceRow.rowNo > 0){
+          rowsToSave.push(invoiceRow);
+        }
+       });
+
+      invoice.invoiceRows = rowsToSave;
+      invoiceService.save(invoice);
     }
 
-
-    //vm.client = client;
-
-
-    for(var i = 1; i < 15; i++){
+    for(var i = 1; i < 10; i++){
       var invoiceRow = {
-        rowNo: i,
-        articleNo: 45,
+        rowNo: "",
+        articleNo: '',
         quantity: 0,
         description: '',
         unitPrice:0,
-        editing: false
       };
-      $scope.invoiceRows.push(invoiceRow);
+      $scope.invoice.invoiceRows.push(invoiceRow);
 
     }
-    $scope.editRows = function (row) {
-      row.editing = true;
-    }
 
-    $scope.doneEditing = function (row) {
-      row.editing = false;
-      //dong some background ajax calling for persistence...
-    };
   });
 
 

@@ -12,8 +12,10 @@
       save: save
     };
 
-    function save(invoice, client, invoiceRows){
-      alert("Fakturanummer: " + invoice.invoiceNo + ", kundnummer: " + client.clientNo);
+    function save(invoice){
+
+        $http({method: 'POST', url:'http://localhost:8080/views/newInvoice', data: invoice});
+
     }
     return service;
   }
