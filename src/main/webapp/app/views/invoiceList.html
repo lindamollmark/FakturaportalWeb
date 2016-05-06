@@ -1,14 +1,29 @@
 <h1>Här skall fakturorna listas!</h1>
 <div ng-controller="invoiceListCtrl as invoiceList">
-  <table>
+  <table style="width:100%" class="table-striped table-bordered">
     <tr>
-      <th>Rad</th>
-      <th>Artikel</th>
+      <th>Fakuranummer</th>
+      <th>Fakturadatum</th>
+      <th>Kundnr</th>
+      <th>Kund</th>
+      <th>Förfallodatum</th>
+      <th>Belopp</th>
     </tr>
 
     <tr ng-repeat="invoice in invoiceList.invoice">
-      <td>{{invoice.lineNo}}</td>
-      <td>{{invoice.item}}</td>
+      <td>{{invoice.invoiceNo}}</td>
+      <td>{{invoice.invoiceDate}}</td>
+      <td>{{invoice.client.clientNo}}</td>
+      <td>{{invoice.client.companyName}}</td>
+      <td>
+        <div ng-hide="edit">{{invoice.dueDate}}
+        <button class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="edit = !edit"></button></div>
+        <div ng-show="edit">
+          <input type="text" ng-model="invoice.dueDate">
+          <button class="glyphicon glyphicon-floppy-save" aria-hidden="true" ng-click="invoiceList.updateDueDate(invoice)"></button>
+        </div>
+      </td>
+      <td>{{invoice.invoiceTotal}}</td>
     </tr>
   </table>
 </div>

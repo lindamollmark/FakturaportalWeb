@@ -6,11 +6,13 @@ package se.fakturaportal.core.model;
 public class TestId {
     String clientId;
 
-    public String getId() {
+
+    public String getClientId() {
         return clientId;
     }
 
-    public void setclientId(String clientId) {
+    public void setClientId(String clientId) {
         this.clientId = clientId;
     }
-}
+
+   }

@@ -11,11 +11,13 @@
 angular
   .module('springBootClientApp', [
     'ngAnimate',
+    'contenteditable',
     'ngCookies',
     'ngResource',
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'ui.bootstrap',
     'springBootClientApp.controllers',
     'springBootClientApp.services'
   ])
@@ -41,10 +43,10 @@ angular
         templateUrl: 'app/views/invoiceList.html',
         controller: 'invoiceListCtrl'
       })
-      //.when('/newInvoice', {
-      //  templateUrl: 'app/views/newInvoice.html',
-      //  controller: 'newInvoiceCtrl'
-      //})
+      .when('/invoiceList:param', {
+        templateUrl: 'app/views/invoiceList.html',
+        controller: 'invoiceListCtrl'
+      })
       .when('/newInvoice:param', {
         templateUrl: 'app/views/newInvoice.html',
         controller: 'newInvoiceCtrl'

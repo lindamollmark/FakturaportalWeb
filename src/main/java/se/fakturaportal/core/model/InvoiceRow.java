@@ -9,7 +9,8 @@ public class InvoiceRow {
     String articleNo;
     int quantity;
     String description;
-    int unitPrice;
+    double unitPrice;
+    double rowTotal;
 
     public int getId() {
         return id;
@@ -51,11 +52,20 @@ public class InvoiceRow {
         this.description = description;
     }
 
-    public int getUnitPrice() {
+    public double getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(int price) {
+    public void setUnitPrice(double price) {
+      setRowTotal( price * quantity);
         this.unitPrice = price;
+    }
+
+    public double getRowTotal() {
+        return rowTotal;
+    }
+
+    public void setRowTotal(double rowTotal) {
+        this.rowTotal = rowTotal;
     }
 }

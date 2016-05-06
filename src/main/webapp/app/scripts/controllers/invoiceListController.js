@@ -11,40 +11,29 @@
  * Controller of the webappApp
  */
 angular.module('springBootClientApp')
-  .controller('invoiceListCtrl', function() {
+  .controller('invoiceListCtrl', function(invoiceService, $routeParams, $scope) {
     var self = this;
+    self.edit = false;
+    var id  = $routeParams.param;
 
 
+    if(id > 0){
+      var clientID = {clientId: id};
+      invoiceService.getClientInvoiceList(clientID).then(function(response){
+        self.invoice = angular.fromJson(response.data);
+      });
+    }
+    else{
+      invoiceService.getInvoiceList().then(function(response){
+        self.invoice = angular.fromJson(response.data);
+      });
+    }
 
-    var invoiceList = [{
-      lineNo: 1254,
-      item: 'test'
-    },
-      {
-        lineNo: 1255,
-        item: 'test2'
+    self.updateDueDate = function (invoice) {
+      invoiceService.updateInvoice(invoice);
+    }
 
-      }
-    ];
-    self.invoice = invoiceList;
   });
-//
-//angular.module('springBootClientApp')
-//  .controller('newInvoiceCtrl', function() {
-//    var self = this;
-//
-//    var invoiceList = [{
-//      lineNo: 1254,
-//      item: 'test'
-//    },
-//      {
-//        lineNo: 1255,
-//        item: 'test2'
-//
-//      }
-//    ];
-//    self.invoice = invoiceList;
-//  });
 
 
 

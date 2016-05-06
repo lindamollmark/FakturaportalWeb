@@ -9,6 +9,7 @@
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css" rel="stylesheet">
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -56,7 +57,7 @@
         </div>
         <div id="collapse1" class="panel-collapse collapse">
           <ul class="list-group">
-            <li class="list-group-item"><a href="#/clientList"> Sök/Öppna</a></li>
+            <li class="list-group-item"><a href="#/clientList">Kundlista</a></li>
             <li class="list-group-item"><a ng-href="#/newClient">Ny</a></li>
           </ul>
         </div>
@@ -67,8 +68,7 @@
           </div>
           <div id="collapse2" class="panel-collapse collapse">
             <ul class="list-group">
-              <li class="list-group-item"><a href="#/invoiceList">Sök/Öppna</a></li>
-              <li class="list-group-item"><a href="#/newInvoice">Ny</a></li>
+              <li class="list-group-item"><a href="#/invoiceList">Fakturalista</a></li>
             </ul>
           </div>
         </div>
@@ -104,12 +104,15 @@
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-contenteditable/angular-contenteditable.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/lodash/dist/lodash.js"></script>
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script>
+
     <!-- endbower -->
     <!-- endbuild -->
 

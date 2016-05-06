@@ -19,16 +19,17 @@ public class ClientService {
     @Autowired
     private ClientDAO clientDAO;
 
-    public void newClient(Client aClient) {
+    public Client newClient(Client aClient) {
         ClientEntity client = new ClientEntity();
-        client = client.fromModel(aClient);
+         client.fromModel(aClient);
         clientDAO.save(client);
+        Client savedClient = client.toModel();
+        return savedClient;
 
     }
 
     public List<Client> getClients() {
         List<Client> clients = new ArrayList<>();
-//        Iterable<ClientEntity> clientEntitys = clientDAO.findAll();
         Iterable<ClientEntity> clientEntitys = clientDAO.findAll(new Sort(Sort.Direction.ASC, "clientNo"));
         for (ClientEntity ce : clientEntitys) {
             Client client = ce.toModel();
@@ -38,15 +39,14 @@ public class ClientService {
     }
 
     public Client fetchClient(String clientID) {
-        Long id = Long.valueOf(clientID);
+        int id = Integer.valueOf(clientID);
         ClientEntity ce = clientDAO.findOne(id);
         Client client = ce.toModel();
         return client;
     }
 
     public void deleteClient(String clientId) {
-        System.out.println("i servicen och ska deleata " + clientId);
-        Long id = Long.valueOf(clientId);
+        int id = Integer.valueOf(clientId);
         clientDAO.delete(id);
     }
 
@@ -57,5 +57,14 @@ public class ClientService {
         ClientEntity saved = clientDAO.save(ce);
         Client c = saved.toModel();
         return c;
+    }
+
+    public Boolean checkClientNo(int clientNo) {
+       List<ClientEntity> ce = clientDAO.findByClientNo(clientNo);
+
+        if(ce.size()>0){
+            return true;
+        }
+        return false;
     }
 }

@@ -24,28 +24,26 @@ public class ClientController {
 
     @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value = "/views/newClient", method = RequestMethod.POST)
-    public void newClient(@RequestBody String client){
+    public String newClient(@RequestBody String client){
         Client aClient = new Gson().fromJson(client, Client.class);
-        clientService.newClient(aClient);
+         aClient = clientService.newClient(aClient);
+        return new Gson().toJson(aClient);
    }
 
-    @CrossOrigin(origins = "http://localhost:9000")
+//    @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value = "/views/clientlist", method = RequestMethod.GET)
     public String clientList(){
         List<Client> clients = clientService.getClients();
-
         String json = new Gson().toJson(clients);
         return json;
 
     }
 
-    @CrossOrigin(origins = "http://localhost:9000")
+//    @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value = "/views/clientView", method = RequestMethod.POST)
     public String clientView(@RequestBody String client){
        TestId clientID = new Gson().fromJson(client, TestId.class);
-
-        Client theClient = clientService.fetchClient(clientID.getId());
-
+        Client theClient = clientService.fetchClient(clientID.getClientId());
         String json = new Gson().toJson(theClient);
         return json;
     }
@@ -53,10 +51,9 @@ public class ClientController {
     @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value = "/views/deleteClient", method = RequestMethod.POST)
     public void deleteClient(@RequestBody String client){
-        System.out.println("första i controllern " +client);
         TestId aClient = new Gson().fromJson(client, TestId.class);
-        System.out.println(aClient.getId());
-        clientService.deleteClient(aClient.getId());
+        System.out.println(aClient.getClientId());
+        clientService.deleteClient(aClient.getClientId());
     }
 
     @CrossOrigin(origins = "http://localhost:9000")
@@ -66,5 +63,12 @@ public class ClientController {
         Client updated = clientService.updateClient(aClient);
         String json = new Gson().toJson(updated);
         return json;
+    }
+
+    @RequestMapping(value = "views/clientNo", method = RequestMethod.POST)
+    public Boolean checkClientNo(@RequestBody String clientNo){
+        Boolean exist = clientService.checkClientNo(Integer.parseInt(clientNo));
+
+        return exist;
     }
 }

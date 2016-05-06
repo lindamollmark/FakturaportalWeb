@@ -2,19 +2,40 @@
 
 <div >
   <form name="newInvoiceForm" ng-submit="saveInvoice()">
-     <table>
+     <table >
+
        <h3>Fakturaadress</h3>
        <tr>
          <td>Fakturanr</td>
          <td><input type="text" ng-model="invoice.invoiceNo"></td>
+         <td>Fakturadatum</td>
+         <td> <div class="col-md-4">
+           <p class="input-group">
+             <input type="text" class="form-control" uib-datepicker-popup ng-model="invoice.invoiceDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+         </p>
+         </div></td>
        </tr>
       <tr>
         <td>Kundnr</td>
         <td><input type="text" ng-model="invoice.client.clientNo"></td>
+        <td>Förfallodatum</td>
+        <td> <div class="col-md-4">
+          <p class="input-group">
+            <input type="text" class="form-control" uib-datepicker-popup ng-model="invoice.dueDate" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open2()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+          </p>
+        </div></td>
       </tr>
       <tr>
         <td>Företagsnamn</td>
         <td><input type="text" ng-model="invoice.client.companyName"></td>
+        <td>Ordernummer</td>
+        <td><input type="text" ng-model="invoice.orderNo"></td>
       </tr>
       <tr>
         <td>Adress</td>

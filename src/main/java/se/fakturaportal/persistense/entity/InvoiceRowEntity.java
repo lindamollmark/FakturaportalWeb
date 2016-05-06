@@ -19,7 +19,7 @@ public class InvoiceRowEntity {
     String articleNo;
     int quantity;
     String description;
-    int unitPrice;
+    double unitPrice;
 
     public InvoiceRowEntity fromModel(InvoiceRow ir) {
         if(ir.getId() > 0){
@@ -31,5 +31,16 @@ public class InvoiceRowEntity {
         description = ir.getDescription();
         unitPrice = ir.getUnitPrice();
         return this;
+    }
+
+    public InvoiceRow toModel() {
+        InvoiceRow row = new InvoiceRow();
+        row.setId(id);
+        row.setRowNo(rowNo);
+        row.setArticleNo(articleNo);
+        row.setQuantity(quantity);
+        row.setDescription(description);
+        row.setUnitPrice(unitPrice);
+        return row;
     }
 }

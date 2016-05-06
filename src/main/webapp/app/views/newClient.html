@@ -5,11 +5,13 @@
  <table>
    <tr>
      <td>Kundnr</td>
-     <td><input type="number" ng-model="client.clientNo"></td>
+     <td><input type="number" ng-model="client.clientNo" ng-blur="checkClientNo()" ng-required="true">
+       <span ng-show="exsist" style="color: red">Kundnummret existerar redan!</span></td>
+     <span style="color: red" ng-show="client.clientNo.$error.required">Kundnummer krävs.</span>
      </tr>
    <tr>
   <td>Företagsnamn</td>
-     <td><input type="text" ng-model="client.companyName"></td>
+     <td><input type="text" name="companyName" ng-model="client.companyName" ng-required="true"></td>
    </tr>
    <tr>
   <td>Adress</td>
@@ -32,7 +34,7 @@
    </tr>
    <tr>
   <td>Telefonnummer</td>
-     <td><input type="number" ng-model="client.phoneNumber"></td>
+     <td><input type="text" ng-model="client.phoneNumber"></td>
 
    </tr>
  </table>

@@ -26,7 +26,6 @@ angular.module('springBootClientApp')
 
     $scope.delete = function(){
       clientService.remove(clientID);
-      //$http({method: 'POST', url:'http://localhost:8080/views/deleteClient', data: clientID});
     }
 
     $scope.update = function(){
@@ -37,6 +36,7 @@ angular.module('springBootClientApp')
        $scope.updateMessage = "Kund uppdaterad";
       });
     }
+
 
   });
 

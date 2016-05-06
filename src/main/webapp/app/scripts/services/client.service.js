@@ -16,30 +16,35 @@ function clientService($http){
     save: save,
     remove: remove,
     getClientList: getClientList,
-    updateClient: updateClient
+    updateClient: updateClient,
+    checkClientNo: checkClientNo
   };
 
   return service;
 
   function fetchClient(clientID){
  return $http({method: 'POST', url:'http://localhost:8080/views/clientView', data: clientID});
-  }
+  };
 
   function save(theClient){
-    $http({method: 'POST', url:'http://localhost:8080/views/newClient', data: theClient});
-  }
+   return $http({method: 'POST', url:'http://localhost:8080/views/newClient', data: theClient});
+  };
 
   function remove(theClient){
-    $http({method: 'POST', url:'http://localhost:8080/views/deleteClient', data: clientID});
-  }
+    $http({method: 'POST', url:'http://localhost:8080/views/deleteClient', data: theClient});
+  };
 
   function getClientList(){
     return $http({method: 'get', url:'http://localhost:8080/views/clientlist'});
 
-  }
+  };
 
   function  updateClient(theClient){
   return $http({method: 'POST', url:'http://localhost:8080/views/updateClient', data: theClient});
+  };
+
+  function checkClientNo(clientNo){
+    return $http({method: 'POST', url:'http://localhost:8080/views/clientNo', data: clientNo});
   }
 }
 })();
