@@ -31,7 +31,7 @@ function clientService($http){
   };
 
   function remove(theClient){
-    $http({method: 'POST', url:'http://localhost:8080/views/deleteClient', data: theClient});
+   return $http({method: 'POST', url:'http://localhost:8080/views/deleteClient', data: theClient});
   };
 
   function getClientList(){

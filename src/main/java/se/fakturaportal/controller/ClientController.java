@@ -30,7 +30,6 @@ public class ClientController {
         return new Gson().toJson(aClient);
    }
 
-//    @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value = "/views/clientlist", method = RequestMethod.GET)
     public String clientList(){
         List<Client> clients = clientService.getClients();
@@ -39,7 +38,6 @@ public class ClientController {
 
     }
 
-//    @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value = "/views/clientView", method = RequestMethod.POST)
     public String clientView(@RequestBody String client){
        TestId clientID = new Gson().fromJson(client, TestId.class);
@@ -48,15 +46,13 @@ public class ClientController {
         return json;
     }
 
-    @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value = "/views/deleteClient", method = RequestMethod.POST)
-    public void deleteClient(@RequestBody String client){
+    public boolean deleteClient(@RequestBody String client){
         TestId aClient = new Gson().fromJson(client, TestId.class);
-        System.out.println(aClient.getClientId());
-        clientService.deleteClient(aClient.getClientId());
+        Boolean deleated = clientService.deleteClient(aClient.getClientId());
+        return deleated;
     }
 
-    @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value = "/views/updateClient", method = RequestMethod.POST)
     public String updateClient(@RequestBody String client){
         Client aClient = new Gson().fromJson(client, Client.class);

@@ -5,7 +5,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import se.fakturaportal.core.model.Client;
 import se.fakturaportal.persistense.dao.ClientDAO;
+import se.fakturaportal.persistense.dao.InvoiceDAO;
 import se.fakturaportal.persistense.entity.ClientEntity;
+import se.fakturaportal.persistense.entity.InvoiceEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +20,9 @@ public class ClientService {
 
     @Autowired
     private ClientDAO clientDAO;
+
+    @Autowired
+    private InvoiceDAO invoiceDAO;
 
     public Client newClient(Client aClient) {
         ClientEntity client = new ClientEntity();
@@ -45,9 +50,16 @@ public class ClientService {
         return client;
     }
 
-    public void deleteClient(String clientId) {
+    public Boolean deleteClient(String clientId) {
         int id = Integer.valueOf(clientId);
-        clientDAO.delete(id);
+        ClientEntity ce = clientDAO.findOne(id);
+        List<InvoiceEntity> invList = invoiceDAO.findByClientEntity(ce);
+        if(invList.size() == 0){
+            clientDAO.delete(id);
+            return true;
+        }
+        return false;
+
     }
 
     public Client updateClient(Client aClient) {

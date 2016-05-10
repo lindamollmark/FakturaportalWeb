@@ -11,11 +11,13 @@
  * Controller of the webappApp
  */
 angular.module('springBootClientApp')
-  .controller('newInvoiceCtrl', function($routeParams, $scope, clientService, invoiceService) {
+  .controller('newInvoiceCtrl', function($routeParams, $scope, clientService, invoiceService, $location) {
     var vm = this;
    var invoiceRows = [];
     var client = {};
-    $scope.invoice = {invoiceNo: 0,
+    $scope.invoice = {
+      id: 0,
+      invoiceNo: 0,
       orderNo: "",
     client: client,
     invoiceRows: invoiceRows
@@ -40,10 +42,20 @@ angular.module('springBootClientApp')
         if (invoiceRow.rowNo > 0){
           rowsToSave.push(invoiceRow);
         }
+
        });
 
       invoice.invoiceRows = rowsToSave;
-      invoiceService.save(invoice);
+      invoiceService.save(invoice).then(function(response){
+        $scope.invoice = angular.fromJson(response.data);
+        var invoiceNo = invoice.invoiceNo;
+        var path = "/invoiceView" + invoiceNo;
+        $location.path(path);
+      });
+      //$scope.invoiceMessage = "Faktura skapad";
+      var clientID = invoice.client.clientId;
+
+
     };
 
     for(var i = 1; i < 10; i++){

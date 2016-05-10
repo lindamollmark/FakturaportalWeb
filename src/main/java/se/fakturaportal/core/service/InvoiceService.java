@@ -5,6 +5,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import se.fakturaportal.core.model.Client;
 import se.fakturaportal.core.model.Invoice;
+import se.fakturaportal.core.model.InvoiceId;
 import se.fakturaportal.core.model.TestId;
 import se.fakturaportal.persistense.dao.ClientDAO;
 import se.fakturaportal.persistense.dao.InvoiceDAO;
@@ -26,10 +27,12 @@ public class InvoiceService {
     @Autowired
     private ClientDAO clientDAO;
 
-    public void newInvoice(Invoice newInvoice) {
+    public Invoice newInvoice(Invoice newInvoice) {
         InvoiceEntity ie = new InvoiceEntity();
         ie = ie.fromModel(newInvoice);
         invoiceDAO.save(ie);
+        Invoice invoice = ie.toModel();
+        return invoice;
     }
 
 
@@ -69,5 +72,10 @@ public class InvoiceService {
         InvoiceEntity ie = invoiceDAO.findOne(invoice.getId());
         ie = ie.fromModel(invoice);
         invoiceDAO.save(ie);
+    }
+
+    public Invoice fetchInvoice(Invoice invoice) {
+        InvoiceEntity ie = invoiceDAO.findByInvoiceNo(invoice.getInvoiceNo());
+       return ie.toModel();
     }
 }

@@ -13,15 +13,20 @@
       getInvoiceNo: getInvoiceNo,
       getInvoiceList: getInvoiceList,
       getClientInvoiceList: getClientInvoiceList,
-      updateInvoice: updateInvoice
+      updateInvoice: updateInvoice,
+      fetchInvoice: fetchInvoice,
+      printInvoice: printInvoice
     };
 
     return service;
+
     function save(invoice){
-      $http({method: 'POST', url:'http://localhost:8080/views/newInvoice', data: invoice});
+      return $http({method: 'POST', url:'http://localhost:8080/views/newInvoice', data: invoice});
     };
 
-
+    function fetchInvoice(invoiceNo){
+      return $http({method: 'POST', url:'http://localhost:8080/views/fetchInvoice', data: invoiceNo});
+    }
     function getInvoiceNo(){
       return $http({method: 'GET', url:'/views/newInvoiceNo'});
     };
@@ -33,8 +38,10 @@
       return $http({method: 'POST', url:'http://localhost:8080/views/clientInvoicelist', data: clientID});
     };
     function  updateInvoice(invoice){
-      alert("inne i servicen");
-       $http({method: 'POST', url:'http://localhost:8080/views/updateInvoice', data: invoice});
+      $http({method: 'POST', url:'http://localhost:8080/views/updateInvoice', data: invoice});
     };
+    function  printInvoice(invoice){
+      $http({method: 'POST', url:'http://localhost:8080/views/printInvoice', data: invoice});
+    }
   }
 })();

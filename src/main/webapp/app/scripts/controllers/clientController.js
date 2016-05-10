@@ -12,7 +12,7 @@
  */
 //, clientService
 angular.module('springBootClientApp')
-  .controller('clientCtrl', function($scope, $routeParams, $http, clientService) {
+  .controller('clientCtrl', function($scope, $routeParams, $http, clientService, $location) {
     var self = this;
 
 
@@ -25,7 +25,16 @@ angular.module('springBootClientApp')
     });
 
     $scope.delete = function(){
-      clientService.remove(clientID);
+      clientService.remove(clientID).then(function(response){
+        var message = (response.data);
+        if(message){
+        var path = "/clientList";
+        $location.path(path);
+        }
+        else{
+          alert("Kund har fakturor, och går därmed inte att radera!");
+        }
+      });
     }
 
     $scope.update = function(){

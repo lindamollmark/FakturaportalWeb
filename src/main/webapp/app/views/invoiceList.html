@@ -1,4 +1,3 @@
-<h1>Här skall fakturorna listas!</h1>
 <div ng-controller="invoiceListCtrl as invoiceList">
   <table style="width:100%" class="table-striped table-bordered">
     <tr>
@@ -11,7 +10,7 @@
     </tr>
 
     <tr ng-repeat="invoice in invoiceList.invoice">
-      <td>{{invoice.invoiceNo}}</td>
+      <td><a href="#/invoiceView{{invoice.invoiceNo}}">{{invoice.invoiceNo}}</a></td>
       <td>{{invoice.invoiceDate}}</td>
       <td>{{invoice.client.clientNo}}</td>
       <td>{{invoice.client.companyName}}</td>

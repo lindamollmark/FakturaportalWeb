@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import se.fakturaportal.core.model.Invoice;
-import se.fakturaportal.core.model.InvoiceNo;
+import se.fakturaportal.core.model.InvoiceId;
 import se.fakturaportal.core.model.TestId;
 import se.fakturaportal.core.service.InvoiceService;
 
@@ -21,9 +21,18 @@ public class InvoiceController {
     private InvoiceService invoiceService;
 
     @RequestMapping(value = "/views/newInvoice", method = RequestMethod.POST)
-    public void newInvoice(@RequestBody String invoice){
+    public String newInvoice(@RequestBody String invoice){
         Invoice newInvoice = new Gson().fromJson(invoice, Invoice.class);
-        invoiceService.newInvoice(newInvoice);
+        newInvoice = invoiceService.newInvoice(newInvoice);
+        String json = new Gson().toJson(newInvoice);
+        return json;
+    }
+    @RequestMapping(value="/views/fetchInvoice", method = RequestMethod.POST)
+    public String fetchInvoice(@RequestBody String invoiceNo){
+        Invoice invoice = new Gson().fromJson(invoiceNo, Invoice.class);
+         invoice = invoiceService.fetchInvoice(invoice);
+        String json = new Gson().toJson(invoice);
+        return json;
     }
 
     @RequestMapping(value = "/views/newInvoiceNo", method = RequestMethod.GET)

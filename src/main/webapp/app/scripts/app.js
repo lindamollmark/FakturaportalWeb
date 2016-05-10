@@ -51,6 +51,10 @@ angular
         templateUrl: 'app/views/newInvoice.html',
         controller: 'newInvoiceCtrl'
       })
+      .when('/invoiceView:invoiceNo', {
+        templateUrl: 'app/views/invoiceView.html',
+        controller: 'invoiceCtrl'
+      })
       .when('/clientView:param', {
       templateUrl: 'app/views/clientView.html',
       controller: 'clientCtrl'
