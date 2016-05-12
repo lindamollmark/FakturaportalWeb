@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Linda on 2016-03-12.
+ * Class for saving the customers/client for the user.
  */
 @RestController
 public class ClientController {
@@ -22,7 +22,6 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @CrossOrigin(origins = "http://localhost:9000")
     @RequestMapping(value = "/views/newClient", method = RequestMethod.POST)
     public String newClient(@RequestBody String client){
         Client aClient = new Gson().fromJson(client, Client.class);

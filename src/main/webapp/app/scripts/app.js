@@ -23,6 +23,14 @@ angular
   ])
   .config(function ($routeProvider) {
     $routeProvider
+      .when('/login', {
+        templateUrl: 'app/views/login.html',
+        controller: 'LoginCtrl',
+      })
+      .when('/newUser', {
+        templateUrl: 'app/views/newUser.html',
+        controller: 'newUserCtrl',
+      })
       .when('/', {
         templateUrl: 'app/views/main.html',
         controller: 'MainCtrl'

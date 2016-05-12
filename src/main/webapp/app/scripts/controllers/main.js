@@ -8,10 +8,12 @@
  * Controller of the webappApp
  */
 angular.module('springBootClientApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MainCtrl', function ($scope, $rootScope, $location) {
+    $scope.logout = function(){
+      $rootScope.existingUser = false;
+
+        $rootScope.currentUser = {};
+        var path = "/";
+        $location.path(path);
+    }
   });

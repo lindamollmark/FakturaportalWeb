@@ -45,7 +45,7 @@ function clientService($http){
 
   function checkClientNo(clientNo){
     return $http({method: 'POST', url:'http://localhost:8080/views/clientNo', data: clientNo});
-  }
+  };
 }
 })();
 
