@@ -148,7 +148,6 @@ public class UserEntity {
         if(user.getAddress2() != null){
             this.address2 = user.getAddress2();
         }
-
         this.postCode = user.getPostCode();
         this.postAddress = user.getPostAddress();
         this.contact = user.getContact();
@@ -162,7 +161,7 @@ public class UserEntity {
 
     /**
      * Help method for turning the entity to a model
-     * @return the created user
+     * @return the created user model
      */
     public User toModel() {
         User user = new User();

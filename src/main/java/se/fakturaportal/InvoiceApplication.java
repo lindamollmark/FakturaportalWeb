@@ -9,14 +9,14 @@ import org.springframework.boot.context.web.SpringBootServletInitializer;
  * Created by Linda on 2016-03-11.
  */
 @SpringBootApplication
-public class DemoApplication extends SpringBootServletInitializer {
+public class InvoiceApplication extends SpringBootServletInitializer {
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application){
-        return application.sources(DemoApplication.class);
+        return application.sources(InvoiceApplication.class);
     }
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(InvoiceApplication.class, args);
     }
 }

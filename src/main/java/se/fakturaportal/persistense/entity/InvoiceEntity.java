@@ -89,6 +89,11 @@ public class InvoiceEntity {
         this.dueDate = dueDate;
     }
 
+    /**
+     * Help method for converint an invoice model to an Entity
+     * @param newInvoice the model
+     * @return the created entity
+     */
     public InvoiceEntity fromModel(Invoice newInvoice) {
         if(!(newInvoice.getId() > 0)){
             id = newInvoice.getId();
@@ -108,9 +113,12 @@ public class InvoiceEntity {
         }
         rowEntityList = rowList;
         return this;
-
     }
 
+    /**
+     * Helpmethod to create a model of the entity.
+     * @return the created model
+     */
     public Invoice toModel() {
         Invoice invoice = new Invoice();
         invoice.setId(id);

@@ -14,13 +14,17 @@ public class InvoiceRowEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
-
     int rowNo;
     String articleNo;
     int quantity;
     String description;
     double unitPrice;
 
+    /**
+     * Help method for creating a row entity from the model
+     * @param ir the rowmodel
+     * @return the entity that has been created.
+     */
     public InvoiceRowEntity fromModel(InvoiceRow ir) {
         if(ir.getId() > 0){
             id = ir.getId();
@@ -33,6 +37,10 @@ public class InvoiceRowEntity {
         return this;
     }
 
+    /**
+     * Help method to create a model of the entity
+     * @return the created model.
+     */
     public InvoiceRow toModel() {
         InvoiceRow row = new InvoiceRow();
         row.setId(id);

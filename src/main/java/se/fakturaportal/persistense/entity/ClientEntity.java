@@ -23,7 +23,13 @@ public class ClientEntity {
     String contact;
     String phoneNumber;
 
+    /**
+     * Help method to convert a client Model to an entity
+     * @param aClient the client
+     * @return the ceatedentity
+     */
     public ClientEntity fromModel(Client aClient) {
+        // a new client hasn't got any id yet.
         if(aClient.getId() > 0){
             this.id = aClient.getId();
         }
@@ -43,6 +49,10 @@ public class ClientEntity {
 
     }
 
+    /**
+     * Help method to convert the entity to a client model
+     * @return the created model.
+     */
     public Client toModel() {
         Client client = new Client();
         client.setId(id);
