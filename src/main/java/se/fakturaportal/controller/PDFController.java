@@ -20,7 +20,7 @@ import java.awt.*;
 import java.io.*;
 
 /**
- * Created by Linda on 2016-05-09.
+ * Controller for building the PDF document of a Invoice
  */
 @RestController
 public class PDFController {
@@ -30,26 +30,24 @@ public class PDFController {
 
     // Create a document and add a page to it
     @RequestMapping(value="/views/printInvoice", method = RequestMethod.POST)
-   public void printPDF(@RequestBody String invoice) throws IOException, COSVisitorException {
+    public void printPDF(@RequestBody String invoice) throws IOException, COSVisitorException {
         Invoice newInvoice = new Gson().fromJson(invoice, Invoice.class);
-    document = new PDDocument();
-    page = new PDPage();
+        document = new PDDocument();
+        page = new PDPage();
 
-    document.addPage( page );
+        document.addPage( page );
 
-    // Create a new font object selecting one of the PDF base fonts
-    PDFont font = PDType1Font.HELVETICA_BOLD;
+        // Create a new font object selecting one of the PDF base fonts
+        PDFont font = PDType1Font.HELVETICA_BOLD;
         PDFont font2 = PDType1Font.HELVETICA;
 
-    // Start a new content stream which will "hold" the to be created content
-    PDPageContentStream contentStream = new PDPageContentStream(document, page);
+        // Start a new content stream which will "hold" the to be created content
+        PDPageContentStream contentStream = new PDPageContentStream(document, page);
         PDXObjectImage logga = new PDJpeg(document, new FileInputStream("C:\\Users\\Linda\\FakturaportalWeb\\src\\main\\webapp\\app\\images\\minilogga.jpg"));
 
-
-// Define a text content stream using the selected font, moving the cursor and drawing the text "Hello World"
         // logga
         contentStream.drawImage(logga, 50, 720);
-
+// Defines a text content stream using the selected font, moving the cursor and drawing the text
         createPaymentInfoBox(newInvoice, font2, contentStream);
 
         contentStream.beginText();
@@ -81,15 +79,15 @@ public class PDFController {
         contentStream.drawString( newInvoice.getClient().getPostCode() + " " + newInvoice.getClient().getPostAddress() );
         contentStream.endText();
 
-        //Table
-
+        //creates a table for the invoieRows
         int yTable = 460;
         createTableHeader(font, contentStream, yTable);
-
         tableRows(newInvoice, font2, contentStream, yTable);
+
         contentStream.setStrokingColor(Color.black);
         contentStream.drawLine(55,65,560,65);
 
+        //Creates the footer
         contentStream.beginText();
         contentStream.setFont( font2, 8 );
         contentStream.moveTextPositionByAmount( 60, 50 );
@@ -132,13 +130,20 @@ public class PDFController {
         contentStream.endText();
 
 // Make sure that the content stream is closed:
-    contentStream.close();
+        contentStream.close();
 
 // Save the results and ensure that the document is properly closed:
-    document.save("C:\\Users\\Linda\\FakturaportalWeb\\" + newInvoice.getInvoiceNo() + ".pdf");
-    document.close();
-   }
+        document.save("C:\\Users\\Linda\\FakturaportalWeb\\" + newInvoice.getInvoiceNo() + ".pdf");
+        document.close();
+    }
 
+    /**
+     * Help method for creating the informationbox on the invoice
+     * @param newInvoice the invoice with it´s content
+     * @param font2 the font to use on the text.
+     * @param contentStream the stream for the text
+     * @throws IOException if the streams fails.
+     */
     private void createPaymentInfoBox(Invoice newInvoice, PDFont font2, PDPageContentStream contentStream) throws IOException {
         contentStream.drawLine(45,670,260,670);
         contentStream.drawLine(45,565,260,565);
@@ -176,6 +181,13 @@ public class PDFController {
         contentStream.endText();
     }
 
+    /**
+     * Help method for creating the table header
+     * @param font the font style and size
+     * @param contentStream the stream for the text
+     * @param yTable the y position
+     * @throws IOException thrown if the stream fails
+     */
     private void createTableHeader(PDFont font, PDPageContentStream contentStream, int yTable) throws IOException {
         contentStream.drawLine(55,475,560,475);
         contentStream.beginText();
@@ -205,6 +217,14 @@ public class PDFController {
         contentStream.endText();
     }
 
+    /**
+     * Help method for setting the invoiceRows on the table
+     * @param newInvoice the invoiceInformation
+     * @param font2 the font style and size
+     * @param contentStream the stream for the text
+     * @param yTable the y position
+     * @throws IOException thrown if the stream fails.
+     */
     private void tableRows(Invoice newInvoice, PDFont font2, PDPageContentStream contentStream, int yTable) throws IOException {
         for(InvoiceRow row : newInvoice.getInvoiceRows()){
             yTable = yTable-15;

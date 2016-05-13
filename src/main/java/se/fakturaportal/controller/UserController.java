@@ -10,7 +10,7 @@ import se.fakturaportal.core.model.User;
 import se.fakturaportal.core.service.UserService;
 
 /**
- * Created by Linda on 2016-05-12.
+ * Controller for handeling the user
  */
 @RestController
 public class UserController {
@@ -19,23 +19,32 @@ public class UserController {
     private UserService userService;
     private User user;
 
+    /**
+     * Will forward a question if the username and password if for a existing user
+     * @param loginInfo the username and password
+     * @return true if the user exist and false if anything is wrong
+     */
     @RequestMapping(value = "/views/login", method = RequestMethod.POST)
     public Boolean login(@RequestBody String loginInfo){
         User userToLogin = new Gson().fromJson(loginInfo, User.class);
-
         user = userService.findUser(userToLogin.getUsername());
-
         if (user != null) {
-
             return true;
         } else {
             return false;
         }
     }
+
+    /**
+     * Adds a new user to the database
+     * @param newUser the user information to be saved.
+     * @return the saved user.
+     */
     @RequestMapping(value="/views/newUser", method = RequestMethod.POST)
     public String newUser(@RequestBody String newUser){
         User user = new Gson().fromJson(newUser, User.class);
         user = userService.saveUser(user);
-        return newUser;
+        String json = new Gson().toJson(user);
+        return json;
     }
 }

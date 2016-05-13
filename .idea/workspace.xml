@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be23f0f5-2a8c-495b-99f1-d8f17281e54f" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/RestRespond.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/TestController.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/ClientController.java" afterPath="$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/ClientController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/InvoiceController.java" afterPath="$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/InvoiceController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/PDFController.java" afterPath="$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/PDFController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/UserController.java" />
     </list>
     <ignored path="FakturaportalWeb.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,37 +36,7 @@
     <favorites_list name="FakturaportalWeb" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="ClientController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/ClientController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <marker date="1463082919031" expanded="true" signature="1324:1329" placeholder="//..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InvoiceController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/InvoiceController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.619403">
-              <caret line="104" column="85" selection-start-line="104" selection-start-column="85" selection-end-line="104" selection-end-column="85" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1351#1352#0" expanded="true" />
-                <element signature="e#1400#1401#0" expanded="true" />
-                <element signature="e#1615#1616#0" expanded="true" />
-                <element signature="e#1681#1682#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -112,7 +84,6 @@
         <option value="$PROJECT_DIR$/src/main/webapp/app/scripts/controllers/invoiceController.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/app/scripts/services/invoice.service.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/app/views/invoiceList.html" />
-        <option value="$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/PDFController.java" />
         <option value="$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/UIApplication.java" />
         <option value="$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/SecurityConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/UiApplication.java" />
@@ -132,12 +103,13 @@
         <option value="$PROJECT_DIR$/src/main/java/se/fakturaportal/persistense/entity/UserEntity.java" />
         <option value="$PROJECT_DIR$/src/main/java/se/fakturaportal/persistense/dao/UserDAO.java" />
         <option value="$PROJECT_DIR$/src/main/java/se/fakturaportal/core/service/UserService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/app/scripts/controllers/loginController.js" />
         <option value="$PROJECT_DIR$/src/main/webapp/app/views/main.html" />
         <option value="$PROJECT_DIR$/src/main/webapp/app/scripts/controllers/main.js" />
         <option value="$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/ClientController.java" />
         <option value="$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/InvoiceController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/UserController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/PDFController.java" />
       </list>
     </option>
   </component>
@@ -1186,7 +1158,7 @@
       <workItem from="1460059772357" duration="7051000" />
       <workItem from="1461659310025" duration="1092000" />
       <workItem from="1461661152663" duration="68289000" />
-      <workItem from="1461872647855" duration="204982000" />
+      <workItem from="1461872647855" duration="206397000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <created>1457873226311</created>
@@ -1266,11 +1238,17 @@
       <option name="project" value="LOCAL" />
       <updated>1463082285888</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="new comments on client and invoiceController">
+      <created>1463083580798</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1463083580798</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="372263000" />
+    <option name="totallyTimeSpent" value="373678000" />
   </component>
   <component name="TodoView" selected-index="1">
     <todo-panel id="selected-file">
@@ -1283,7 +1261,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3295838" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -1304,7 +1282,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25701943" sideWeight="0.50596255" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.359955" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.359955" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1338,7 +1316,8 @@
     <MESSAGE value="Fungerande flöda kund och faktura skapande, och listande." />
     <MESSAGE value="kan printa pdf" />
     <MESSAGE value="add user, login and logout" />
-    <option name="LAST_COMMIT_MESSAGE" value="add user, login and logout" />
+    <MESSAGE value="new comments on client and invoiceController" />
+    <option name="LAST_COMMIT_MESSAGE" value="new comments on client and invoiceController" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1360,16 +1339,6 @@
         <state vertical-scroll-proportion="1.5186567">
           <caret line="59" column="37" selection-start-line="59" selection-start-column="37" selection-end-line="59" selection-end-column="37" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/PDFController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.041044775">
-          <caret line="52" column="8" selection-start-line="52" selection-start-column="8" selection-end-line="52" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1401,22 +1370,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/TestController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.3283582">
-          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/RestRespond.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.20522387">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -1746,16 +1699,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/UserController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5895522">
-          <caret line="31" column="24" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/app/scripts/controllers/newUserController.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1809,7 +1752,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/ClientController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="-0.45149255">
           <caret line="10" column="22" selection-start-line="10" selection-start-column="22" selection-end-line="10" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1818,17 +1761,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/InvoiceController.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.619403">
-          <caret line="104" column="85" selection-start-line="104" selection-start-column="85" selection-end-line="104" selection-end-column="85" />
+        <state vertical-scroll-proportion="0.6425993">
+          <caret line="47" column="19" selection-start-line="47" selection-start-column="19" selection-end-line="47" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1351#1352#0" expanded="true" />
-            <element signature="e#1400#1401#0" expanded="true" />
-            <element signature="e#1615#1616#0" expanded="true" />
-            <element signature="e#1681#1682#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/InvoiceController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="2.765343">
+          <caret line="104" column="85" selection-start-line="104" selection-start-column="85" selection-end-line="104" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/se/fakturaportal/controller/PDFController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.08955224">
+          <caret line="216" column="32" selection-start-line="216" selection-start-column="32" selection-end-line="216" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
