@@ -6,7 +6,7 @@ import se.fakturaportal.persistense.entity.UserEntity;
 import java.util.List;
 
 /**
- * Created by Linda on 2016-05-12.
+ * Layer to speak with the database regarding the user
  */
 public interface UserDAO extends JpaRepository<UserEntity, Integer> {
 

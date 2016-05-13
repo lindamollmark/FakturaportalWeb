@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import se.fakturaportal.core.model.Client;
 import se.fakturaportal.core.model.Invoice;
-import se.fakturaportal.core.model.TestId;
 import se.fakturaportal.core.service.InvoiceService;
 
 import java.util.List;
@@ -94,7 +94,7 @@ public class InvoiceController {
      */
     @RequestMapping(value = "/views/clientInvoicelist", method = RequestMethod.POST)
     public String clientInvoiceList(@RequestBody String clientId) {
-        TestId clientID = new Gson().fromJson(clientId, TestId.class);
+        Client clientID = new Gson().fromJson(clientId, Client.class);
         List<Invoice> invoices = invoiceService.fetchClientInvoiceList(clientID);
         String json = new Gson().toJson(invoices);
         return json;

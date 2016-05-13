@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 /**
- * Created by Linda on 2016-03-27.
+ *  Layer to speak with the database regarding clients.
  */
 @Transactional
 public interface ClientDAO extends JpaRepository<ClientEntity, Integer> {

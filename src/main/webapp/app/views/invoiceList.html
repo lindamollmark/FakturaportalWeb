@@ -19,7 +19,7 @@
         <button class="glyphicon glyphicon-edit" aria-hidden="true" ng-click="edit = !edit"></button></div>
         <div ng-show="edit">
           <input type="text" ng-model="invoice.dueDate">
-          <button class="glyphicon glyphicon-floppy-save" aria-hidden="true" ng-click="invoiceList.updateDueDate(invoice)"></button>
+          <button class="glyphicon glyphicon-floppy-save" aria-hidden="true" ng-click="invoiceList.updateDueDate(invoice); edit = !edit"></button>
         </div>
       </td>
       <td>{{invoice.invoiceTotal}}</td>

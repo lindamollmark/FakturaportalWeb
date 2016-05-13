@@ -5,24 +5,16 @@
 
 /**
  * @ngdoc function
- * @name webappApp.controller:invoiceListCtrl
+ * @name springBootClientApp.controller:invoiceListCtrl
  * @description
- * # invoiceListCtrl
- * Controller of the webappApp
+ * # invoiceListCtrl fetches the invoice and helps when we shall print the PDF
+ * Controller of the springBootClientApp
  */
 angular.module('springBootClientApp')
-  .controller('invoiceCtrl', function($routeParams, $scope, clientService, invoiceService, $location) {
-    var vm = this;
-
-    //var cId  = $routeParams.clientID;
-    //var clientID = {clientId: cId};
+  .controller('invoiceCtrl', function($routeParams, $scope, clientService, invoiceService) {
 
     var no  = $routeParams.invoiceNo;
     var invoiceNo = {invoiceNo: no};
-
-    //clientService.fetchClient(clientID).then(function(response){
-    //  $scope.invoice.client = angular.fromJson(response.data);
-    //});
 
     invoiceService.fetchInvoice(invoiceNo).then(function(response){
       $scope.invoice = angular.fromJson(response.data);
@@ -31,10 +23,6 @@ angular.module('springBootClientApp')
     $scope.print = function(invoice){
     invoiceService.printInvoice(invoice);
     }
-
-
-
-
   });
 
 

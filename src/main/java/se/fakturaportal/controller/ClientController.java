@@ -1,8 +1,6 @@
 package se.fakturaportal.controller;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.google.gson.Gson;
-import se.fakturaportal.core.model.TestId;
 import se.fakturaportal.core.service.ClientService;
 import se.fakturaportal.core.model.Client;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,8 +46,8 @@ public class ClientController {
      */
     @RequestMapping(value = "/views/clientView", method = RequestMethod.POST)
     public String clientView(@RequestBody String clientId){
-        TestId clientID = new Gson().fromJson(clientId, TestId.class);
-        Client theClient = clientService.fetchClient(clientID.getClientId());
+        Client clientID = new Gson().fromJson(clientId, Client.class);
+        Client theClient = clientService.fetchClient(clientID.getId());
         String json = new Gson().toJson(theClient);
         return json;
     }
@@ -61,8 +59,8 @@ public class ClientController {
      */
     @RequestMapping(value = "/views/deleteClient", method = RequestMethod.POST)
     public boolean deleteClient(@RequestBody String clientId){
-        TestId aClient = new Gson().fromJson(clientId, TestId.class);
-        Boolean deleated = clientService.deleteClient(aClient.getClientId());
+        Client aClient = new Gson().fromJson(clientId, Client.class);
+        Boolean deleated = clientService.deleteClient(aClient.getId());
         return deleated;
     }
 

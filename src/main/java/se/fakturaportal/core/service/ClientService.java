@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Linda on 2016-03-27.
+ * Service layer class to handle the logic for the client.
  */
 @Service
 public class ClientService {
@@ -24,6 +24,11 @@ public class ClientService {
     @Autowired
     private InvoiceDAO invoiceDAO;
 
+    /**
+     * Saves the new Client
+     * @param aClient the client information to save
+     * @return the saved information.
+     */
     public Client newClient(Client aClient) {
         ClientEntity client = new ClientEntity();
          client.fromModel(aClient);
@@ -33,6 +38,10 @@ public class ClientService {
 
     }
 
+    /**
+     * Gets the hole clientList
+     * @return All the clients
+     */
     public List<Client> getClients() {
         List<Client> clients = new ArrayList<>();
         Iterable<ClientEntity> clientEntitys = clientDAO.findAll(new Sort(Sort.Direction.ASC, "clientNo"));
@@ -43,37 +52,52 @@ public class ClientService {
         return clients;
     }
 
-    public Client fetchClient(String clientID) {
-        int id = Integer.valueOf(clientID);
-        ClientEntity ce = clientDAO.findOne(id);
+    /**
+     * Fetches a specific client from the database
+     * @param clientID the ID for the client to fetch
+     * @return the asked client.
+     */
+    public Client fetchClient(int clientID) {
+        ClientEntity ce = clientDAO.findOne(clientID);
         Client client = ce.toModel();
         return client;
     }
 
-    public Boolean deleteClient(String clientId) {
-        int id = Integer.valueOf(clientId);
-        ClientEntity ce = clientDAO.findOne(id);
+    /**
+     * Deletes the client if the client hasn't got any invoices
+     * @param clientId the id to be deleted
+     * @return true if we were able to delete the client, false if it has invoices and there for cant be deleated.
+     */
+    public Boolean deleteClient(int clientId) {
+        ClientEntity ce = clientDAO.findOne(clientId);
         List<InvoiceEntity> invList = invoiceDAO.findByClientEntity(ce);
         if(invList.size() == 0){
-            clientDAO.delete(id);
+            clientDAO.delete(clientId);
             return true;
         }
         return false;
-
     }
 
+    /**
+     * Method for updating a client
+     * @param aClient the information to update
+     * @return the updated client.
+     */
     public Client updateClient(Client aClient) {
         ClientEntity ce = clientDAO.findOne(aClient.getId());
-
         ce = ce.fromModel(aClient);
         ClientEntity saved = clientDAO.save(ce);
         Client c = saved.toModel();
         return c;
     }
 
+    /**
+     * Method to check if the clientNo if free to use.
+     * @param clientNo the asked clientNo
+     * @return true if you can use it, false if its already taken.
+     */
     public Boolean checkClientNo(int clientNo) {
        List<ClientEntity> ce = clientDAO.findByClientNo(clientNo);
-
         if(ce.size()>0){
             return true;
         }

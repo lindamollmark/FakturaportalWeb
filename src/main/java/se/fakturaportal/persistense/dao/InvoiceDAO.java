@@ -9,7 +9,7 @@ import se.fakturaportal.persistense.entity.InvoiceEntity;
 import java.util.List;
 
 /**
- * Created by Linda on 2016-05-03.
+ * Layer to speak with the database regarding invoices
  */
 @Transactional
 public interface InvoiceDAO extends JpaRepository<InvoiceEntity, Integer> {

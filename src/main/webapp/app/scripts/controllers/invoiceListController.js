@@ -5,10 +5,10 @@
 
 /**
  * @ngdoc function
- * @name webappApp.controller:invoiceListCtrl
+ * @name springBootClientApp.controller:invoiceListCtrl
  * @description
- * # invoiceListCtrl
- * Controller of the webappApp
+ * # invoiceListCtrl fetches the list of invoices and helps when updating the dueDate.
+ * Controller of the springBootClientApp
  */
 angular.module('springBootClientApp')
   .controller('invoiceListCtrl', function(invoiceService, $routeParams, $scope) {
@@ -18,7 +18,7 @@ angular.module('springBootClientApp')
 
 
     if(id > 0){
-      var clientID = {clientId: id};
+      var clientID = {id: id};
       invoiceService.getClientInvoiceList(clientID).then(function(response){
         self.invoice = angular.fromJson(response.data);
       });

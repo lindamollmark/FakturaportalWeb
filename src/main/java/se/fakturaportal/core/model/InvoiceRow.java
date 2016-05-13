@@ -1,7 +1,9 @@
 package se.fakturaportal.core.model;
 
+import java.text.DecimalFormat;
+
 /**
- * Created by Linda on 2016-05-03.
+ * POJO model for invoiceRows, holds the row information
  */
 public class InvoiceRow {
     int id;
@@ -11,6 +13,8 @@ public class InvoiceRow {
     String description;
     double unitPrice;
     double rowTotal;
+
+    private static DecimalFormat df2 = new DecimalFormat("#.00");
 
     public int getId() {
         return id;
@@ -57,7 +61,8 @@ public class InvoiceRow {
     }
 
     public void setUnitPrice(double price) {
-      setRowTotal( price * quantity);
+    // calculates and sets the total row price
+      setRowTotal(price * quantity);
         this.unitPrice = price;
     }
 
@@ -66,6 +71,7 @@ public class InvoiceRow {
     }
 
     public void setRowTotal(double rowTotal) {
+
         this.rowTotal = rowTotal;
     }
 }

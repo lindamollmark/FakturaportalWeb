@@ -7,21 +7,18 @@
  * @ngdoc function
  * @name webappApp.controller:ClientCtrl
  * @description
- * # ClientCtrl
+ * # ClientCtrl helps with the functions regarding an existing client.
  * Controller of the webappApp
  */
-//, clientService
+
 angular.module('springBootClientApp')
   .controller('clientCtrl', function($scope, $routeParams, $http, clientService, $location) {
     var self = this;
-
-
     var id = $routeParams.param;
-    var clientID = {clientId: id};
+    var clientID = {id: id};
 
     clientService.fetchClient(clientID).then(function(response){
       $scope.client = angular.fromJson(response.data);
-
     });
 
     $scope.delete = function(){

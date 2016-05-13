@@ -1,7 +1,7 @@
 package se.fakturaportal.core.model;
 
 /**
- * Created by Linda on 2016-05-12.
+ * Model class, POJO for user
  */
 public class User {
     int id;

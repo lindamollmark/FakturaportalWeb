@@ -13,18 +13,18 @@
 angular.module('springBootClientApp')
   .controller('newInvoiceCtrl', function($routeParams, $scope, clientService, invoiceService, $location) {
     var vm = this;
-   var invoiceRows = [];
+    var invoiceRows = [];
     var client = {};
     $scope.invoice = {
       id: 0,
       invoiceNo: 0,
       orderNo: "",
-    client: client,
-    invoiceRows: invoiceRows
+      client: client,
+      invoiceRows: invoiceRows
     };
 
     var id  = $routeParams.param;
-    var clientID = {clientId: id};
+    var clientID = {id: id};
 
     clientService.fetchClient(clientID).then(function(response){
       $scope.invoice.client = angular.fromJson(response.data);
@@ -36,14 +36,14 @@ angular.module('springBootClientApp')
 
     $scope.saveInvoice = function(){
       var invoice = $scope.invoice;
- var ir = invoice.invoiceRows;
+      var ir = invoice.invoiceRows;
       var rowsToSave = [];
       _.forEach(ir, function(invoiceRow){
         if (invoiceRow.rowNo > 0){
           rowsToSave.push(invoiceRow);
         }
 
-       });
+      });
 
       invoice.invoiceRows = rowsToSave;
       invoiceService.save(invoice).then(function(response){

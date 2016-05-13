@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * Created by Linda on 2016-05-03.
+ * POJO model for invoice, holds the invoiceInformation
  */
 public class Invoice {
     int id;

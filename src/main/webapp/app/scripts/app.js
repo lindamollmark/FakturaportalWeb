@@ -2,11 +2,12 @@
 
 /**
  * @ngdoc overview
- * @name webappApp
+ * @name springBootClientApp
  * @description
- * # webappApp
+ * # springBootClientApp
  *
  * Main module of the application.
+ * routeProvider helps to redirect what should be shown in the include view.
  */
 angular
   .module('springBootClientApp', [
