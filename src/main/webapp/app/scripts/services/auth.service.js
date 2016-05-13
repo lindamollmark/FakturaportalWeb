@@ -16,20 +16,5 @@
     function login(credentials){
     return $http({method: 'POST', url:'/views/login', data: credentials});
      };
-
-  //authService.isAuthenticated = function () {
-  //  return !!Session.userId;
-  //};
-  //
-  //authService.isAuthorized = function (authorizedRoles) {
-  //  if (!angular.isArray(authorizedRoles)) {
-  //    authorizedRoles = [authorizedRoles];
-  //  }
-  //  return (authService.isAuthenticated() &&
-  //  authorizedRoles.indexOf(Session.userRole) !== -1);
-  //};
-
-
 }
-
 })();

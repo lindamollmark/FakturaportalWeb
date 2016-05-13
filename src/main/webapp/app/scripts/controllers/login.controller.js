@@ -1,7 +1,14 @@
 'use strict';
+
+/**
+ * @ngdoc function
+ * @name springBootClientApp.controller:LoginCtrl
+ * @description
+ * # loginCtrl helps with the functions login in and out
+ * Controller of the springBootClientApp
+ */
 angular.module('springBootClientApp')
 
-  //Angular controller for the login and logout function
   .controller('LoginCtrl', function ($scope, $rootScope, authService, $location) {
     $scope.credentials = {
       username: '',

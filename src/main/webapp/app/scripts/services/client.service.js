@@ -1,6 +1,4 @@
-/**
- * Created by Linda on 2016-03-12.
- */
+
 (function () {
   'use strict';
   //TODO why cant i remove []??

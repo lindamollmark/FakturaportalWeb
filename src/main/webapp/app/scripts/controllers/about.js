@@ -2,10 +2,10 @@
 
 /**
  * @ngdoc function
- * @name webappApp.controller:AboutCtrl
+ * @name springBootClientApp.controller:AboutCtrl
  * @description
- * # AboutCtrl
- * Controller of the webappApp
+ * # AboutCtrl NOT IN USE
+ * Controller of the springBootClientApp
  */
 angular.module('springBootClientApp')
   .controller('AboutCtrl', function ($scope) {

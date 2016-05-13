@@ -1,3 +1,11 @@
+
+/**
+ * @ngdoc function
+ * @name springBootClientApp.controller:newUserCtrl
+ * @description
+ * # newUserCtrl helps with the functions regarding adding a new user.
+ * Controller of the springBootClientApp
+ */
 angular.module('springBootClientApp')
   .controller('newUserCtrl', function($scope, userService, $location) {
 

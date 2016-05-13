@@ -1,14 +1,11 @@
-/**
- * Created by Linda on 2016-03-13.
- */
 'use strict';
 
 /**
  * @ngdoc function
- * @name webappApp.controller:invoiceListCtrl
+ * @name springBootClientApp.controller:newInvoiceCtrl
  * @description
- * # invoiceListCtrl
- * Controller of the webappApp
+ * # newInvoiceCtrl helps with the functions regarding adding a new invoice.
+ * Controller of the springBootClientApp
  */
 angular.module('springBootClientApp')
   .controller('newInvoiceCtrl', function($routeParams, $scope, clientService, invoiceService, $location) {
@@ -42,7 +39,6 @@ angular.module('springBootClientApp')
         if (invoiceRow.rowNo > 0){
           rowsToSave.push(invoiceRow);
         }
-
       });
 
       invoice.invoiceRows = rowsToSave;
@@ -52,10 +48,7 @@ angular.module('springBootClientApp')
         var path = "/invoiceView" + invoiceNo;
         $location.path(path);
       });
-      //$scope.invoiceMessage = "Faktura skapad";
       var clientID = invoice.client.clientId;
-
-
     };
 
     for(var i = 1; i < 10; i++){

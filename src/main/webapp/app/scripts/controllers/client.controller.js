@@ -1,7 +1,4 @@
-/**
- * Created by Linda on 2016-03-12.
- */
-'use strict';
+  'use strict';
 
 /**
  * @ngdoc function
@@ -17,33 +14,31 @@ angular.module('springBootClientApp')
     var id = $routeParams.param;
     var clientID = {id: id};
 
-    clientService.fetchClient(clientID).then(function(response){
+    clientService.fetchClient(clientID).then(function (response) {
       $scope.client = angular.fromJson(response.data);
     });
 
-    $scope.delete = function(){
-      clientService.remove(clientID).then(function(response){
+    $scope.delete = function () {
+      clientService.remove(clientID).then(function (response) {
         var message = (response.data);
-        if(message){
-        var path = "/clientList";
-        $location.path(path);
+        if (message) {
+          var path = "/clientList";
+          $location.path(path);
         }
-        else{
+        else {
           alert("Kund har fakturor, och går därmed inte att radera!");
         }
       });
     }
 
-    $scope.update = function(){
+    $scope.update = function () {
       var client = {};
       client = $scope.client;
-     clientService.updateClient(client).then(function(response){
+      clientService.updateClient(client).then(function (response) {
         self.client = angular.fromJson(response.data);
-       $scope.updateMessage = "Kund uppdaterad";
+        $scope.updateMessage = "Kund uppdaterad";
       });
     }
-
-
   });
 
 

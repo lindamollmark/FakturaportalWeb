@@ -1,3 +1,10 @@
+/**
+ * @ngdoc function
+ * @name springBootClientApp.controller:ClientCtrl
+ * @description
+ * # clientListCtrl helps with the functions regarding adding a new client.
+ * Controller of the springBootClientApp
+ */
 angular.module('springBootClientApp')
   .controller('newClientCtrl', function($scope, clientService, $location) {
     var client = {};
@@ -11,9 +18,6 @@ angular.module('springBootClientApp')
         var path = "/clientView" + clientID;
         $location.path(path);
       });
-
-
-      //TODO return to clientList och the client!
     };
 
     $scope.checkClientNo = function() {
