@@ -22,6 +22,9 @@ public class ClientEntity {
     String postAddress;
     String contact;
     String phoneNumber;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name="userId", referencedColumnName = "id")
+    UserEntity user;
 
     /**
      * Help method to convert a client Model to an entity
@@ -44,6 +47,7 @@ public class ClientEntity {
         this.postAddress = aClient.getPostAddress();
         this.contact = aClient.getContact();
         this.phoneNumber = aClient.getPhoneNumber();
+        this.user = new UserEntity().fromModel(aClient.getUser());
 
         return this;
 
@@ -64,6 +68,7 @@ public class ClientEntity {
         client.setPostAddress(postAddress);
         client.setContact(contact);
         client.setPhoneNumber(phoneNumber);
+        client.setUser(user.toModel());
 
         return client;
     }
@@ -138,5 +143,13 @@ public class ClientEntity {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
     }
 }

@@ -24,13 +24,15 @@ public class UserService {
      */
     public Boolean findUser(User user) {
         List<UserEntity> ue = userDAO.findByUsername(user.getUsername());
-        if(ue.size()>0) {
-         if(user.getPassword().contentEquals(ue.get(0).getPassword()));
-            return true;
-        }
-        return false;
-    }
+        String loginpassword = user.getPassword();
+        if (ue.size() > 0) {
+            String userpassword = ue.get(0).getPassword();
+            if (loginpassword.equals(userpassword)) {
+                return true;
+            }
 
+        } return false;
+    }
     /**
      * Saves a new user
      * @param user the information to save
