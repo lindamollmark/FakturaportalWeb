@@ -27,12 +27,8 @@ public class UserController {
     @RequestMapping(value = "/views/login", method = RequestMethod.POST)
     public Boolean login(@RequestBody String loginInfo){
         User userToLogin = new Gson().fromJson(loginInfo, User.class);
-        user = userService.findUser(userToLogin.getUsername());
-        if (user != null) {
-            return true;
-        } else {
-            return false;
-        }
+       Boolean exists = userService.findUser(userToLogin);
+       return exists;
     }
 
     /**

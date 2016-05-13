@@ -9,19 +9,33 @@ import se.fakturaportal.persistense.entity.UserEntity;
 import java.util.List;
 
 /**
- * Created by Linda on 2016-05-12.
+ * Class for preforming the logic and transform the entity to a model and the oposit around
  */
 @Service
 public class UserService {
 
     @Autowired
     private UserDAO userDAO;
-    public User findUser(String usernamne) {
-        List<UserEntity> ue = userDAO.findByUsername(usernamne);
-        User user = ue.get(0).toModel();
-        return user;
+
+    /**
+     * Method for investigating if the user exists in the database.
+     * @param user the login information sent in to search for.
+     * @return true if the user exists.
+     */
+    public Boolean findUser(User user) {
+        List<UserEntity> ue = userDAO.findByUsername(user.getUsername());
+        if(ue.size()>0) {
+         if(user.getPassword().contentEquals(ue.get(0).getPassword()));
+            return true;
+        }
+        return false;
     }
 
+    /**
+     * Saves a new user
+     * @param user the information to save
+     * @return the saved user.
+     */
     public User saveUser(User user) {
         UserEntity ue = new UserEntity();
         ue = ue.fromModel(user);
