@@ -5,6 +5,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import se.fakturaportal.core.model.Client;
 import se.fakturaportal.core.model.Invoice;
+import se.fakturaportal.core.model.User;
 import se.fakturaportal.persistense.dao.ClientDAO;
 import se.fakturaportal.persistense.dao.InvoiceDAO;
 import se.fakturaportal.persistense.entity.ClientEntity;
@@ -54,9 +55,10 @@ public class InvoiceService {
     /**
      * Method to fetch all the invoices for the user
      * @return a list of invoices
+     * @param user
      */
-    public List<Invoice> fetchInvoiceList() {
-        List<InvoiceEntity> entityList = invoiceDAO.findAll(new Sort(Sort.Direction.ASC, "invoiceNo"));
+    public List<Invoice> fetchInvoiceList(User user) {
+        List<InvoiceEntity> entityList = invoiceDAO.findAllByUserIdOrderByInvoiceNoAsc(user.getId());
         List<Invoice> invoiceList = new ArrayList<>();
         for(InvoiceEntity ie: entityList){
             Invoice invoice = ie.toModel();

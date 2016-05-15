@@ -13,19 +13,19 @@ public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    String username;
-    String password;
-    String userCompanyName;
-    String address1;
-    String address2;
-    String postCode;
-    String postAddress;
-    String contact;
-    String phoneNumber;
-    String email;
-    String orgNumber;
-    String bankNumber;
+    private int id;
+    private String username;
+    private String password;
+    private String userCompanyName;
+    private String address1;
+    private String address2;
+    private String postCode;
+    private String postAddress;
+    private String contact;
+    private String phoneNumber;
+    private String email;
+    private String orgNumber;
+    private String bankNumber;
 
     public int getId() {
         return id;

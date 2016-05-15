@@ -2,12 +2,16 @@ package se.fakturaportal.core.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import se.fakturaportal.core.model.Client;
+import se.fakturaportal.core.model.User;
 import se.fakturaportal.persistense.dao.ClientDAO;
 import se.fakturaportal.persistense.dao.InvoiceDAO;
+import se.fakturaportal.persistense.dao.UserDAO;
 import se.fakturaportal.persistense.entity.ClientEntity;
 import se.fakturaportal.persistense.entity.InvoiceEntity;
+import se.fakturaportal.persistense.entity.UserEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +28,9 @@ public class ClientService {
     @Autowired
     private InvoiceDAO invoiceDAO;
 
+    @Autowired
+    private UserDAO userDAO;
+
     /**
      * Saves the new Client
      * @param aClient the client information to save
@@ -31,7 +38,7 @@ public class ClientService {
      */
     public Client newClient(Client aClient) {
         ClientEntity client = new ClientEntity();
-         client.fromModel(aClient);
+        client.fromModel(aClient);
         clientDAO.save(client);
         Client savedClient = client.toModel();
         return savedClient;
@@ -41,10 +48,11 @@ public class ClientService {
     /**
      * Gets the hole clientList
      * @return All the clients
+     * @param user
      */
-    public List<Client> getClients() {
+    public List<Client> getClients(User user) {
         List<Client> clients = new ArrayList<>();
-        Iterable<ClientEntity> clientEntitys = clientDAO.findAll(new Sort(Sort.Direction.ASC, "clientNo"));
+        List<ClientEntity> clientEntitys = clientDAO.findByUserId(user.getId());
         for (ClientEntity ce : clientEntitys) {
             Client client = ce.toModel();
             clients.add(client);
@@ -94,10 +102,11 @@ public class ClientService {
     /**
      * Method to check if the clientNo if free to use.
      * @param clientNo the asked clientNo
+     * @param user
      * @return true if you can use it, false if its already taken.
      */
-    public Boolean checkClientNo(int clientNo) {
-       List<ClientEntity> ce = clientDAO.findByClientNo(clientNo);
+    public Boolean checkClientNo(int clientNo, User user) {
+        List<ClientEntity> ce = clientDAO.findByClientNoAndUserId(clientNo, user.getId());
         if(ce.size()>0){
             return true;
         }

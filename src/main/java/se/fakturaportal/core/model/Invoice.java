@@ -17,6 +17,7 @@ public class Invoice {
     String dueDate;
     List<InvoiceRow> invoiceRows;
     double invoiceTotal;
+    User user;
 
     public int getId() {
         return id;
@@ -83,5 +84,13 @@ public class Invoice {
 
     public void setInvoiceTotal(double invoiceTotal) {
         this.invoiceTotal = invoiceTotal;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

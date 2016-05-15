@@ -16,27 +16,28 @@ import javax.servlet.http.HttpSession;
  * Controller for handeling the user
  */
 @RestController
-
 public class UserController {
 
     @Autowired
     private UserService userService;
     private User user;
-    HttpSession session;
+
 
     /**
      * Will forward a question if the username and password if for a existing user
      * @param loginInfo the username and password
+     * @param session Session for the login user.
      * @return true if the user exist and false if anything is wrong
      */
     @RequestMapping(value = "/views/login", method = RequestMethod.POST)
-    public Boolean login(@RequestBody String loginInfo){
+    public Boolean login(@RequestBody String loginInfo, HttpSession session){
         User userToLogin = new Gson().fromJson(loginInfo, User.class);
-       Boolean exists = userService.findUser(userToLogin);
-        if(exists){
-
+        userToLogin = userService.findUser(userToLogin);
+        if(userToLogin != null) {
+            session.setAttribute("user", userToLogin);
+            return true;
         }
-       return exists;
+        return false;
     }
 
     /**
@@ -50,5 +51,11 @@ public class UserController {
         user = userService.saveUser(user);
         String json = new Gson().toJson(user);
         return json;
+    }
+
+    @RequestMapping(value="/views/username", method = RequestMethod.POST)
+    public Boolean checkUsername(@RequestBody String username){
+       Boolean exists = userService.checkUsername(username);
+        return exists;
     }
 }

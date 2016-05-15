@@ -1,11 +1,13 @@
 package se.fakturaportal.controller;
 
 import com.google.gson.Gson;
+import se.fakturaportal.core.model.User;
 import se.fakturaportal.core.service.ClientService;
 import se.fakturaportal.core.model.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 /**
  * Class for saving the customers/client for the user.
@@ -22,8 +24,10 @@ public class ClientController {
      * @return the saved client
      */
     @RequestMapping(value = "/views/newClient", method = RequestMethod.POST)
-    public String newClient(@RequestBody String client){
+    public String newClient(@RequestBody String client, HttpSession session){
+        User user = (User) session.getAttribute("user");
         Client aClient = new Gson().fromJson(client, Client.class);
+        aClient.setUser(user);
         aClient = clientService.newClient(aClient);
         return new Gson().toJson(aClient);
     }
@@ -33,8 +37,9 @@ public class ClientController {
      * @return the list of clients
      */
     @RequestMapping(value = "/views/clientlist", method = RequestMethod.GET)
-    public String clientList(){
-        List<Client> clients = clientService.getClients();
+    public String clientList(HttpSession session){
+        User user = (User) session.getAttribute("user");
+        List<Client> clients = clientService.getClients(user);
         String json = new Gson().toJson(clients);
         return json;
     }
@@ -84,8 +89,9 @@ public class ClientController {
      * @return true if the number is free to use, false if it's already taken.
      */
     @RequestMapping(value = "views/clientNo", method = RequestMethod.POST)
-    public Boolean checkClientNo(@RequestBody String clientNo){
-        Boolean exist = clientService.checkClientNo(Integer.parseInt(clientNo));
+    public Boolean checkClientNo(@RequestBody String clientNo, HttpSession session){
+        User user = (User) session.getAttribute("user");
+        Boolean exist = clientService.checkClientNo(Integer.parseInt(clientNo), user);
         return exist;
     }
 }

@@ -32,6 +32,9 @@ public class InvoiceEntity {
     private String orderNo;
     private Date invoiceDate;
     private Date dueDate;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    @JoinColumn(name="userId", referencedColumnName = "id")
+    private UserEntity user;
 
     public int getId() {
         return id;
@@ -89,6 +92,18 @@ public class InvoiceEntity {
         this.dueDate = dueDate;
     }
 
+    public void setInvoiceNo(int invoiceNo) {
+        this.invoiceNo = invoiceNo;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public void setUser(UserEntity user) {
+        this.user = user;
+    }
+
     /**
      * Help method for converint an invoice model to an Entity
      * @param newInvoice the model
@@ -112,6 +127,7 @@ public class InvoiceEntity {
             rowList.add(ire);
         }
         rowEntityList = rowList;
+        user = new UserEntity().fromModel(newInvoice.getUser());
         return this;
     }
 

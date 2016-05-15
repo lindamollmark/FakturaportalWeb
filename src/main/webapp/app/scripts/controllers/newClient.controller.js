@@ -6,8 +6,9 @@
  * Controller of the springBootClientApp
  */
 angular.module('springBootClientApp')
-  .controller('newClientCtrl', function($scope, clientService, $location) {
-    var client = {};
+  .controller('newClientCtrl', function($scope, clientService, $location, $rootScope) {
+    var user = $rootScope.currentUser;
+    $scope.client = {user: user};
     var exsist = false;
     $scope.buttonSave = false;
 

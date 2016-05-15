@@ -2,6 +2,7 @@
   <h1>Här ska vi lägga in nya kunder!</h1>
     <div ng-controller="newClientCtrl">
     <form name="newClientForm" ng-submit="save()">
+      <input type="hidden" ng-model="client.user">
  <table>
    <tr>
      <td>Kundnr</td>

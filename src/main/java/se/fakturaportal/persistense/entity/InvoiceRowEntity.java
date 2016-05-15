@@ -13,12 +13,12 @@ public class InvoiceRowEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    int rowNo;
-    String articleNo;
-    int quantity;
-    String description;
-    double unitPrice;
+    private int id;
+    private int rowNo;
+    private  String articleNo;
+    private int quantity;
+    private String description;
+    private  double unitPrice;
 
     /**
      * Help method for creating a row entity from the model

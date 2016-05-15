@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import se.fakturaportal.core.model.Client;
 import se.fakturaportal.core.model.Invoice;
+import se.fakturaportal.core.model.User;
 import se.fakturaportal.core.service.InvoiceService;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -81,8 +83,9 @@ public class InvoiceController {
      * @return Json string with all the invoices.
      */
     @RequestMapping(value = "/views/invoicelist", method = RequestMethod.GET)
-    public String invoiceList() {
-        List<Invoice> invoices = invoiceService.fetchInvoiceList();
+    public String invoiceList(HttpSession session) {
+        User user = (User)session.getAttribute("user");
+        List<Invoice> invoices = invoiceService.fetchInvoiceList(user);
         String json = new Gson().toJson(invoices);
         return json;
     }

@@ -13,18 +13,18 @@ public class ClientEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
-    int clientNo;
-    String companyName;
-    String address1;
-    String address2;
-    String postCode;
-    String postAddress;
-    String contact;
-    String phoneNumber;
+    private int id;
+    private int clientNo;
+    private String companyName;
+    private String address1;
+    private String address2;
+    private String postCode;
+    private String postAddress;
+    private String contact;
+    private String phoneNumber;
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="userId", referencedColumnName = "id")
-    UserEntity user;
+    private UserEntity user;
 
     /**
      * Help method to convert a client Model to an entity
