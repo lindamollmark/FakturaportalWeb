@@ -1,12 +1,12 @@
 <div >
   <form name="newInvoiceForm" ng-submit="saveInvoice()">
-     <table >
+     <table class="newInvoice" >
 
        <h3>Fakturaadress</h3>
        <tr>
-         <td>Fakturanr</td>
-         <td><input type="text" ng-model="invoice.invoiceNo"></td>
-         <td>Fakturadatum</td>
+         <th>Fakturanr</th>
+         <td><input class="form-control" type="text" ng-model="invoice.invoiceNo"></td>
+         <th>Fakturadatum</th>
          <td> <div class="col-md-4">
            <p class="input-group">
              <input type="text" class="form-control" uib-datepicker-popup ng-model="invoice.invoiceDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
@@ -17,9 +17,9 @@
          </div></td>
        </tr>
       <tr>
-        <td>Kundnr</td>
-        <td><input type="text" ng-model="invoice.client.clientNo"></td>
-        <td>Förfallodatum</td>
+        <th>Kundnr</th>
+        <td><input class="form-control"type="text" ng-model="invoice.client.clientNo"></td>
+        <th>Förfallodatum</th>
         <td> <div class="col-md-4">
           <p class="input-group">
             <input type="text" class="form-control" uib-datepicker-popup ng-model="invoice.dueDate" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
@@ -30,32 +30,32 @@
         </div></td>
       </tr>
       <tr>
-        <td>Företagsnamn</td>
-        <td><input type="text" ng-model="invoice.client.companyName"></td>
-        <td>Ordernummer</td>
+        <th>Företagsnamn</th>
+        <td><input class="form-control"type="text" ng-model="invoice.client.companyName"></td>
+        <th>Ordernummer</th>
         <td><input type="text" ng-model="invoice.orderNo"></td>
       </tr>
       <tr>
-        <td>Adress</td>
+        <th>Adress</th>
         <td><input type="text" ng-model="invoice.client.address1"></td>
       </tr>
       <tr>
-        <td>Adress</td>
+        <th>Adress</th>
         <td><input type="text" ng-model="invoice.client.address2"></td>
       </tr>
       <tr>
-        <td>Postnummer</td>
+        <th>Postnummer</th>
         <td><input type="text" ng-model="invoice.client.postCode"></td>
       </tr>
       <tr>
-        <td>Postort</td>
+        <th>Postort</th>
         <td><input type="text" ng-model="invoice.client.postAddress"></td>
       </tr>
-      <td>Kontaktperson</td>
+      <th>Kontaktperson</th>
       <td><input type="text" ng-model="invoice.client.contact"></td>
       </tr>
       <tr>
-        <td>Telefonnummer</td>
+        <th>Telefonnummer</th>
         <td><input type="text" ng-model="invoice.client.phoneNumber"></td>
 
       </tr>
@@ -84,6 +84,6 @@
 
     </tbody>
   </table>
-    <input type="submit" value="Spara">
+    <input class="btn btn-default" type="submit" value="Spara">
   </form>
 </div>

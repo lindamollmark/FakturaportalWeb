@@ -4,44 +4,44 @@
   <form name="clientForm" ng-submit="update()">
   <table>
     <tr>
-      <td>Kundnr</td>
+      <th>Kundnr</th>
       <td><input type="text" ng-model="client.clientNo"></td>
     </tr>
     <tr>
-      <td>Företagsnamn</td>
+      <th>Företagsnamn</th>
       <td><input type="text" ng-model="client.companyName"></td>
     </tr>
     <tr>
-      <td>Adress</td>
+      <th>Adress</th>
       <td><input type="text" ng-model="client.address1"></td>
     </tr>
     <tr>
-      <td>Adress</td>
+      <th>Adress</th>
       <td><input type="text" ng-model="client.address2"></td>
     </tr>
     <tr>
-      <td>Postnummer</td>
+      <th>Postnummer</th>
       <td><input type="text" ng-model="client.postCode"></td>
     </tr>
     <tr>
-      <td>Postort</td>
+      <th>Postort</th>
       <td><input type="text" ng-model="client.postAddress"></td>
     </tr>
-    <td>Kontaktperson</td>
+    <th>Kontaktperson</th>
     <td><input type="text" ng-model="client.contact"></td>
     </tr>
     <tr>
-      <td>Telefonnummer</td>
+      <th>Telefonnummer</th>
       <td><input type="text" ng-model="client.phoneNumber"></td>
 
     </tr>
   </table>
 
   <div class="absolute">
-    <a href="#/invoiceList{{client.id}}"> <button>Fakturalista</button></a>
-    <a href="#/newInvoice{{client.id}}"> <button>Skapa faktura</button></a>
-    <a href="#/clientList"><button ng-click="delete()">Ta Bort Kund</button></a>
-  <input type="submit" value="Spara"/>
+    <a ng-href="#/invoiceList{{client.id}}"> <button class="btn btn-primary">Fakturalista</button></a>
+    <a href="#/newInvoice{{client.id}}"> <button class="btn btn-primary">Skapa faktura</button></a>
+    <a href="#/clientList"><button class="btn btn-primary" ng-click="delete()">Ta Bort Kund</button></a>
+  <input class="btn btn-primary" type="submit" value="Spara"/>
   </div>
     </form>
 

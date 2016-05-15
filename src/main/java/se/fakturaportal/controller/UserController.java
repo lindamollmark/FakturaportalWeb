@@ -2,6 +2,7 @@ package se.fakturaportal.controller;
 
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.session.Session;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -9,15 +10,19 @@ import org.springframework.web.bind.annotation.RestController;
 import se.fakturaportal.core.model.User;
 import se.fakturaportal.core.service.UserService;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * Controller for handeling the user
  */
 @RestController
+
 public class UserController {
 
     @Autowired
     private UserService userService;
     private User user;
+    HttpSession session;
 
     /**
      * Will forward a question if the username and password if for a existing user
@@ -28,6 +33,9 @@ public class UserController {
     public Boolean login(@RequestBody String loginInfo){
         User userToLogin = new Gson().fromJson(loginInfo, User.class);
        Boolean exists = userService.findUser(userToLogin);
+        if(exists){
+
+        }
        return exists;
     }
 
