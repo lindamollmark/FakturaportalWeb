@@ -95,11 +95,11 @@ public class InvoiceService {
 
     /**
      * Method to fetch a specific invoice
-     * @param invoiceNo the invoiceno to fetch.
+     * @param invoice class containing the invoiceNo and user.
      * @return the invoice.
      */
-    public Invoice fetchInvoice(Invoice invoiceNo) {
-        InvoiceEntity ie = invoiceDAO.findByInvoiceNo(invoiceNo.getInvoiceNo());
+    public Invoice fetchInvoice(Invoice invoice) {
+        InvoiceEntity ie = invoiceDAO.findByInvoiceNoAndUserId(invoice.getInvoiceNo(), invoice.getUser().getId());
        return ie.toModel();
     }
 }

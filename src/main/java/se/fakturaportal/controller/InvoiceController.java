@@ -24,14 +24,18 @@ public class InvoiceController {
     @Autowired
     private InvoiceService invoiceService;
 
+
     /**
      * Method to save the new invoice.
      * @param invoice the information to save
+     * @param session the logged in user
      * @return the saved invoice
      */
     @RequestMapping(value = "/views/newInvoice", method = RequestMethod.POST)
-    public String newInvoice(@RequestBody String invoice){
+    public String newInvoice(@RequestBody String invoice, HttpSession session){
+        User user = (User) session.getAttribute("user");
         Invoice newInvoice = invoiceFromJson(invoice);
+        newInvoice.setUser(user);
         newInvoice = invoiceService.newInvoice(newInvoice);
         String json = invoiceToJson(newInvoice);
         return json;
@@ -58,11 +62,14 @@ public class InvoiceController {
     /**
      * Method to fetch a invoice from the database
      * @param invoiceNo the invoice number you want to receive
+     * @param session the logged in user
      * @return the invoice in Json format.
      */
     @RequestMapping(value="/views/fetchInvoice", method = RequestMethod.POST)
-    public String fetchInvoice(@RequestBody String invoiceNo){
+    public String fetchInvoice(@RequestBody String invoiceNo, HttpSession session){
+        User user = (User) session.getAttribute("user");
         Invoice invoice = invoiceFromJson(invoiceNo);
+        invoice.setUser(user);
         invoice = invoiceService.fetchInvoice(invoice);
         String json = invoiceToJson(invoice);
         return json;
@@ -80,6 +87,7 @@ public class InvoiceController {
 
     /**
      * Fetches all the invoices from the database
+     * @param session the logged in user
      * @return Json string with all the invoices.
      */
     @RequestMapping(value = "/views/invoicelist", method = RequestMethod.GET)

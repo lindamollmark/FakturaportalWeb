@@ -1,10 +1,14 @@
 package se.fakturaportal.persistense.entity;
 
+import org.hibernate.annotations.*;
+import org.hibernate.annotations.CascadeType;
 import se.fakturaportal.core.model.Client;
 import se.fakturaportal.core.model.Invoice;
 import se.fakturaportal.core.model.InvoiceRow;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,18 +25,21 @@ public class InvoiceEntity {
     private int id;
     private int invoiceNo;
 
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
+    @Cascade({CascadeType.SAVE_UPDATE})
     @JoinColumn(name="clientId", referencedColumnName = "id")
     private ClientEntity clientEntity;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany
+    @Cascade({CascadeType.ALL})
     @JoinColumn(name="InvoiceId", referencedColumnName = "id")
     private List<InvoiceRowEntity> rowEntityList = new ArrayList<>();
 
     private String orderNo;
     private Date invoiceDate;
     private Date dueDate;
-    @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne
+    @Cascade({CascadeType.SAVE_UPDATE})
     @JoinColumn(name="userId", referencedColumnName = "id")
     private UserEntity user;
 
@@ -149,6 +156,7 @@ public class InvoiceEntity {
             rowList.add(row);
         }
         invoice.setInvoiceRows(rowList);
+        invoice.setUser(user.toModel());
         return invoice;
     }
 }

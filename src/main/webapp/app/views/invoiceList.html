@@ -10,6 +10,7 @@
     </tr>
 
     <tr ng-repeat="invoice in invoiceList.invoice">
+      <input type="hidden" ng-model="invoice.user">
       <td><a href="#/invoiceView{{invoice.invoiceNo}}">{{invoice.invoiceNo}}</a></td>
       <td>{{invoice.invoiceDate}}</td>
       <td>{{invoice.client.clientNo}}</td>
