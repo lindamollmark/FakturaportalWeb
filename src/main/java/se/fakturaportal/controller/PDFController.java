@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import se.fakturaportal.core.model.Invoice;
 import se.fakturaportal.core.model.InvoiceRow;
 
+import javax.servlet.http.HttpSession;
 import java.awt.*;
 import java.io.*;
 
@@ -30,7 +31,7 @@ public class PDFController {
 
     // Create a document and add a page to it
     @RequestMapping(value="/views/printInvoice", method = RequestMethod.POST)
-    public void printPDF(@RequestBody String invoice) throws IOException, COSVisitorException {
+    public void printPDF(@RequestBody String invoice, HttpSession session) throws IOException, COSVisitorException {
         Invoice newInvoice = new Gson().fromJson(invoice, Invoice.class);
         document = new PDDocument();
         page = new PDPage();
@@ -91,42 +92,42 @@ public class PDFController {
         contentStream.beginText();
         contentStream.setFont( font2, 8 );
         contentStream.moveTextPositionByAmount( 60, 50 );
-        contentStream.drawString( "Linda Möllmarks Fakturaportal" );
+        contentStream.drawString( newInvoice.getUser().getUserCompanyName() );
         contentStream.endText();
         contentStream.beginText();
         contentStream.setFont( font2, 8 );
         contentStream.moveTextPositionByAmount( 60, 40 );
-        contentStream.drawString( "Långvägen 42" );
+        contentStream.drawString( newInvoice.getUser().getAddress1());
         contentStream.endText();
         contentStream.beginText();
         contentStream.setFont( font2, 8 );
         contentStream.moveTextPositionByAmount( 60, 30 );
-        contentStream.drawString( "137 55 Tungelsta" );
+        contentStream.drawString( newInvoice.getUser().getPostCode() + newInvoice.getUser().getPostAddress() );
         contentStream.endText();
         contentStream.beginText();
         contentStream.setFont( font2, 8 );
         contentStream.moveTextPositionByAmount( 180, 50 );
-        contentStream.drawString( "Telefon: 08-591 407 74" );
+        contentStream.drawString( "Telefon: " + newInvoice.getUser().getPhoneNumber() );
         contentStream.endText();
         contentStream.beginText();
         contentStream.setFont( font2, 8 );
         contentStream.moveTextPositionByAmount( 180, 40 );
-        contentStream.drawString( "Mobil: 070-7472603" );
+        contentStream.drawString( "Mobil: " + newInvoice.getUser().getPhoneNumber() );
         contentStream.endText();
         contentStream.beginText();
         contentStream.setFont( font2, 8 );
         contentStream.moveTextPositionByAmount( 180, 30 );
-        contentStream.drawString( "E-post: linda.mollmark@gmail.com" );
+        contentStream.drawString( "E-post: " +newInvoice.getUser().getEmail() );
         contentStream.endText();
         contentStream.beginText();
         contentStream.setFont( font2, 8 );
         contentStream.moveTextPositionByAmount( 350, 50 );
-        contentStream.drawString( "Orgnr: 556696-4017" );
+        contentStream.drawString( "Orgnr: " + newInvoice.getUser().getOrgNumber() );
         contentStream.endText();
         contentStream.beginText();
         contentStream.setFont( font2, 8 );
         contentStream.moveTextPositionByAmount( 350, 40 );
-        contentStream.drawString( "Bankgiro: 555-6664" );
+        contentStream.drawString( "Bankgiro: " + newInvoice.getUser().getBankNumber() );
         contentStream.endText();
 
         // Make sure that the content stream is closed:
@@ -162,7 +163,7 @@ public class PDFController {
         contentStream.beginText();
         contentStream.setFont( font2, 12 );
         contentStream.moveTextPositionByAmount( 50, 620 );
-        contentStream.drawString( "Bankgiro: 555-6664 " );
+        contentStream.drawString( "Bankgiro: " + newInvoice.getUser().getBankNumber());
         contentStream.endText();
         contentStream.beginText();
         contentStream.setFont( font2, 12 );
