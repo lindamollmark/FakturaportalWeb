@@ -54,8 +54,8 @@ public class InvoiceService {
 
     /**
      * Method to fetch all the invoices for the user
+     * * @param user The user that is logged in
      * @return a list of invoices
-     * @param user
      */
     public List<Invoice> fetchInvoiceList(User user) {
         List<InvoiceEntity> entityList = invoiceDAO.findAllByUserIdOrderByInvoiceNoAsc(user.getId());

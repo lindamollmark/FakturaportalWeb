@@ -47,8 +47,9 @@ public class ClientService {
 
     /**
      * Gets the hole clientList
+     * @param user the logged in user
      * @return All the clients
-     * @param user
+     *
      */
     public List<Client> getClients(User user) {
         List<Client> clients = new ArrayList<>();
@@ -102,7 +103,7 @@ public class ClientService {
     /**
      * Method to check if the clientNo if free to use.
      * @param clientNo the asked clientNo
-     * @param user
+     * @param user the user that is logged in.
      * @return true if you can use it, false if its already taken.
      */
     public Boolean checkClientNo(int clientNo, User user) {
