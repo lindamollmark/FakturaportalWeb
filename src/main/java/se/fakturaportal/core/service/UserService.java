@@ -18,18 +18,14 @@ public class UserService {
     @Autowired
     private UserDAO userDAO;
 
-
-
     /**
      * Method for investigating if the user exists in the database.
      * @param user the login information sent in to search for.
      * @return true if the user exists.
      */
     public User findUser(User user) {
-        SHA256 decrypt1 = new SHA256(user.getUsername());
-        UserEntity ue = userDAO.findByUsername(decrypt1.getHashValue());
-        SHA256 decrypt2 = new SHA256(user.getPassword());
-       String loginpassword = decrypt2.getHashValue();
+        UserEntity ue = getUserEntity(user.getUsername());
+        String loginpassword = decrypte(user.getPassword());
         if (ue != null) {
             String userpassword = ue.getPassword();
             if (loginpassword.equals(userpassword)) {
@@ -38,16 +34,15 @@ public class UserService {
 
         } return null;
     }
+
     /**
      * Saves a new user
      * @param user the information to save
      * @return the saved user.
      */
     public User saveUser(User user) {
-        SHA256 decrypt1 = new SHA256(user.getUsername());
-        user.setUsername(decrypt1.getHashValue());
-        SHA256 decrypt2 = new SHA256(user.getPassword());
-        user.setPassword(decrypt2.getHashValue());
+        user.setUsername(decrypte(user.getUsername()));
+        user.setPassword(decrypte(user.getPassword()));
         UserEntity ue = new UserEntity();
         ue = ue.fromModel(user);
         userDAO.save(ue);
@@ -55,12 +50,36 @@ public class UserService {
         return saved;
     }
 
+    /**
+     * HelpMethod for decrypt the username and password
+     * @param todecrypte the username/password you would like to decrypte
+     * @return the decrypted String
+     */
+    private String decrypte(String todecrypte) {
+        SHA256 decrypt = new SHA256(todecrypte);
+        return decrypt.getHashValue();
+    }
+
+
+    /**
+     * Method to see if the username exists
+     * @param username the username the user would like to have
+     * @return true if its already taken or false if its free to use.
+     */
     public Boolean checkUsername(String username) {
-        SHA256 decrypt1 = new SHA256(username);
-        UserEntity ue = userDAO.findByUsername(decrypt1.getHashValue());
+        UserEntity ue = getUserEntity(username);
         if(ue == null){
             return false;
         }
         return true;
+    }
+
+    /**
+     * Help method for finding the userEntity by username
+     * @param username The username to find
+     * @return the result of the search.
+     */
+    private UserEntity getUserEntity(String username) {
+        return userDAO.findByUsername(decrypte(username));
     }
 }

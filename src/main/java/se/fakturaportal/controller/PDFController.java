@@ -47,7 +47,7 @@ public class PDFController {
 
         // logga
         contentStream.drawImage(logga, 50, 720);
-// Defines a text content stream using the selected font, moving the cursor and drawing the text
+        // Defines a text content stream using the selected font, moving the cursor and drawing the text
         createPaymentInfoBox(newInvoice, font2, contentStream);
 
         contentStream.beginText();
@@ -129,10 +129,10 @@ public class PDFController {
         contentStream.drawString( "Bankgiro: 555-6664" );
         contentStream.endText();
 
-// Make sure that the content stream is closed:
+        // Make sure that the content stream is closed:
         contentStream.close();
 
-// Save the results and ensure that the document is properly closed:
+        // Save the results and ensure that the document is properly closed:
         document.save("C:\\Users\\Linda\\FakturaportalWeb\\" + newInvoice.getInvoiceNo() + ".pdf");
         document.close();
     }
