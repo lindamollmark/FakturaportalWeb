@@ -128,3 +128,8 @@ input {
   background: white; }
 .tabsdemoDynamicHeight md-content h1:first-child {
   margin-top: 0; }
+
+#userSettings{
+  color: #00A000;
+  margin-left: 20%;
+}

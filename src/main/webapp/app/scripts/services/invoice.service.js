@@ -28,7 +28,7 @@
       return $http({method: 'POST', url:'http://localhost:8080/views/fetchInvoice', data: invoiceNo});
     }
     function getInvoiceNo(){
-      return $http({method: 'GET', url:'/views/newInvoiceNo'});
+      return $http({method: 'get', url:'/views/newInvoiceNo'});
     };
 
     function getInvoiceList(){

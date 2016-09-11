@@ -18,8 +18,8 @@
 
     return service;
 
-    function fetchUser(userID){
-      return $http({method: 'POST', url:'http://localhost:8080/views/userView', data: userID});
+    function fetchUser(user){
+      return $http({method: 'POST', url:'http://localhost:8080/views/fetchUser', data: user});
     };
 
     function save(theUser){
@@ -29,8 +29,6 @@
     function remove(theUser){
       return $http({method: 'POST', url:'http://localhost:8080/views/deleteUser', data: theUser});
     };
-
-
 
     function  updateUser(theUser){
       return $http({method: 'POST', url:'http://localhost:8080/views/updateUser', data: theUser});

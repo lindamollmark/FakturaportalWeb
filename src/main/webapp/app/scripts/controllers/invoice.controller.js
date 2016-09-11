@@ -15,6 +15,7 @@ angular.module('springBootClientApp')
 
     var no  = $routeParams.invoiceNo;
     var invoiceNo = {invoiceNo: no};
+    alert("test");
 
     invoiceService.fetchInvoice(invoiceNo).then(function(response){
       $scope.invoice = angular.fromJson(response.data);

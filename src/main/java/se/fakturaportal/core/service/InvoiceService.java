@@ -10,6 +10,7 @@ import se.fakturaportal.persistense.dao.ClientDAO;
 import se.fakturaportal.persistense.dao.InvoiceDAO;
 import se.fakturaportal.persistense.entity.ClientEntity;
 import se.fakturaportal.persistense.entity.InvoiceEntity;
+import se.fakturaportal.persistense.entity.UserEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,14 +43,15 @@ public class InvoiceService {
     /**
      * Method to receive the next invoiceNo to use.
      * @return the invoice number to use.
+     * @param user
      */
-    public int getInvoiceNo() {
-        List<InvoiceEntity> ie = invoiceDAO.findAll(new Sort(Sort.Direction.DESC, "invoiceNo"));
+    public int getInvoiceNo(User user) {
+        List<InvoiceEntity> ie = invoiceDAO.findAllByUserIdOrderByInvoiceNoDesc(user.getId());
         if(ie.size()> 0){
             int invoiceNo = ie.get(0).getInvoiceNo();
             return invoiceNo+1 ;
         }
-        return 1;
+        return Integer.parseInt(user.getInvoiceNoStart());
     }
 
     /**

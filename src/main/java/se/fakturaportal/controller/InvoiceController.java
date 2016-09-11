@@ -80,8 +80,9 @@ public class InvoiceController {
      * @return next avalible invoicenumber.
      */
     @RequestMapping(value = "/views/newInvoiceNo", method = RequestMethod.GET)
-    public int getInvoiceNo(){
-        int invoiceNo = invoiceService.getInvoiceNo();
+    public int getInvoiceNo(HttpSession session){
+        User user = (User) session.getAttribute("user");
+        int invoiceNo = invoiceService.getInvoiceNo(user);
         return invoiceNo;
     }
 

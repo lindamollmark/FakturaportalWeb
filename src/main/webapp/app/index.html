@@ -37,6 +37,8 @@
             <a class="navbar-brand" href="#/">Lms Fakturaportal</a>
             <a class="navbar-brand" href="#/">Välkommen {{currentUser.username}}</a>
           </div>
+          <a id="userSettings" class="navbar-brand" href="#/userSettings"><span class="glyphicon glyphicon-cog"></span></a>
+          <button ng-show="existingUser"class="btn btn-lg btn-success" ng-click="logout()">Logout</button>
 
           <!--<div class="collapse navbar-collapse" id="js-navbar-collapse">-->
 
@@ -124,6 +126,7 @@
     <script src="app/scripts/controllers/client.controller.js"></script>
     <script src="app/scripts/controllers/newClient.controller.js"></script>
     <script src="app/scripts/controllers/newUser.controller.js"></script>
+    <script src="app/scripts/controllers/user.controller.js"></script>
     <script src="app/scripts/controllers/clientList.controller.js"></script>
     <script src="app/scripts/controllers/login.controller.js"></script>
     <script src="app/scripts/controllers/newInvoice.controller.js"></script>

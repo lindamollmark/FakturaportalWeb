@@ -17,6 +17,7 @@ public class User {
     String email;
     String orgNumber;
     String bankNumber;
+    String invoiceNoStart;
 
     public int getId() {
         return id;
@@ -120,5 +121,13 @@ public class User {
 
     public void setBankNumber(String bankNumber) {
         this.bankNumber = bankNumber;
+    }
+
+    public String getInvoiceNoStart() {
+        return invoiceNoStart;
+    }
+
+    public void setInvoiceNoStart(String invoiceNoStart) {
+        this.invoiceNoStart = invoiceNoStart;
     }
 }

@@ -26,6 +26,7 @@ public class UserEntity {
     private String email;
     private String orgNumber;
     private String bankNumber;
+    private String invoiceNoStart;
 
     public int getId() {
         return id;
@@ -131,6 +132,14 @@ public class UserEntity {
         this.bankNumber = bankNumber;
     }
 
+    public String getInvoiceNoStart() {
+        return invoiceNoStart;
+    }
+
+    public void setInvoiceNoStart(String invoiceNoStart) {
+        this.invoiceNoStart = invoiceNoStart;
+    }
+
     /**
      * Help method for convert the user model to entity
      * @param user the model to convert
@@ -155,6 +164,7 @@ public class UserEntity {
         this.email = user.getEmail();
         this.orgNumber = user.getOrgNumber();
         this.bankNumber = user.getBankNumber();
+        this.invoiceNoStart = user.getInvoiceNoStart();
 
         return this;
     }
@@ -178,6 +188,7 @@ public class UserEntity {
         user.setEmail(email);
         user.setOrgNumber(orgNumber);
         user.setBankNumber(bankNumber);
+        user.setInvoiceNoStart(invoiceNoStart);
         return user;
     }
 }

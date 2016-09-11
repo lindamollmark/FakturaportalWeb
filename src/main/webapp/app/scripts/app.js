@@ -65,9 +65,13 @@ angular
         controller: 'invoiceCtrl'
       })
       .when('/clientView:param', {
-      templateUrl: 'app/views/clientView.html',
-      controller: 'clientCtrl'
-    })
+        templateUrl: 'app/views/clientView.html',
+        controller: 'clientCtrl'
+      })
+      .when('/userSettings', {
+        templateUrl: 'app/views/userSettings.html',
+        controller: 'userCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

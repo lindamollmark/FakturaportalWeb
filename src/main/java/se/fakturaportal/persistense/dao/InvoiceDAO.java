@@ -17,5 +17,6 @@ public interface InvoiceDAO extends JpaRepository<InvoiceEntity, Integer> {
     public List<InvoiceEntity> findByClientEntity(ClientEntity clientEntity);
     public InvoiceEntity findByInvoiceNoAndUserId(int invoiceNo, int userId);
     public List<InvoiceEntity> findAllByUserIdOrderByInvoiceNoAsc(int userId);
+    public List<InvoiceEntity> findAllByUserIdOrderByInvoiceNoDesc(int userId);
 
 }

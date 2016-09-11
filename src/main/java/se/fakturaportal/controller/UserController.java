@@ -13,7 +13,7 @@ import se.fakturaportal.core.service.UserService;
 import javax.servlet.http.HttpSession;
 
 /**
- * Controller for handeling the user
+ * Controller for handling the user
  */
 @RestController
 public class UserController {
@@ -53,9 +53,25 @@ public class UserController {
         return json;
     }
 
+    @RequestMapping(value="/views/updateUser", method = RequestMethod.POST)
+    public String updateUser(@RequestBody String userToUpdate){
+        User user = new Gson().fromJson(userToUpdate, User.class);
+        user = userService.saveUser(user);
+        String json = new Gson().toJson(user);
+        return json;
+    }
+
     @RequestMapping(value="/views/username", method = RequestMethod.POST)
     public Boolean checkUsername(@RequestBody String username){
        Boolean exists = userService.checkUsername(username);
         return exists;
     }
+
+    @RequestMapping(value="/views/fetchUser", method = RequestMethod.POST)
+    public String fetchUser(@RequestBody String activeUser){
+        User user = new Gson().fromJson(activeUser, User.class);
+       user = userService.findUser(user);
+        String json = new Gson().toJson(user);
+        return json;
+}
 }

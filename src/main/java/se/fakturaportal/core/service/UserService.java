@@ -7,8 +7,6 @@ import se.fakturaportal.persistense.dao.UserDAO;
 import se.fakturaportal.persistense.entity.UserEntity;
 import se.fakturaportal.utilityClasses.SHA256;
 
-import java.util.List;
-
 /**
  * Class for preforming the logic and transform the entity to a model and the oposit around
  */
@@ -25,11 +23,15 @@ public class UserService {
      */
     public User findUser(User user) {
         UserEntity ue = getUserEntity(user.getUsername());
-        String loginpassword = decrypte(user.getPassword());
+        String loginpassword = encrypte(user.getPassword());
         if (ue != null) {
             String userpassword = ue.getPassword();
             if (loginpassword.equals(userpassword)) {
-                return ue.toModel();
+                User foundUser = ue.toModel();
+                foundUser.setUsername(user.getUsername());
+                foundUser.setPassword(user.getPassword());
+
+                return foundUser;
             }
 
         } return null;
@@ -41,8 +43,8 @@ public class UserService {
      * @return the saved user.
      */
     public User saveUser(User user) {
-        user.setUsername(decrypte(user.getUsername()));
-        user.setPassword(decrypte(user.getPassword()));
+        user.setUsername(encrypte(user.getUsername()));
+        user.setPassword(encrypte(user.getPassword()));
         UserEntity ue = new UserEntity();
         ue = ue.fromModel(user);
         userDAO.save(ue);
@@ -51,13 +53,13 @@ public class UserService {
     }
 
     /**
-     * HelpMethod for decrypt the username and password
-     * @param todecrypte the username/password you would like to decrypte
-     * @return the decrypted String
+     * HelpMethod for encrypt the username and password
+     * @param toencrypte the username/password you would like to encrypte
+     * @return the encrypted String
      */
-    private String decrypte(String todecrypte) {
-        SHA256 decrypt = new SHA256(todecrypte);
-        return decrypt.getHashValue();
+    private String encrypte(String toencrypte) {
+        SHA256 encrypt = new SHA256(toencrypte);
+        return encrypt.getHashValue();
     }
 
 
@@ -73,6 +75,19 @@ public class UserService {
         }
         return true;
     }
+    public User findActiveUser(User user) {
+        UserEntity ue = getUserEntity(user.getUsername());
+        String loginpassword = encrypte(user.getPassword());
+        if (ue != null) {
+            String userpassword = ue.getPassword();
+            if (loginpassword.equals(userpassword)) {
+                ue.setPassword(loginpassword);
+                ue.setUsername(user.getUsername());
+                return ue.toModel();
+            }
+
+        } return null;
+    }
 
     /**
      * Help method for finding the userEntity by username
@@ -80,6 +95,8 @@ public class UserService {
      * @return the result of the search.
      */
     private UserEntity getUserEntity(String username) {
-        return userDAO.findByUsername(decrypte(username));
+        System.out.println(username + " username = " + encrypte(username));
+        return userDAO.findByUsername(encrypte(username));
     }
+
 }
