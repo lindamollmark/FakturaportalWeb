@@ -22,6 +22,8 @@ public class ClientEntity {
     private String postAddress;
     private String contact;
     private String phoneNumber;
+    private String email;
+    private String orgNumber;
     @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="userId", referencedColumnName = "id")
     private UserEntity user;
@@ -47,6 +49,8 @@ public class ClientEntity {
         this.postAddress = aClient.getPostAddress();
         this.contact = aClient.getContact();
         this.phoneNumber = aClient.getPhoneNumber();
+        this.email = aClient.getEmail();
+        this.orgNumber = aClient.getOrgNumber();
         this.user = new UserEntity().fromModel(aClient.getUser());
 
         return this;
@@ -69,6 +73,8 @@ public class ClientEntity {
         client.setContact(contact);
         client.setPhoneNumber(phoneNumber);
         client.setUser(user.toModel());
+        client.setEmail(email);
+        client.setOrgNumber(orgNumber);
 
         return client;
     }
@@ -143,6 +149,22 @@ public class ClientEntity {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getOrgNumber() {
+        return orgNumber;
+    }
+
+    public void setOrgNumber(String orgNumber) {
+        this.orgNumber = orgNumber;
     }
 
     public UserEntity getUser() {

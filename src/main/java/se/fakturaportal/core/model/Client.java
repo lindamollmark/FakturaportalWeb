@@ -13,6 +13,9 @@ public class Client {
     String postAddress;
     String contact;
     String phoneNumber;
+    String email;
+    String orgNumber;
+    String totalInvoiceAmount;
     User user;
 
     public int getId() {
@@ -85,6 +88,30 @@ public class Client {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getOrgNumber() {
+        return orgNumber;
+    }
+
+    public void setOrgNumber(String orgNumber) {
+        this.orgNumber = orgNumber;
+    }
+
+    public String getTotalInvoiceAmount() {
+        return totalInvoiceAmount;
+    }
+
+    public void setTotalInvoiceAmount(String totalInvoiceAmount) {
+        this.totalInvoiceAmount = totalInvoiceAmount;
     }
 
     public User getUser() {

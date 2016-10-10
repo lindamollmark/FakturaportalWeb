@@ -11,19 +11,20 @@
  * Controller of the springBootClientApp
  */
 angular.module('springBootClientApp')
-  .controller('invoiceCtrl', function($routeParams, $scope, clientService, invoiceService) {
+  .controller('invoiceCtrl', function ($routeParams, $scope, clientService, invoiceService) {
 
-    var no  = $routeParams.invoiceNo;
+    var no = $routeParams.invoiceNo;
     var invoiceNo = {invoiceNo: no};
-    alert("test");
 
-    invoiceService.fetchInvoice(invoiceNo).then(function(response){
+    invoiceService.fetchInvoice(invoiceNo).then(function (response) {
       $scope.invoice = angular.fromJson(response.data);
     })
 
-    $scope.print = function(invoice){
-    invoiceService.printInvoice(invoice);
+    $scope.print = function (invoice) {
+      invoiceService.printInvoice(invoice);
     }
+
+
   });
 
 

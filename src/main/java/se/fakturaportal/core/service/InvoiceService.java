@@ -1,7 +1,6 @@
 package se.fakturaportal.core.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import se.fakturaportal.core.model.Client;
 import se.fakturaportal.core.model.Invoice;
@@ -10,7 +9,6 @@ import se.fakturaportal.persistense.dao.ClientDAO;
 import se.fakturaportal.persistense.dao.InvoiceDAO;
 import se.fakturaportal.persistense.entity.ClientEntity;
 import se.fakturaportal.persistense.entity.InvoiceEntity;
-import se.fakturaportal.persistense.entity.UserEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +27,7 @@ public class InvoiceService {
 
     /**
      * Method for saving new invoices
+     *
      * @param newInvoice the invoice information to save
      * @return the saved invoice, with its new ID.
      */
@@ -42,14 +41,15 @@ public class InvoiceService {
 
     /**
      * Method to receive the next invoiceNo to use.
-     * @return the invoice number to use.
+     *
      * @param user
+     * @return the invoice number to use.
      */
     public int getInvoiceNo(User user) {
         List<InvoiceEntity> ie = invoiceDAO.findAllByUserIdOrderByInvoiceNoDesc(user.getId());
-        if(ie.size()> 0){
+        if (ie.size() > 0) {
             int invoiceNo = ie.get(0).getInvoiceNo();
-            return invoiceNo+1 ;
+            return invoiceNo + 1;
         }
         return Integer.parseInt(user.getInvoiceNoStart());
     }
@@ -57,12 +57,13 @@ public class InvoiceService {
     /**
      * Method to fetch all the invoices for the user
      * * @param user The user that is logged in
+     *
      * @return a list of invoices
      */
     public List<Invoice> fetchInvoiceList(User user) {
         List<InvoiceEntity> entityList = invoiceDAO.findAllByUserIdOrderByInvoiceNoAsc(user.getId());
         List<Invoice> invoiceList = new ArrayList<>();
-        for(InvoiceEntity ie: entityList){
+        for (InvoiceEntity ie : entityList) {
             Invoice invoice = ie.toModel();
             invoiceList.add(invoice);
         }
@@ -71,6 +72,7 @@ public class InvoiceService {
 
     /**
      * Method to fetch an invoiceslist for a specific cklient.
+     *
      * @param clientID the client id to fetch the invoices for.
      * @return a list of invoices.
      */
@@ -78,7 +80,7 @@ public class InvoiceService {
         ClientEntity ce = clientDAO.findOne(clientID.getId());
         List<InvoiceEntity> entityList = invoiceDAO.findByClientEntity(ce);
         List<Invoice> invoiceList = new ArrayList<>();
-        for(InvoiceEntity ie: entityList){
+        for (InvoiceEntity ie : entityList) {
             Invoice invoice = ie.toModel();
             invoiceList.add(invoice);
         }
@@ -87,6 +89,7 @@ public class InvoiceService {
 
     /**
      * Method to save an updated invoice.
+     *
      * @param invoice the invoice information to save.
      */
     public void updateInvoice(Invoice invoice) {
@@ -97,11 +100,12 @@ public class InvoiceService {
 
     /**
      * Method to fetch a specific invoice
+     *
      * @param invoice class containing the invoiceNo and user.
      * @return the invoice.
      */
     public Invoice fetchInvoice(Invoice invoice) {
         InvoiceEntity ie = invoiceDAO.findByInvoiceNoAndUserId(invoice.getInvoiceNo(), invoice.getUser().getId());
-       return ie.toModel();
+        return ie.toModel();
     }
 }

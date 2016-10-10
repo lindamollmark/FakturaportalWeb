@@ -6,7 +6,8 @@
       <th>Kundnr</th>
       <th>Kund</th>
       <th>Förfallodatum</th>
-      <th>Belopp</th>
+      <th>Fakturabelopp</th>
+      <th>Rest</th>
     </tr>
 
     <tr ng-repeat="invoice in invoiceList.invoice">
@@ -23,6 +24,7 @@
           <button class="glyphicon glyphicon-floppy-save" aria-hidden="true" ng-click="invoiceList.updateDueDate(invoice); edit = !edit"></button>
         </div>
       </td>
+      <td>{{invoice.invoiceTotal}}</td>
       <td>{{invoice.invoiceTotal}}</td>
     </tr>
   </table>

@@ -1,49 +1,383 @@
+<style>
+  p {
+    font-size: 22px;
+    font-weight: bold;
+    font-style: italic;
+    color: rgb(62, 62, 62);
+    margin: 18px;
+  }
+
+  ul {
+    float: left;
+    border-radius: 5px;
+    border: solid 1px rgb(198, 198, 198);
+    padding: 7px 11px;
+    background-color: rgb(248, 248, 248);
+  }
+
+  li {
+    float: left;
+    background-color: rgb(200, 200, 200);
+    padding: 5px 19px;
+    margin: 5px 2px 5px 0px;
+    color: black;
+    list-style: none;
+  }
+
+  li:hover, li:hover a {
+    background-color: rgb(6, 179, 6);
+    color: white;
+  }
+
+  li a {
+    text-decoration: none;
+    color: white;
+    font-size: 21px;
+    font-style: italic;
+    text-shadow: 1px 0px 3px rgb(157, 157, 157);
+  }
+
+  li:nth-child(1) {
+    border-radius: 4px 0px 0px 4px;
+    margin-left: 1px;
+  }
+
+  li:nth-child(3) {
+    border-radius: 0px 4px 4px 0px;
+  }
+
+  .active {
+    background-color: rgb(6, 179, 6);
+  }
+</style>
 <div style="color: #FF0000">{{updateMessage}}</div>
-<h1>Kund</h1>
-<div >
-  <form name="clientForm" ng-submit="update()">
-  <table>
-    <tr>
-      <th>Kundnr</th>
-      <td><input type="text" ng-model="client.clientNo"></td>
-    </tr>
-    <tr>
-      <th>Företagsnamn</th>
-      <td><input type="text" ng-model="client.companyName"></td>
-    </tr>
-    <tr>
-      <th>Adress</th>
-      <td><input type="text" ng-model="client.address1"></td>
-    </tr>
-    <tr>
-      <th>Adress</th>
-      <td><input type="text" ng-model="client.address2"></td>
-    </tr>
-    <tr>
-      <th>Postnummer</th>
-      <td><input type="text" ng-model="client.postCode"></td>
-    </tr>
-    <tr>
-      <th>Postort</th>
-      <td><input type="text" ng-model="client.postAddress"></td>
-    </tr>
-    <th>Kontaktperson</th>
-    <td><input type="text" ng-model="client.contact"></td>
-    </tr>
-    <tr>
-      <th>Telefonnummer</th>
-      <td><input type="text" ng-model="client.phoneNumber"></td>
 
-    </tr>
-  </table>
+<div class="tab" ng-controller="clientCtrl as panel">
+  <nav style="margin-left: 250px">
+    <ul>
+      <li ng-class="{active:panel.isSelected(1) }">
+        <a href ng-click="panel.selectTab(1)">Kundadress</a>
+      </li>
+      <li ng-class="{active:panel.isSelected(2)  }">
+        <a href ng-click="panel.selectTab(2)">Fakturaadress</a>
+      </li>
+      <li ng-class="{active:panel.isSelected(3)}">
+        <a href ng-click="panel.selectTab(3)">Leveransadress</a>
+      </li>
+    </ul>
+    <br><br>
+  </nav>
+  <section style="margin-left: 250px">
+    <div ng-show="panel.isSelected(1)">
+      <form name="clientForm" ng-submit="update()">
+        <table>
+          <div>
+            <tr>
+              <th>Kundnr</th>
+              <td><input type="text" ng-model="client.clientNo"></td>
+            </tr>
+            <tr>
+              <th>Företagsnamn</th>
+              <td><input type="text" ng-model="client.companyName"></td>
+            </tr>
+            <tr>
+              <th>Adress</th>
+              <td><input type="text" ng-model="client.address1"></td>
+            </tr>
+            <tr>
+              <th>Adress</th>
+              <td><input type="text" ng-model="client.address2"></td>
+            </tr>
+            <tr>
+              <th>Postnummer</th>
+              <td><input type="text" ng-model="client.postCode"></td>
+            </tr>
+            <tr>
+              <th>Postort</th>
+              <td><input type="text" ng-model="client.postAddress"></td>
+            </tr>
+            <tr>
+              <th>Kontaktperson</th>
+              <td><input type="text" ng-model="client.contact"></td>
+            </tr>
+            <tr>
+              <th>Telefonnummer</th>
+              <td><input type="text" ng-model="client.phoneNumber"></td>
+            </tr>
+            <tr>
+              <th>E-post</th>
+              <td><input type="text" ng-model="client.email"></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+          </div>
+          <div>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <th>Organisationsnummer</th>
+              <td><input type="text" ng-model="client.orgNumber"></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <th>Fakturerat</th>
+              <td><input type="text" ng-model="client.totalInvoiceAmount" contenteditable="false"></td>
+            </tr>
+            <tr>
+              <th>&nbsp;</th>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+          </div>
+        </table>
 
-  <div class="absolute">
-    <a ng-href="#/invoiceList{{client.id}}"> <button class="btn btn-primary">Fakturalista</button></a>
-    <a href="#/newInvoice{{client.id}}"> <button class="btn btn-primary">Skapa faktura</button></a>
-    <a href="#/clientList"><button class="btn btn-primary" ng-click="delete()">Ta Bort Kund</button></a>
-  <input class="btn btn-primary" type="submit" value="Spara"/>
-  </div>
-    </form>
+        <div>
+          <a ng-href="#/invoiceList{{client.id}}">
+            <button class="btn btn-primary">Fakturalista</button>
+          </a>
+          <a href="#/newInvoice{{client.id}}">
+            <button class="btn btn-primary">Skapa faktura</button>
+          </a>
+          <a href="#/clientList">
+            <button class="btn btn-primary" ng-click="delete()">Ta Bort Kund</button>
+          </a>
+          <input class="btn btn-primary" type="submit" value="Spara"/>
+        </div>
+      </form>
 
+    </div>
+    <div ng-show="panel.isSelected(2)">
+      <form name="clientForm" ng-submit="update()">
+        <table>
+          <div>
+            <tr>
+              <th>Kundnr</th>
+              <td><input type="text" ng-model="client.clientNo"></td>
+            </tr>
+            <tr>
+              <th>Företagsnamn</th>
+              <td><input type="text" ng-model="client.companyName"></td>
+            </tr>
+            <tr>
+              <th>Adress</th>
+              <td><input type="text" ng-model="client.address1"></td>
+            </tr>
+            <tr>
+              <th>Adress</th>
+              <td><input type="text" ng-model="client.address2"></td>
+            </tr>
+            <tr>
+              <th>Postnummer</th>
+              <td><input type="text" ng-model="client.postCode"></td>
+            </tr>
+            <tr>
+              <th>Postort</th>
+              <td><input type="text" ng-model="client.postAddress"></td>
+            </tr>
+            <tr>
+              <th>Kontaktperson</th>
+              <td><input type="text" ng-model="client.contact"></td>
+            </tr>
+            <tr>
+              <th>Telefonnummer</th>
+              <td><input type="text" ng-model="client.phoneNumber"></td>
+            </tr>
+            <tr>
+              <th>E-post</th>
+              <td><input type="text" ng-model="client.email"></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+          </div>
+          <div>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <th>Organisationsnummer</th>
+              <td><input type="text" ng-model="client.orgNumber"></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <th>Fakturerat</th>
+              <td><input type="text" ng-model="client.totalInvoiceAmount" contenteditable="false"></td>
+            </tr>
+            <tr>
+              <th>&nbsp;</th>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+          </div>
+        </table>
 
+        <div>
+          <a ng-href="#/invoiceList{{client.id}}">
+            <button class="btn btn-primary">Fakturalista</button>
+          </a>
+          <a href="#/newInvoice{{client.id}}">
+            <button class="btn btn-primary">Skapa faktura</button>
+          </a>
+          <a href="#/clientList">
+            <button class="btn btn-primary" ng-click="delete()">Ta Bort Kund</button>
+          </a>
+          <input class="btn btn-primary" type="submit" value="Spara"/>
+        </div>
+      </form>
+    </div>
+    <div ng-show="panel.isSelected(3)">
+      <form name="clientForm" ng-submit="update()">
+        <table>
+          <div>
+            <tr>
+              <th>Kundnr</th>
+              <td><input type="text" ng-model="client.clientNo"></td>
+            </tr>
+            <tr>
+              <th>Företagsnamn</th>
+              <td><input type="text" ng-model="client.companyName"></td>
+            </tr>
+            <tr>
+              <th>Adress</th>
+              <td><input type="text" ng-model="client.address1"></td>
+            </tr>
+            <tr>
+              <th>Adress</th>
+              <td><input type="text" ng-model="client.address2"></td>
+            </tr>
+            <tr>
+              <th>Postnummer</th>
+              <td><input type="text" ng-model="client.postCode"></td>
+            </tr>
+            <tr>
+              <th>Postort</th>
+              <td><input type="text" ng-model="client.postAddress"></td>
+            </tr>
+            <tr>
+              <th>Kontaktperson</th>
+              <td><input type="text" ng-model="client.contact"></td>
+            </tr>
+            <tr>
+              <th>Telefonnummer</th>
+              <td><input type="text" ng-model="client.phoneNumber"></td>
+            </tr>
+            <tr>
+              <th>E-post</th>
+              <td><input type="text" ng-model="client.email"></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+          </div>
+          <div>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <th>Organisationsnummer</th>
+              <td><input type="text" ng-model="client.orgNumber"></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <th>Fakturerat</th>
+              <td><input type="text" ng-model="client.totalInvoiceAmount" contenteditable="false"></td>
+            </tr>
+            <tr>
+              <th>&nbsp;</th>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td>&nbsp;</td>
+            </tr>
+          </div>
+        </table>
+
+        <div>
+          <a ng-href="#/invoiceList{{client.id}}">
+            <button class="btn btn-primary">Fakturalista</button>
+          </a>
+          <a href="#/newInvoice{{client.id}}">
+            <button class="btn btn-primary">Skapa faktura</button>
+          </a>
+          <a href="#/clientList">
+            <button class="btn btn-primary" ng-click="delete()">Ta Bort Kund</button>
+          </a>
+          <input class="btn btn-primary" type="submit" value="Spara"/>
+        </div>
+      </form>
+    </div>
+    <br/>
+  </section>
 </div>

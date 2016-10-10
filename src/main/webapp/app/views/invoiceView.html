@@ -1,19 +1,19 @@
 <div style="color: #FF0000">{{invoiceMessage}}</div>
-<div >
+<div>
   <form name="InvoiceForm">
-    <table class="invoiceForm" >
+    <table class="invoiceForm">
 
       <h3>Fakturaadress</h3>
       <tr>
-        <th>Fakturanr: </th>
+        <th>Fakturanr:</th>
         <td>{{invoice.invoiceNo}}</td>
-        <th>Fakturadatum: </th>
+        <th>Fakturadatum:</th>
         <td>{{invoice.invoiceDate}}</td>
       </tr>
       <tr>
         <th>Kundnr</th>
         <td>{{invoice.client.clientNo}}</td>
-        <th>Förfallodatum: </th>
+        <th>Förfallodatum:</th>
         <td>{{invoice.dueDate}}</td>
       </tr>
       <tr>
@@ -53,7 +53,7 @@
     <br>
 
     <table class="table table-striped table-bordered table-responsive">
-      <thead >
+      <thead>
       <th>Radnr</th>
       <th>Artikelnr</th>
       <th>Antal</th>
@@ -66,14 +66,18 @@
         <td width="3%">{{rows.rowNo}}</td>
         <td><input type="text" ng-model="rows.articleNo" style="border: none; background-color: inherit"></td>
         <td><input type="number" ng-model="rows.quantity" style="border: none; background-color: inherit"></td>
-        <td><input type="text" ng-model="rows.description" ng-click="rows.rowNo = $index + 1"  style="border: none; background-color: inherit"></td>
+        <td><input type="text" ng-model="rows.description" ng-click="rows.rowNo = $index + 1"
+                   style="border: none; background-color: inherit"></td>
         <td><input type="number" ng-model="rows.unitPrice" style="border: none; background-color: inherit"></td>
         <td width="15%">{{rows.quantity*rows.unitPrice }}</td>
       </tr>
 
       </tbody>
     </table>
-   <button class="btn btn-primary" ng-click="print(invoice)">Skriv ut</button>
+    <button class="btn btn-primary" ng-click="print(invoice)">Skriv ut</button>
+    <!--<button class="btn btn-primary" ng-click="payment = !payment">Betala</button>-->
+
+    <!--<div ng-show="payment"><input type="number" ng-model="invoice.invoicePayment.amount"><button class="glyphicon glyphicon-floppy-save" aria-hidden="true" ng-click="invoice.savePayment(invoice); payment = !payment"></button></div>-->
   </form>
 </div>
 

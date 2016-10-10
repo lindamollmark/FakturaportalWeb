@@ -11,8 +11,16 @@
 angular.module('springBootClientApp')
   .controller('clientCtrl', function($scope, $routeParams, $http, clientService, $location) {
     var self = this;
-    var id = $routeParams.param;
+    var id = $routeParams.id;
     var clientID = {id: id};
+    this.tab = 1;
+
+    this.selectTab = function (setTab) {
+      this.tab = setTab;
+    };
+    this.isSelected = function (checkTab) {
+      return this.tab === checkTab;
+    };
 
     clientService.fetchClient(clientID).then(function (response) {
       $scope.client = angular.fromJson(response.data);

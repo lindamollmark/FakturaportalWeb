@@ -13,7 +13,8 @@
       save: save,
       remove: remove,
       updateUser: updateUser,
-      checkUsername: checkUsername
+      checkUsername: checkUsername,
+      saveLogo: saveLogo
     };
 
     return service;
@@ -37,5 +38,8 @@
     function checkUsername(username){
       return $http({method: 'POST', url:'http://localhost:8080/views/username', data: username});
     };
+    function saveLogo(logo) {
+      $http({method: 'POST', url: 'http://localhost:8080/views/saveLogo', data: logo});
+    }
   }
 })();

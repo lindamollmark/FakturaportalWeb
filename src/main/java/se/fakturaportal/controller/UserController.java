@@ -2,7 +2,6 @@ package se.fakturaportal.controller;
 
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.session.Session;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -74,4 +73,10 @@ public class UserController {
         String json = new Gson().toJson(user);
         return json;
 }
+
+//    @RequestMapping(value="views/saveLogo", method = RequestMethod.POST)
+//    public void saveLogo(@RequestParam(value = "file", required = true) File file){
+//        System.out.println("kommer hit!");
+//
+//    }
 }

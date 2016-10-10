@@ -19,6 +19,7 @@ angular
     'ngSanitize',
     'ngTouch',
     'ui.bootstrap',
+    'ngFileUpload',
     'springBootClientApp.controllers',
     'springBootClientApp.services'
   ])
@@ -64,7 +65,7 @@ angular
         templateUrl: 'app/views/invoiceView.html',
         controller: 'invoiceCtrl'
       })
-      .when('/clientView:param', {
+      .when('/clientView:id', {
         templateUrl: 'app/views/clientView.html',
         controller: 'clientCtrl'
       })

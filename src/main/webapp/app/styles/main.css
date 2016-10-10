@@ -133,3 +133,36 @@ input {
   color: #00A000;
   margin-left: 20%;
 }
+
+.thumb {
+  width: 24px;
+  height: 24px;
+  float: none;
+  position: relative;
+  top: 7px;
+}
+
+form .progress {
+  line-height: 15px;
+}
+
+.progress {
+  display: inline-block;
+  width: 100px;
+  border: 3px groove #CCC;
+}
+
+.progress div {
+  font-size: smaller;
+  background: orange;
+  width: 0;
+}
+
+#container {
+  column-count: 2;
+  -moz-column-count: 2;
+  -webkit-column-count: 2;
+
+  width: 200px;
+  height: 200px;
+}

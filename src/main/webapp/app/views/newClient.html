@@ -3,6 +3,8 @@
     <div ng-controller="newClientCtrl">
     <form name="newClientForm" ng-submit="save()">
       <input type="hidden" ng-model="client.user">
+
+      <div style="-webkit-column-count: 2">
  <table>
    <tr>
      <td>Kundnr</td>
@@ -30,6 +32,7 @@
   <td>Postort</td>
      <td><input type="text" ng-model="client.postAddress"></td>
    </tr>
+   <tr>
    <td>Kontaktperson</td>
    <td><input type="text" ng-model="client.contact"></td>
    </tr>
@@ -38,7 +41,18 @@
      <td><input type="text" ng-model="client.phoneNumber"></td>
 
    </tr>
+   <tr>
+     <td>E-post</td>
+     <td><input type="text" ng-model="client.email"></td>
+   </tr>
+   <tr>
+     <td>Organisationsnummer</td>
+     <td><input type="text" ng-model="client.org_number"></td>
+
+   </tr>
  </table>
       <input class="btn btn-primary" type="submit" value="SPARA">
+      </div>
     </form>
     </div>
+

@@ -1,8 +1,6 @@
 package se.fakturaportal.core.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import se.fakturaportal.core.model.Client;
 import se.fakturaportal.core.model.User;
@@ -11,7 +9,6 @@ import se.fakturaportal.persistense.dao.InvoiceDAO;
 import se.fakturaportal.persistense.dao.UserDAO;
 import se.fakturaportal.persistense.entity.ClientEntity;
 import se.fakturaportal.persistense.entity.InvoiceEntity;
-import se.fakturaportal.persistense.entity.UserEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +30,7 @@ public class ClientService {
 
     /**
      * Saves the new Client
+     *
      * @param aClient the client information to save
      * @return the saved information.
      */
@@ -47,13 +45,13 @@ public class ClientService {
 
     /**
      * Gets the hole clientList
+     *
      * @param user the logged in user
      * @return All the clients
-     *
      */
     public List<Client> getClients(User user) {
         List<Client> clients = new ArrayList<>();
-        List<ClientEntity> clientEntitys = clientDAO.findByUserId(user.getId());
+        List<ClientEntity> clientEntitys = clientDAO.findByUserIdOrderByClientNoAsc(user.getId());
         for (ClientEntity ce : clientEntitys) {
             Client client = ce.toModel();
             clients.add(client);
@@ -63,24 +61,32 @@ public class ClientService {
 
     /**
      * Fetches a specific client from the database
+     *
      * @param clientID the ID for the client to fetch
      * @return the asked client.
      */
     public Client fetchClient(int clientID) {
         ClientEntity ce = clientDAO.findOne(clientID);
         Client client = ce.toModel();
+        List<InvoiceEntity> invoiceList = invoiceDAO.findByClientEntity(ce);
+        double totalInvoiceAmount = 0.0;
+        for (InvoiceEntity invoice : invoiceList) {
+            totalInvoiceAmount += invoice.toModel().getInvoiceTotal();
+        }
+        client.setTotalInvoiceAmount(String.valueOf(totalInvoiceAmount));
         return client;
     }
 
     /**
      * Deletes the client if the client hasn't got any invoices
+     *
      * @param clientId the id to be deleted
      * @return true if we were able to delete the client, false if it has invoices and there for cant be deleated.
      */
     public Boolean deleteClient(int clientId) {
         ClientEntity ce = clientDAO.findOne(clientId);
         List<InvoiceEntity> invList = invoiceDAO.findByClientEntity(ce);
-        if(invList.size() == 0){
+        if (invList.size() == 0) {
             clientDAO.delete(clientId);
             return true;
         }
@@ -89,6 +95,7 @@ public class ClientService {
 
     /**
      * Method for updating a client
+     *
      * @param aClient the information to update
      * @return the updated client.
      */
@@ -102,13 +109,14 @@ public class ClientService {
 
     /**
      * Method to check if the clientNo if free to use.
+     *
      * @param clientNo the asked clientNo
-     * @param user the user that is logged in.
+     * @param user     the user that is logged in.
      * @return true if you can use it, false if its already taken.
      */
     public Boolean checkClientNo(int clientNo, User user) {
         List<ClientEntity> ce = clientDAO.findByClientNoAndUserId(clientNo, user.getId());
-        if(ce.size()>0){
+        if (ce.size() > 0) {
             return true;
         }
         return false;
