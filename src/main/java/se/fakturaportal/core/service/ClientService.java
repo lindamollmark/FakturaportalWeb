@@ -3,6 +3,7 @@ package se.fakturaportal.core.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import se.fakturaportal.core.model.Client;
+import se.fakturaportal.core.model.Invoice;
 import se.fakturaportal.core.model.User;
 import se.fakturaportal.persistense.dao.ClientDAO;
 import se.fakturaportal.persistense.dao.InvoiceDAO;
@@ -70,10 +71,15 @@ public class ClientService {
         Client client = ce.toModel();
         List<InvoiceEntity> invoiceList = invoiceDAO.findByClientEntity(ce);
         double totalInvoiceAmount = 0.0;
-        for (InvoiceEntity invoice : invoiceList) {
-            totalInvoiceAmount += invoice.toModel().getInvoiceTotal();
+        double pastDueDateAmount = 0.0;
+        for (InvoiceEntity ie : invoiceList) {
+            Invoice invoice = ie.toModel();
+            totalInvoiceAmount += invoice.getInvoiceTotal();
+            pastDueDateAmount += invoice.getPastDueDate();
+
         }
         client.setTotalInvoiceAmount(String.valueOf(totalInvoiceAmount));
+        client.setPastDueDate(String.valueOf(pastDueDateAmount));
         return client;
     }
 

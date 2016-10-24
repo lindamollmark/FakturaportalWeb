@@ -7,7 +7,7 @@
     margin: 18px;
   }
 
-  ul {
+  .clientUl {
     float: left;
     border-radius: 5px;
     border: solid 1px rgb(198, 198, 198);
@@ -15,7 +15,7 @@
     background-color: rgb(248, 248, 248);
   }
 
-  li {
+  .clientLi {
     float: left;
     background-color: rgb(200, 200, 200);
     padding: 5px 19px;
@@ -24,12 +24,12 @@
     list-style: none;
   }
 
-  li:hover, li:hover a {
+  .clientLi:hover, .clientLi:hover a {
     background-color: rgb(6, 179, 6);
     color: white;
   }
 
-  li a {
+  .clientLi a {
     text-decoration: none;
     color: white;
     font-size: 21px;
@@ -37,12 +37,12 @@
     text-shadow: 1px 0px 3px rgb(157, 157, 157);
   }
 
-  li:nth-child(1) {
+  c.clientLi:nth-child(1) {
     border-radius: 4px 0px 0px 4px;
     margin-left: 1px;
   }
 
-  li:nth-child(3) {
+  .clientLi:nth-child(3) {
     border-radius: 0px 4px 4px 0px;
   }
 
@@ -54,14 +54,14 @@
 
 <div class="tab" ng-controller="clientCtrl as panel">
   <nav style="margin-left: 250px">
-    <ul>
-      <li ng-class="{active:panel.isSelected(1) }">
+    <ul class="clientUl">
+      <li class="clientLi" ng-class="{active:panel.isSelected(1) }">
         <a href ng-click="panel.selectTab(1)">Kundadress</a>
       </li>
-      <li ng-class="{active:panel.isSelected(2)  }">
+      <li class="clientLi" ng-class="{active:panel.isSelected(2)  }">
         <a href ng-click="panel.selectTab(2)">Fakturaadress</a>
       </li>
-      <li ng-class="{active:panel.isSelected(3)}">
+      <li class="clientLi" ng-class="{active:panel.isSelected(3)}">
         <a href ng-click="panel.selectTab(3)">Leveransadress</a>
       </li>
     </ul>
@@ -147,8 +147,8 @@
               <td><input type="text" ng-model="client.totalInvoiceAmount" contenteditable="false"></td>
             </tr>
             <tr>
-              <th>&nbsp;</th>
-              <td>&nbsp;</td>
+              <th>Förfallet</th>
+              <td><input type="text" ng-model="client.pastDueDate" contenteditable="false"></td>
             </tr>
             <tr>
               <td>&nbsp;</td>

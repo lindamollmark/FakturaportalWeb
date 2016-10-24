@@ -16,6 +16,7 @@ public class Client {
     String email;
     String orgNumber;
     String totalInvoiceAmount;
+    String pastDueDate;
     User user;
 
     public int getId() {
@@ -112,6 +113,14 @@ public class Client {
 
     public void setTotalInvoiceAmount(String totalInvoiceAmount) {
         this.totalInvoiceAmount = totalInvoiceAmount;
+    }
+
+    public String getPastDueDate() {
+        return pastDueDate;
+    }
+
+    public void setPastDueDate(String pastDueDate) {
+        this.pastDueDate = pastDueDate;
     }
 
     public User getUser() {

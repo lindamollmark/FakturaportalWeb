@@ -1,8 +1,7 @@
 package se.fakturaportal.core.model;
 
-import java.math.BigInteger;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -18,6 +17,7 @@ public class Invoice {
     List<InvoiceRow> invoiceRows;
     double invoiceTotal;
     User user;
+    double pastDueDate;
 
     public int getId() {
         return id;
@@ -92,5 +92,18 @@ public class Invoice {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public double getPastDueDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate date = LocalDate.parse(dueDate, formatter);
+        if (date.isBefore(LocalDate.now())) {
+            pastDueDate = invoiceTotal;
+        }
+        return pastDueDate;
+    }
+
+    public void setPastDueDate(double pastDueDate) {
+        this.pastDueDate = pastDueDate;
     }
 }

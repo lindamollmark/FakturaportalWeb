@@ -61,7 +61,6 @@ body {
 .invoiceForm th{
   font-size: 18px;
   width: 25%;
-
 }
 .invoiceForm td{
   font-size: 18px;
@@ -90,13 +89,12 @@ input {
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
-
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   .container {
     max-width: 730px;
   }
-
+}
   /* Remove the padding we set earlier */
   .header,
   .marketing,
@@ -118,16 +116,6 @@ input {
     right: 20px;
 
   }
-}
-.tabsdemoDynamicHeight md-content {
-  background-color: transparent !important; }
-.tabsdemoDynamicHeight md-content md-tabs {
-  background: #f6f6f6;
-  border: 1px solid #e1e1e1; }
-.tabsdemoDynamicHeight md-content md-tabs md-tabs-wrapper {
-  background: white; }
-.tabsdemoDynamicHeight md-content h1:first-child {
-  margin-top: 0; }
 
 #userSettings{
   color: #00A000;
