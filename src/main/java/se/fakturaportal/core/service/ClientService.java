@@ -72,14 +72,21 @@ public class ClientService {
         List<InvoiceEntity> invoiceList = invoiceDAO.findByClientEntity(ce);
         double totalInvoiceAmount = 0.0;
         double pastDueDateAmount = 0.0;
+        int overdueBills = 0;
         for (InvoiceEntity ie : invoiceList) {
+            double pastAmountToCompare = pastDueDateAmount;
             Invoice invoice = ie.toModel();
             totalInvoiceAmount += invoice.getInvoiceTotal();
             pastDueDateAmount += invoice.getPastDueDate();
+            if (pastDueDateAmount > pastAmountToCompare) {
+                overdueBills++;
+            }
 
         }
         client.setTotalInvoiceAmount(String.valueOf(totalInvoiceAmount));
         client.setPastDueDate(String.valueOf(pastDueDateAmount));
+        client.setNumberOfInvoices(invoiceList.size());
+        client.setNumberOfOverdueBills(overdueBills);
         return client;
     }
 

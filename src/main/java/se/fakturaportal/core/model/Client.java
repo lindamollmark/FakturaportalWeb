@@ -16,7 +16,9 @@ public class Client {
     String email;
     String orgNumber;
     String totalInvoiceAmount;
+    int numberOfInvoices;
     String pastDueDate;
+    int numberOfOverdueBills;
     User user;
 
     public int getId() {
@@ -115,12 +117,28 @@ public class Client {
         this.totalInvoiceAmount = totalInvoiceAmount;
     }
 
+    public int getNumberOfInvoices() {
+        return numberOfInvoices;
+    }
+
+    public void setNumberOfInvoices(int numberOfInvoices) {
+        this.numberOfInvoices = numberOfInvoices;
+    }
+
     public String getPastDueDate() {
         return pastDueDate;
     }
 
     public void setPastDueDate(String pastDueDate) {
         this.pastDueDate = pastDueDate;
+    }
+
+    public int getNumberOfOverdueBills() {
+        return numberOfOverdueBills;
+    }
+
+    public void setNumberOfOverdueBills(int numberOfOverdueBills) {
+        this.numberOfOverdueBills = numberOfOverdueBills;
     }
 
     public User getUser() {

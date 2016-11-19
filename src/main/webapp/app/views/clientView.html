@@ -67,11 +67,11 @@
     </ul>
     <br><br>
   </nav>
-  <section style="margin-left: 250px">
+  <section>
     <div ng-show="panel.isSelected(1)">
       <form name="clientForm" ng-submit="update()">
-        <table>
-          <div>
+        <div style="float: left; width: 50%">
+          <table>
             <tr>
               <th>Kundnr</th>
               <td><input type="text" ng-model="client.clientNo"></td>
@@ -112,18 +112,20 @@
               <td>&nbsp;</td>
               <td>&nbsp;</td>
             </tr>
-          </div>
-          <div>
+          </table>
+        </div>
+        <div style="float: left; width: 50%">
+          <table>
             <tr>
-              <td>&nbsp;</td>
+              <th>&nbsp;</th>
               <td>&nbsp;</td>
             </tr>
             <tr>
-              <td>&nbsp;</td>
+              <th>&nbsp;</th>
               <td>&nbsp;</td>
             </tr>
             <tr>
-              <td>&nbsp;</td>
+              <th>&nbsp;</th>
               <td>&nbsp;</td>
             </tr>
             <tr>
@@ -131,33 +133,35 @@
               <td><input type="text" ng-model="client.orgNumber"></td>
             </tr>
             <tr>
-              <td>&nbsp;</td>
-              <td>&nbsp;</td>
-            </tr>
-            <tr>
-              <td>&nbsp;</td>
+              <th>&nbsp;</th>
               <td>&nbsp;</td>
             </tr>
             <tr>
-              <td>&nbsp;</td>
+              <th>&nbsp;</th>
               <td>&nbsp;</td>
             </tr>
             <tr>
-              <th>Fakturerat</th>
+              <th>&nbsp;</th>
+              <td>&nbsp;</td>
+            </tr>
+            <tr>
+              <th>Fakturerat {{client.numberOfInvoices}}</th>
               <td><input type="text" ng-model="client.totalInvoiceAmount" contenteditable="false"></td>
             </tr>
             <tr>
-              <th>Förfallet</th>
+              <th>Förfallet {{client.numberOfOverdueBills}}</th>
               <td><input type="text" ng-model="client.pastDueDate" contenteditable="false"></td>
             </tr>
             <tr>
-              <td>&nbsp;</td>
+              <th>&nbsp;</th>
               <td>&nbsp;</td>
             </tr>
-          </div>
-        </table>
-
-        <div>
+            <tr>
+              <th>&nbsp;</th>
+              <td>&nbsp;</td>
+            </tr>
+          </table>
+          <br>
           <a ng-href="#/invoiceList{{client.id}}">
             <button class="btn btn-primary">Fakturalista</button>
           </a>
