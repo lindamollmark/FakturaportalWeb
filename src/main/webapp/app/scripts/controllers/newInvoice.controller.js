@@ -64,9 +64,19 @@ angular.module('springBootClientApp')
     }
     $scope.today = function() {
       $scope.invoice.invoiceDate = new Date();
+      $scope.invoice.dueDate = addDays($scope.invoice.invoiceDate, 30);
     };
     $scope.today();
 
+    $scope.$watch('invoice.invoiceDate', function (newValue, oldValue) {
+      $scope.invoice.dueDate = addDays(newValue, 30);
+    });
+
+    function addDays(date, days) {
+      var result = new Date(date);
+      result.setDate(result.getDate() + days);
+      return result;
+    }
     $scope.clear = function() {
       $scope.dt = null;
     };
@@ -126,7 +136,7 @@ angular.module('springBootClientApp')
     var tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);
     var afterTomorrow = new Date();
-    afterTomorrow.setDate(tomorrow.getDate() + 1);
+    afterTomorrow.setDate(tomorrow.getDate() + 30);
     $scope.events = [
       {
         date: tomorrow,
