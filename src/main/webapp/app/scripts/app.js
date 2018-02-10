@@ -27,11 +27,11 @@ angular
     $routeProvider
       .when('/login', {
         templateUrl: 'app/views/login.html',
-        controller: 'LoginCtrl',
+        controller: 'LoginCtrl'
       })
       .when('/newUser', {
         templateUrl: 'app/views/newUser.html',
-        controller: 'newUserCtrl',
+        controller: 'newUserCtrl'
       })
       .when('/', {
         templateUrl: 'app/views/main.html',
@@ -76,4 +76,6 @@ angular
       .otherwise({
         redirectTo: '/'
       });
-  });
+  }).config(['$locationProvider', function ($locationProvider) {
+  $locationProvider.hashPrefix('');
+}]);
