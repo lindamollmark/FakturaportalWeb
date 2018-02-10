@@ -46,14 +46,12 @@ public class UserController {
      */
     @RequestMapping(value="/views/newUser", method = RequestMethod.POST)
     public String newUser(@RequestBody String newUser){
-        String json = saveUser(newUser);
-        return json;
+        return saveUser(newUser);
     }
 
     @RequestMapping(value="/views/updateUser", method = RequestMethod.POST)
     public String updateUser(@RequestBody String userToUpdate){
-        String json = saveUser(userToUpdate);
-        return json;
+        return saveUser(userToUpdate);
     }
 
     private String saveUser(@RequestBody String userToUpdate) {
@@ -64,16 +62,14 @@ public class UserController {
 
     @RequestMapping(value="/views/username", method = RequestMethod.POST)
     public Boolean checkUsername(@RequestBody String username){
-       Boolean exists = userService.checkUsername(username);
-        return exists;
+        return userService.checkUsername(username);
     }
 
     @RequestMapping(value="/views/fetchUser", method = RequestMethod.POST)
     public String fetchUser(@RequestBody String activeUser){
         User user = new Gson().fromJson(activeUser, User.class);
        user = userService.findUser(user);
-        String json = new Gson().toJson(user);
-        return json;
+        return new Gson().toJson(user);
 }
 
 //    @RequestMapping(value="views/saveLogo", method = RequestMethod.POST)
