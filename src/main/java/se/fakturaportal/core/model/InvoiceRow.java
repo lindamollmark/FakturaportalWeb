@@ -6,13 +6,13 @@ import java.text.DecimalFormat;
  * POJO model for invoiceRows, holds the row information
  */
 public class InvoiceRow {
-    int id;
-    int rowNo;
-    String articleNo;
-    int quantity;
-    String description;
-    double unitPrice;
-    double rowTotal;
+    private int id;
+    private int rowNo;
+    private String articleNo;
+    private int quantity;
+    private String description;
+    private double unitPrice;
+    private double rowTotal;
 
     private static DecimalFormat df2 = new DecimalFormat("#.00");
 
@@ -70,7 +70,7 @@ public class InvoiceRow {
         return rowTotal;
     }
 
-    public void setRowTotal(double rowTotal) {
+    private void setRowTotal(double rowTotal) {
         this.rowTotal = rowTotal;
     }
 }

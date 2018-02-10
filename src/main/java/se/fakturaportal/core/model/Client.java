@@ -4,22 +4,22 @@ package se.fakturaportal.core.model;
  * Module class POJO that holds the client information
  */
 public class Client {
-    int id;
-    int clientNo;
-    String companyName;
-    String address1;
-    String address2;
-    String postCode;
-    String postAddress;
-    String contact;
-    String phoneNumber;
-    String email;
-    String orgNumber;
-    String totalInvoiceAmount;
-    int numberOfInvoices;
-    String pastDueDate;
-    int numberOfOverdueBills;
-    User user;
+    private int id;
+    private int clientNo;
+    private String companyName;
+    private String address1;
+    private String address2;
+    private String postCode;
+    private String postAddress;
+    private String contact;
+    private String phoneNumber;
+    private String email;
+    private String orgNumber;
+    private String totalInvoiceAmount;
+    private int numberOfInvoices;
+    private String pastDueDate;
+    private int numberOfOverdueBills;
+    private User user;
 
     public int getId() {
         return id;

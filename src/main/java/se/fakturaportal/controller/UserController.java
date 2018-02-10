@@ -25,14 +25,14 @@ public class UserController {
     /**
      * Will forward a question if the username and password if for a existing user
      * @param loginInfo the username and password
-     * @param session Session for the login user.
+     * @param session   Session for the login user.
      * @return true if the user exist and false if anything is wrong
      */
     @RequestMapping(value = "/views/login", method = RequestMethod.POST)
-    public Boolean login(@RequestBody String loginInfo, HttpSession session){
+    public Boolean login(@RequestBody String loginInfo, HttpSession session) {
         User userToLogin = new Gson().fromJson(loginInfo, User.class);
         userToLogin = userService.findUser(userToLogin);
-        if(userToLogin != null) {
+        if (userToLogin != null) {
             session.setAttribute("user", userToLogin);
             return true;
         }
@@ -44,13 +44,13 @@ public class UserController {
      * @param newUser the user information to be saved.
      * @return the saved user.
      */
-    @RequestMapping(value="/views/newUser", method = RequestMethod.POST)
-    public String newUser(@RequestBody String newUser){
+    @RequestMapping(value = "/views/newUser", method = RequestMethod.POST)
+    public String newUser(@RequestBody String newUser) {
         return saveUser(newUser);
     }
 
-    @RequestMapping(value="/views/updateUser", method = RequestMethod.POST)
-    public String updateUser(@RequestBody String userToUpdate){
+    @RequestMapping(value = "/views/updateUser", method = RequestMethod.POST)
+    public String updateUser(@RequestBody String userToUpdate) {
         return saveUser(userToUpdate);
     }
 
@@ -60,17 +60,17 @@ public class UserController {
         return new Gson().toJson(user);
     }
 
-    @RequestMapping(value="/views/username", method = RequestMethod.POST)
-    public Boolean checkUsername(@RequestBody String username){
+    @RequestMapping(value = "/views/username", method = RequestMethod.POST)
+    public Boolean checkUsername(@RequestBody String username) {
         return userService.checkUsername(username);
     }
 
-    @RequestMapping(value="/views/fetchUser", method = RequestMethod.POST)
-    public String fetchUser(@RequestBody String activeUser){
+    @RequestMapping(value = "/views/fetchUser", method = RequestMethod.POST)
+    public String fetchUser(@RequestBody String activeUser) {
         User user = new Gson().fromJson(activeUser, User.class);
-       user = userService.findUser(user);
+        user = userService.findUser(user);
         return new Gson().toJson(user);
-}
+    }
 
 //    @RequestMapping(value="views/saveLogo", method = RequestMethod.POST)
 //    public void saveLogo(@RequestParam(value = "file", required = true) File file){

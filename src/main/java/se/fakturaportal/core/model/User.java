@@ -4,20 +4,20 @@ package se.fakturaportal.core.model;
  * Model class, POJO for user
  */
 public class User {
-    int id;
-    String username;
-    String password;
-    String userCompanyName;
-    String address1;
-    String address2;
-    String postCode;
-    String postAddress;
-    String contact;
-    String phoneNumber;
-    String email;
-    String orgNumber;
-    String bankNumber;
-    String invoiceNoStart;
+    private int id;
+    private String username;
+    private String password;
+    private String userCompanyName;
+    private String address1;
+    private String address2;
+    private String postCode;
+    private String postAddress;
+    private String contact;
+    private String phoneNumber;
+    private String email;
+    private String orgNumber;
+    private String bankNumber;
+    private String invoiceNoStart;
 
     public int getId() {
         return id;

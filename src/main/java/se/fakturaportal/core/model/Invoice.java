@@ -8,16 +8,16 @@ import java.util.List;
  * POJO model for invoice, holds the invoiceInformation
  */
 public class Invoice {
-    int id;
-    int invoiceNo;
-    Client client;
-    String orderNo;
-    String invoiceDate;
-    String dueDate;
-    List<InvoiceRow> invoiceRows;
-    double invoiceTotal;
-    User user;
-    double pastDueDate;
+    private int id;
+    private int invoiceNo;
+    private Client client;
+    private String orderNo;
+    private String invoiceDate;
+    private String dueDate;
+    private List<InvoiceRow> invoiceRows;
+    private double invoiceTotal;
+    private User user;
+    private double pastDueDate;
 
     public int getId() {
         return id;

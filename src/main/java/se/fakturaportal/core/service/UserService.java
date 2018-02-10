@@ -48,8 +48,7 @@ public class UserService {
         UserEntity ue = new UserEntity();
         ue = ue.fromModel(user);
         userDAO.save(ue);
-        User saved = ue.toModel();
-        return saved;
+        return ue.toModel();
     }
 
     /**
@@ -70,10 +69,7 @@ public class UserService {
      */
     public Boolean checkUsername(String username) {
         UserEntity ue = getUserEntity(username);
-        if(ue == null){
-            return false;
-        }
-        return true;
+        return ue != null;
     }
     public User findActiveUser(User user) {
         UserEntity ue = getUserEntity(user.getUsername());
