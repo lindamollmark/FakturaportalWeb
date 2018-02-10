@@ -11,8 +11,8 @@ import se.fakturaportal.persistense.dao.UserDAO;
 import se.fakturaportal.persistense.entity.ClientEntity;
 import se.fakturaportal.persistense.entity.InvoiceEntity;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Service layer class to handle the logic for the client.
@@ -39,9 +39,7 @@ public class ClientService {
         ClientEntity client = new ClientEntity();
         client.fromModel(aClient);
         clientDAO.save(client);
-        Client savedClient = client.toModel();
-        return savedClient;
-
+        return client.toModel();
     }
 
     /**
@@ -51,13 +49,8 @@ public class ClientService {
      * @return All the clients
      */
     public List<Client> getClients(User user) {
-        List<Client> clients = new ArrayList<>();
         List<ClientEntity> clientEntitys = clientDAO.findByUserIdOrderByClientNoAsc(user.getId());
-        for (ClientEntity ce : clientEntitys) {
-            Client client = ce.toModel();
-            clients.add(client);
-        }
-        return clients;
+        return clientEntitys.stream().map(ClientEntity::toModel).collect(Collectors.toList());
     }
 
     /**
@@ -116,8 +109,7 @@ public class ClientService {
         ClientEntity ce = clientDAO.findOne(aClient.getId());
         ce = ce.fromModel(aClient);
         ClientEntity saved = clientDAO.save(ce);
-        Client c = saved.toModel();
-        return c;
+        return saved.toModel();
     }
 
     /**
@@ -129,9 +121,6 @@ public class ClientService {
      */
     public Boolean checkClientNo(int clientNo, User user) {
         List<ClientEntity> ce = clientDAO.findByClientNoAndUserId(clientNo, user.getId());
-        if (ce.size() > 0) {
-            return true;
-        }
-        return false;
+        return ce.size() > 0;
     }
 }
