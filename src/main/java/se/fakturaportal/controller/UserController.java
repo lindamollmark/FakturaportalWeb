@@ -46,18 +46,20 @@ public class UserController {
      */
     @RequestMapping(value="/views/newUser", method = RequestMethod.POST)
     public String newUser(@RequestBody String newUser){
-        User user = new Gson().fromJson(newUser, User.class);
-        user = userService.saveUser(user);
-        String json = new Gson().toJson(user);
+        String json = saveUser(newUser);
         return json;
     }
 
     @RequestMapping(value="/views/updateUser", method = RequestMethod.POST)
     public String updateUser(@RequestBody String userToUpdate){
+        String json = saveUser(userToUpdate);
+        return json;
+    }
+
+    private String saveUser(@RequestBody String userToUpdate) {
         User user = new Gson().fromJson(userToUpdate, User.class);
         user = userService.saveUser(user);
-        String json = new Gson().toJson(user);
-        return json;
+        return new Gson().toJson(user);
     }
 
     @RequestMapping(value="/views/username", method = RequestMethod.POST)

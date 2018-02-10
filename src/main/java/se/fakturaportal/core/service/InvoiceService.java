@@ -10,8 +10,8 @@ import se.fakturaportal.persistense.dao.InvoiceDAO;
 import se.fakturaportal.persistense.entity.ClientEntity;
 import se.fakturaportal.persistense.entity.InvoiceEntity;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Service layer for invoices, handles the logic
@@ -62,11 +62,7 @@ public class InvoiceService {
      */
     public List<Invoice> fetchInvoiceList(User user) {
         List<InvoiceEntity> entityList = invoiceDAO.findAllByUserIdOrderByInvoiceNoAsc(user.getId());
-        List<Invoice> invoiceList = new ArrayList<>();
-        for (InvoiceEntity ie : entityList) {
-            Invoice invoice = ie.toModel();
-            invoiceList.add(invoice);
-        }
+        final List<Invoice> invoiceList = entityList.stream().map(e -> e.toModel()).collect(Collectors.toList());
         return invoiceList;
     }
 
@@ -79,11 +75,8 @@ public class InvoiceService {
     public List<Invoice> fetchClientInvoiceList(Client clientID) {
         ClientEntity ce = clientDAO.findOne(clientID.getId());
         List<InvoiceEntity> entityList = invoiceDAO.findByClientEntity(ce);
-        List<Invoice> invoiceList = new ArrayList<>();
-        for (InvoiceEntity ie : entityList) {
-            Invoice invoice = ie.toModel();
-            invoiceList.add(invoice);
-        }
+        final List<Invoice> invoiceList = entityList.stream().map(e -> e.toModel()).collect(Collectors.toList());
+
         return invoiceList;
     }
 
