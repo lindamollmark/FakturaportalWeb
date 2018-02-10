@@ -35,14 +35,13 @@ public class InvoiceService {
         InvoiceEntity ie = new InvoiceEntity();
         ie = ie.fromModel(newInvoice);
         invoiceDAO.save(ie);
-        Invoice invoice = ie.toModel();
-        return invoice;
+        return ie.toModel();
     }
 
     /**
      * Method to receive the next invoiceNo to use.
      *
-     * @param user
+     * @param user th system user
      * @return the invoice number to use.
      */
     public int getInvoiceNo(User user) {
@@ -62,8 +61,7 @@ public class InvoiceService {
      */
     public List<Invoice> fetchInvoiceList(User user) {
         List<InvoiceEntity> entityList = invoiceDAO.findAllByUserIdOrderByInvoiceNoAsc(user.getId());
-        final List<Invoice> invoiceList = entityList.stream().map(e -> e.toModel()).collect(Collectors.toList());
-        return invoiceList;
+        return entityList.stream().map(InvoiceEntity::toModel).collect(Collectors.toList());
     }
 
     /**
@@ -75,9 +73,8 @@ public class InvoiceService {
     public List<Invoice> fetchClientInvoiceList(Client clientID) {
         ClientEntity ce = clientDAO.findOne(clientID.getId());
         List<InvoiceEntity> entityList = invoiceDAO.findByClientEntity(ce);
-        final List<Invoice> invoiceList = entityList.stream().map(e -> e.toModel()).collect(Collectors.toList());
 
-        return invoiceList;
+        return entityList.stream().map(InvoiceEntity::toModel).collect(Collectors.toList());
     }
 
     /**
