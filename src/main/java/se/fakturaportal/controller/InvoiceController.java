@@ -37,8 +37,7 @@ public class InvoiceController {
         Invoice newInvoice = invoiceFromJson(invoice);
         newInvoice.setUser(user);
         newInvoice = invoiceService.newInvoice(newInvoice);
-        String json = invoiceToJson(newInvoice);
-        return json;
+        return invoiceToJson(newInvoice);
     }
 
     /**
@@ -71,8 +70,7 @@ public class InvoiceController {
         Invoice invoice = invoiceFromJson(invoiceNo);
         invoice.setUser(user);
         invoice = invoiceService.fetchInvoice(invoice);
-        String json = invoiceToJson(invoice);
-        return json;
+        return invoiceToJson(invoice);
     }
 
     /**
@@ -82,8 +80,7 @@ public class InvoiceController {
     @RequestMapping(value = "/views/newInvoiceNo", method = RequestMethod.GET)
     public int getInvoiceNo(HttpSession session){
         User user = (User) session.getAttribute("user");
-        int invoiceNo = invoiceService.getInvoiceNo(user);
-        return invoiceNo;
+        return invoiceService.getInvoiceNo(user);
     }
 
     /**
@@ -95,8 +92,7 @@ public class InvoiceController {
     public String invoiceList(HttpSession session) {
         User user = (User)session.getAttribute("user");
         List<Invoice> invoices = invoiceService.fetchInvoiceList(user);
-        String json = new Gson().toJson(invoices);
-        return json;
+        return new Gson().toJson(invoices);
     }
 
     /**
@@ -108,8 +104,7 @@ public class InvoiceController {
     public String clientInvoiceList(@RequestBody String clientId) {
         Client clientID = new Gson().fromJson(clientId, Client.class);
         List<Invoice> invoices = invoiceService.fetchClientInvoiceList(clientID);
-        String json = new Gson().toJson(invoices);
-        return json;
+        return new Gson().toJson(invoices);
     }
 
     /**

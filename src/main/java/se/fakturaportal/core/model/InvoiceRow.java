@@ -71,7 +71,6 @@ public class InvoiceRow {
     }
 
     public void setRowTotal(double rowTotal) {
-
         this.rowTotal = rowTotal;
     }
 }

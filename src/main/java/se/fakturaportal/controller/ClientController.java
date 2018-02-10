@@ -1,11 +1,14 @@
 package se.fakturaportal.controller;
 
 import com.google.gson.Gson;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import se.fakturaportal.core.model.Client;
 import se.fakturaportal.core.model.User;
 import se.fakturaportal.core.service.ClientService;
-import se.fakturaportal.core.model.Client;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -40,8 +43,7 @@ public class ClientController {
     public String clientList(HttpSession session){
         User user = (User) session.getAttribute("user");
         List<Client> clients = clientService.getClients(user);
-        String json = new Gson().toJson(clients);
-        return json;
+        return new Gson().toJson(clients);
     }
 
     /**
@@ -53,8 +55,7 @@ public class ClientController {
     public String clientView(@RequestBody String clientId){
         Client clientID = new Gson().fromJson(clientId, Client.class);
         Client theClient = clientService.fetchClient(clientID.getId());
-        String json = new Gson().toJson(theClient);
-        return json;
+        return new Gson().toJson(theClient);
     }
 
     /**
@@ -65,8 +66,7 @@ public class ClientController {
     @RequestMapping(value = "/views/deleteClient", method = RequestMethod.POST)
     public boolean deleteClient(@RequestBody String clientId){
         Client aClient = new Gson().fromJson(clientId, Client.class);
-        Boolean deleated = clientService.deleteClient(aClient.getId());
-        return deleated;
+        return clientService.deleteClient(aClient.getId());
     }
 
     /**
@@ -78,8 +78,7 @@ public class ClientController {
     public String updateClient(@RequestBody String client){
         Client aClient = new Gson().fromJson(client, Client.class);
         Client updated = clientService.updateClient(aClient);
-        String json = new Gson().toJson(updated);
-        return json;
+        return new Gson().toJson(updated);
     }
 
     /**
@@ -91,7 +90,6 @@ public class ClientController {
     @RequestMapping(value = "views/clientNo", method = RequestMethod.POST)
     public Boolean checkClientNo(@RequestBody String clientNo, HttpSession session){
         User user = (User) session.getAttribute("user");
-        Boolean exist = clientService.checkClientNo(Integer.parseInt(clientNo), user);
-        return exist;
+        return clientService.checkClientNo(Integer.parseInt(clientNo), user);
     }
 }
