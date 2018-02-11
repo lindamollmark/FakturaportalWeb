@@ -34,19 +34,19 @@ angular.module('springBootClientApp')
           $location.path(path);
         }
         else {
-          alert("Kund har fakturor, och går därmed inte att radera!");
+          alert('Kund har fakturor, och går därmed inte att radera!');
         }
       });
-    }
+    };
 
     $scope.update = function () {
       var client = {};
       client = $scope.client;
       clientService.updateClient(client).then(function (response) {
         self.client = angular.fromJson(response.data);
-        $scope.updateMessage = "Kund uppdaterad";
+        $scope.updateMessage = 'Kund uppdaterad';
       });
-    }
+    };
   });
 
 

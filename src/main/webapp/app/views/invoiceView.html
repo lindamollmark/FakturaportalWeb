@@ -24,21 +24,21 @@
       </tr>
       <tr>
         <th>Adress</th>
-        <td>{{invoice.client.address1}}</td>
+        <td>{{invoice.client.invoiceAddress.address1}}</td>
       </tr>
       <tr>
         <th>Adress</th>
-        <td>{{invoice.client.address2}}</td>
+        <td>{{invoice.client.invoiceAddress.address2}}</td>
         <th>Fakturabelopp</th>
         <td>{{invoice.invoiceTotal}} SEK</td>
       </tr>
       <tr>
         <th>Postnummer</th>
-        <td>{{invoice.client.postCode}}</td>
+        <td>{{invoice.client.invoiceAddress.postCode}}</td>
       </tr>
       <tr>
         <th>Postort</th>
-        <td>{{invoice.client.postAddress}}</td>
+        <td>{{invoice.client.invoiceAddress.postAddress}}</td>
       </tr>
       <th>Kontaktperson</th>
       <td>{{invoice.client.contact}}</td>

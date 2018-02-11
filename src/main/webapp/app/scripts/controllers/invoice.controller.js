@@ -18,11 +18,11 @@ angular.module('springBootClientApp')
 
     invoiceService.fetchInvoice(invoiceNo).then(function (response) {
       $scope.invoice = angular.fromJson(response.data);
-    })
+    });
 
     $scope.print = function (invoice) {
       invoiceService.printInvoice(invoice);
-    }
+    };
 
 
   });
