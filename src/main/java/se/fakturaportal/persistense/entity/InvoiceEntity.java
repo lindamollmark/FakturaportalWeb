@@ -12,6 +12,7 @@ import javax.persistence.Table;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Linda on 2016-05-03.
@@ -27,12 +28,12 @@ public class InvoiceEntity {
 
     @ManyToOne
     @Cascade({CascadeType.SAVE_UPDATE})
-    @JoinColumn(name="clientId", referencedColumnName = "id")
+    @JoinColumn(name = "clientId", referencedColumnName = "id")
     private ClientEntity clientEntity;
 
     @OneToMany
     @Cascade({CascadeType.ALL})
-    @JoinColumn(name="InvoiceId", referencedColumnName = "id")
+    @JoinColumn(name = "InvoiceId", referencedColumnName = "id")
     private List<InvoiceRowEntity> rowEntityList = new ArrayList<>();
 
     private String orderNo;
@@ -40,7 +41,7 @@ public class InvoiceEntity {
     private Date dueDate;
     @ManyToOne
     @Cascade({CascadeType.SAVE_UPDATE})
-    @JoinColumn(name="userId", referencedColumnName = "id")
+    @JoinColumn(name = "userId", referencedColumnName = "id")
     private UserEntity user;
 
     public int getId() {
@@ -56,7 +57,7 @@ public class InvoiceEntity {
     }
 
     public void setInvoiceNO(int invoiceNo) {
-        this.invoiceNo= invoiceNo;
+        this.invoiceNo = invoiceNo;
     }
 
     public ClientEntity getClientEntity() {
@@ -117,23 +118,22 @@ public class InvoiceEntity {
      * @return the created entity
      */
     public InvoiceEntity fromModel(Invoice newInvoice) {
-        if(!(newInvoice.getId() > 0)){
+        if (!(newInvoice.getId() > 0)) {
             id = newInvoice.getId();
         }
         invoiceNo = newInvoice.getInvoiceNo();
         orderNo = newInvoice.getOrderNo();
-        invoiceDate = Date.valueOf(newInvoice.getInvoiceDate().substring(0,10));
-        dueDate = Date.valueOf(newInvoice.getDueDate().substring(0,10));
+        invoiceDate = Date.valueOf(newInvoice.getInvoiceDate().substring(0, 10));
+        dueDate = Date.valueOf(newInvoice.getDueDate().substring(0, 10));
         Client client = newInvoice.getClient();
         ClientEntity ce = new ClientEntity();
         clientEntity = ce.fromModel(client);
-        List<InvoiceRowEntity> rowList = new ArrayList<>();
-        for (InvoiceRow ir :newInvoice.getInvoiceRows()){
-            InvoiceRowEntity ire = new InvoiceRowEntity();
-            ire = ire.fromModel(ir);
-            rowList.add(ire);
-        }
-        rowEntityList = rowList;
+
+        final List<InvoiceRow> invoiceRows = newInvoice.getInvoiceRows();
+        this.rowEntityList = invoiceRows.stream()
+                .map(row -> new InvoiceRowEntity().fromModel(row))
+                .collect(Collectors.toList());
+
         user = new UserEntity().fromModel(newInvoice.getUser());
         return this;
     }
@@ -151,7 +151,7 @@ public class InvoiceEntity {
         invoice.setDueDate(dueDate.toString());
         invoice.setClient(clientEntity.toModel());
         List<InvoiceRow> rowList = new ArrayList<>();
-        for(InvoiceRowEntity ire: rowEntityList){
+        for (InvoiceRowEntity ire : rowEntityList) {
             InvoiceRow row = ire.toModel();
             rowList.add(row);
         }

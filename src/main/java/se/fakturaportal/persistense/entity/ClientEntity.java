@@ -1,8 +1,15 @@
 package se.fakturaportal.persistense.entity;
 
+import com.sun.xml.internal.bind.v2.TODO;
+import org.hibernate.annotations.Cascade;
+import se.fakturaportal.core.model.Address;
+import se.fakturaportal.core.model.AddressType;
 import se.fakturaportal.core.model.Client;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by Linda on 2016-03-27.
@@ -25,8 +32,12 @@ public class ClientEntity {
     private String email;
     private String orgNumber;
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name="userId", referencedColumnName = "id")
+    @JoinColumn(name = "userId", referencedColumnName = "id")
     private UserEntity user;
+    @OneToMany
+    @Cascade({org.hibernate.annotations.CascadeType.ALL})
+    @JoinColumn(name = "userId", referencedColumnName = "id")
+    private List<AddressEntity> addressEntityList = new ArrayList<>();
 
     /**
      * Help method to convert a client Model to an entity
@@ -35,26 +46,26 @@ public class ClientEntity {
      */
     public ClientEntity fromModel(Client aClient) {
         // a new client hasn't got any id yet.
-        if(aClient.getId() > 0){
+        if (aClient.getId() > 0) {
             this.id = aClient.getId();
         }
         this.clientNo = aClient.getClientNo();
         this.companyName = aClient.getCompanyName();
-        this.address1 = aClient.getAddress1();
-        if(aClient.getAddress2() != null){
-            this.address2 = aClient.getAddress2();
-        }
 
-        this.postCode = aClient.getPostCode();
-        this.postAddress = aClient.getPostAddress();
         this.contact = aClient.getContact();
         this.phoneNumber = aClient.getPhoneNumber();
         this.email = aClient.getEmail();
         this.orgNumber = aClient.getOrgNumber();
         this.user = new UserEntity().fromModel(aClient.getUser());
 
-        return this;
+        final AddressEntity mainAddress = new AddressEntity().fromModel(aClient.getMainAddress());
+        final AddressEntity deliveryAddress = new AddressEntity().fromModel(aClient.getDeliveryAddress());
+        final AddressEntity invoiceAddress = new AddressEntity().fromModel(aClient.getInvoiceAddress());
+        this.addressEntityList.add(mainAddress);
+        this.addressEntityList.add(deliveryAddress);
+        this.addressEntityList.add(invoiceAddress);
 
+        return this;
     }
 
     /**
@@ -66,17 +77,43 @@ public class ClientEntity {
         client.setId(id);
         client.setClientNo(clientNo);
         client.setCompanyName(companyName);
-        client.setAddress1(address1);
-        client.setAddress2(address2);
-        client.setPostCode(postCode);
-        client.setPostAddress(postAddress);
         client.setContact(contact);
         client.setPhoneNumber(phoneNumber);
         client.setUser(user.toModel());
         client.setEmail(email);
         client.setOrgNumber(orgNumber);
 
+        final List<Address> addresses = addressEntityList.stream()
+                .map(AddressEntity::toModel)
+                .collect(Collectors.toList());
+
+        if (addresses.isEmpty()){
+            client.setMainAddress(getAddress(AddressType.MAIN));
+            client.setDeliveryAddress(getAddress(AddressType.DELIVERY));
+            client.setInvoiceAddress(getAddress(AddressType.INVOICE));
+        }
+
+        for (final Address address : addresses) {
+            final AddressType addressType = address.getType();
+            if (addressType.equals(AddressType.MAIN)) {
+                client.setMainAddress(address);
+            } else if (addressType.equals(AddressType.DELIVERY)) {
+                client.setDeliveryAddress(address);
+            } else if (addressType.equals(AddressType.INVOICE)) {
+                client.setInvoiceAddress(address);
+            }
+        }
         return client;
+    }
+
+    private Address getAddress(AddressType type) {
+        Address main = new Address();
+        main.setAddress1(address1);
+        main.setAddress2(address2);
+        main.setPostCode(postCode);
+        main.setPostAddress(postAddress);
+        main.setType(type);
+        return main;
     }
 
     public int getId() {

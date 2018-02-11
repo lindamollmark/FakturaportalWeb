@@ -1,5 +1,7 @@
 package se.fakturaportal.core.model;
 
+import java.util.List;
+
 /**
  * Module class POJO that holds the client information
  */
@@ -7,10 +9,9 @@ public class Client {
     private int id;
     private int clientNo;
     private String companyName;
-    private String address1;
-    private String address2;
-    private String postCode;
-    private String postAddress;
+    private Address mainAddress;
+    private Address invoiceAddress;
+    private Address deliveryAddress;
     private String contact;
     private String phoneNumber;
     private String email;
@@ -20,6 +21,15 @@ public class Client {
     private String pastDueDate;
     private int numberOfOverdueBills;
     private User user;
+    private List<Address> addressList;
+
+    public List<Address> getAddressList(){
+        return addressList;
+    }
+
+    public void setAddressList(List<Address> addressList) {
+        this.addressList = addressList;
+    }
 
     public int getId() {
         return id;
@@ -45,36 +55,28 @@ public class Client {
         this.companyName = companyName;
     }
 
-    public String getAddress1() {
-        return address1;
+    public Address getMainAddress() {
+        return mainAddress;
     }
 
-    public void setAddress1(String address1) {
-        this.address1 = address1;
+    public void setMainAddress(Address mainAddress) {
+        this.mainAddress = mainAddress;
     }
 
-    public String getAddress2() {
-        return address2;
+    public Address getInvoiceAddress() {
+        return invoiceAddress;
     }
 
-    public void setAddress2(String address2) {
-        this.address2 = address2;
+    public void setInvoiceAddress(Address invoiceAddress) {
+        this.invoiceAddress = invoiceAddress;
     }
 
-    public String getPostCode() {
-        return postCode;
+    public Address getDeliveryAddress() {
+        return deliveryAddress;
     }
 
-    public void setPostCode(String postCode) {
-        this.postCode = postCode;
-    }
-
-    public String getPostAddress() {
-        return postAddress;
-    }
-
-    public void setPostAddress(String postAddress) {
-        this.postAddress = postAddress;
+    public void setDeliveryAddress(Address deliveryAddress) {
+        this.deliveryAddress = deliveryAddress;
     }
 
     public String getContact() {

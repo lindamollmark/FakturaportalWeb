@@ -26,17 +26,14 @@ import java.io.*;
 @RestController
 public class PDFController {
 
-    PDDocument document;
-    PDPage page;
-
     // Create a document and add a page to it
     @RequestMapping(value="/views/printInvoice", method = RequestMethod.POST)
     public void printPDF(@RequestBody String invoice, HttpSession session) throws IOException, COSVisitorException {
         Invoice newInvoice = new Gson().fromJson(invoice, Invoice.class);
-        document = new PDDocument();
-        page = new PDPage();
+        PDDocument document = new PDDocument();
+        PDPage page = new PDPage();
 
-        document.addPage( page );
+        document.addPage(page);
 
         // Create a new font object selecting one of the PDF base fonts
         PDFont font = PDType1Font.HELVETICA_BOLD;
@@ -64,20 +61,20 @@ public class PDFController {
         contentStream.beginText();
         contentStream.setFont( font2, 12 );
         contentStream.moveTextPositionByAmount( 420, 670 );
-        contentStream.drawString(newInvoice.getClient().getAddress1());
+        contentStream.drawString(newInvoice.getClient().getInvoiceAddress().getAddress1());
         contentStream.endText();
-        if(newInvoice.getClient().getAddress2() != null){
+        if(newInvoice.getClient().getInvoiceAddress().getAddress2() != null){
             contentStream.beginText();
             contentStream.setFont( font2, 12 );
             contentStream.moveTextPositionByAmount( 420, 655 );
-            contentStream.drawString(newInvoice.getClient().getAddress2() );
+            contentStream.drawString(newInvoice.getClient().getInvoiceAddress().getAddress2() );
             contentStream.endText();
         }
 
         contentStream.beginText();
         contentStream.setFont( font2, 12 );
         contentStream.moveTextPositionByAmount( 420, 640 );
-        contentStream.drawString( newInvoice.getClient().getPostCode() + " " + newInvoice.getClient().getPostAddress() );
+        contentStream.drawString( newInvoice.getClient().getInvoiceAddress().getPostCode() + " " + newInvoice.getClient().getInvoiceAddress().getPostAddress() );
         contentStream.endText();
 
         //creates a table for the invoieRows

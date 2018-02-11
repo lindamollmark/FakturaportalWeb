@@ -70,6 +70,8 @@
   <section>
     <div ng-show="panel.isSelected(1)">
       <form name="clientForm" ng-submit="update()">
+        <input type="hidden" name="type" value="MAIN">
+
         <div style="float: left; width: 50%">
           <table>
             <tr>
@@ -82,19 +84,19 @@
             </tr>
             <tr>
               <th>Adress</th>
-              <td><input type="text" ng-model="client.address1"></td>
+              <td><input type="text" ng-model="client.mainAddress.address1"></td>
             </tr>
             <tr>
               <th>Adress</th>
-              <td><input type="text" ng-model="client.address2"></td>
+              <td><input type="text" ng-model="client.mainAddress.address2"></td>
             </tr>
             <tr>
               <th>Postnummer</th>
-              <td><input type="text" ng-model="client.postCode"></td>
+              <td><input type="text" ng-model="client.mainAddress.postCode"></td>
             </tr>
             <tr>
               <th>Postort</th>
-              <td><input type="text" ng-model="client.postAddress"></td>
+              <td><input type="text" ng-model="client.mainAddress.postAddress"></td>
             </tr>
             <tr>
               <th>Kontaktperson</th>
@@ -178,6 +180,8 @@
     </div>
     <div ng-show="panel.isSelected(2)">
       <form name="clientForm" ng-submit="update()">
+        <input type="hidden" name="type" value="INVOICE">
+
         <table>
           <div>
             <tr>
@@ -190,19 +194,19 @@
             </tr>
             <tr>
               <th>Adress</th>
-              <td><input type="text" ng-model="client.address1"></td>
+              <td><input type="text" ng-model="client.invoiceAddress.address1"></td>
             </tr>
             <tr>
               <th>Adress</th>
-              <td><input type="text" ng-model="client.address2"></td>
+              <td><input type="text" ng-model="client.invoiceAddress.address2"></td>
             </tr>
             <tr>
               <th>Postnummer</th>
-              <td><input type="text" ng-model="client.postCode"></td>
+              <td><input type="text" ng-model="client.invoiceAddress.postCode"></td>
             </tr>
             <tr>
               <th>Postort</th>
-              <td><input type="text" ng-model="client.postAddress"></td>
+              <td><input type="text" ng-model="client.invoiceAddress.postAddress"></td>
             </tr>
             <tr>
               <th>Kontaktperson</th>
@@ -281,6 +285,7 @@
     </div>
     <div ng-show="panel.isSelected(3)">
       <form name="clientForm" ng-submit="update()">
+        <input type="hidden" name="type" value="DELIVERY">
         <table>
           <div>
             <tr>
@@ -293,19 +298,19 @@
             </tr>
             <tr>
               <th>Adress</th>
-              <td><input type="text" ng-model="client.address1"></td>
+              <td><input type="text" ng-model="client.deliveryAddress.address1"></td>
             </tr>
             <tr>
               <th>Adress</th>
-              <td><input type="text" ng-model="client.address2"></td>
+              <td><input type="text" ng-model="client.deliveryAddress.address2"></td>
             </tr>
             <tr>
               <th>Postnummer</th>
-              <td><input type="text" ng-model="client.postCode"></td>
+              <td><input type="text" ng-model="client.deliveryAddress.postCode"></td>
             </tr>
             <tr>
               <th>Postort</th>
-              <td><input type="text" ng-model="client.postAddress"></td>
+              <td><input type="text" ng-model="client.deliveryAddress.postAddress"></td>
             </tr>
             <tr>
               <th>Kontaktperson</th>
