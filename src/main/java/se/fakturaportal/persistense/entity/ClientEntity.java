@@ -1,6 +1,5 @@
 package se.fakturaportal.persistense.entity;
 
-import com.sun.xml.internal.bind.v2.TODO;
 import org.hibernate.annotations.Cascade;
 import se.fakturaportal.core.model.Address;
 import se.fakturaportal.core.model.AddressType;
@@ -58,9 +57,19 @@ public class ClientEntity {
         this.orgNumber = aClient.getOrgNumber();
         this.user = new UserEntity().fromModel(aClient.getUser());
 
-        final AddressEntity mainAddress = new AddressEntity().fromModel(aClient.getMainAddress());
-        final AddressEntity deliveryAddress = new AddressEntity().fromModel(aClient.getDeliveryAddress());
-        final AddressEntity invoiceAddress = new AddressEntity().fromModel(aClient.getInvoiceAddress());
+        final AddressEntity deliveryAddress;
+        final AddressEntity invoiceAddress;
+        final AddressEntity mainAddress = new AddressEntity().fromModel(aClient.getMainAddress(), AddressType.MAIN);
+        if (aClient.getDeliveryAddress() == null) {
+            deliveryAddress = new AddressEntity().fromModel(aClient.getMainAddress(), AddressType.DELIVERY);
+        } else {
+            deliveryAddress = new AddressEntity().fromModel(aClient.getDeliveryAddress(), AddressType.DELIVERY);
+        }
+        if (aClient.getDeliveryAddress() == null) {
+            invoiceAddress = new AddressEntity().fromModel(aClient.getMainAddress(), AddressType.INVOICE);
+        } else {
+            invoiceAddress = new AddressEntity().fromModel(aClient.getInvoiceAddress(), AddressType.INVOICE);
+        }
         this.addressEntityList.add(mainAddress);
         this.addressEntityList.add(deliveryAddress);
         this.addressEntityList.add(invoiceAddress);
@@ -87,7 +96,7 @@ public class ClientEntity {
                 .map(AddressEntity::toModel)
                 .collect(Collectors.toList());
 
-        if (addresses.isEmpty()){
+        if (addresses.isEmpty()) {
             client.setMainAddress(getAddress(AddressType.MAIN));
             client.setDeliveryAddress(getAddress(AddressType.DELIVERY));
             client.setInvoiceAddress(getAddress(AddressType.INVOICE));

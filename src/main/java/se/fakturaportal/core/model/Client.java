@@ -1,7 +1,5 @@
 package se.fakturaportal.core.model;
 
-import java.util.List;
-
 /**
  * Module class POJO that holds the client information
  */
@@ -21,15 +19,6 @@ public class Client {
     private String pastDueDate;
     private int numberOfOverdueBills;
     private User user;
-    private List<Address> addressList;
-
-    public List<Address> getAddressList(){
-        return addressList;
-    }
-
-    public void setAddressList(List<Address> addressList) {
-        this.addressList = addressList;
-    }
 
     public int getId() {
         return id;

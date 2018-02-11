@@ -66,7 +66,7 @@ public class AddressEntity {
         this.type = type;
     }
 
-    public AddressEntity fromModel(Address address) {
+    public AddressEntity fromModel(Address address, AddressType type) {
         if(address.getId() > 0){
             this.id = address.getId();
         }
@@ -75,7 +75,8 @@ public class AddressEntity {
         this.address2 = address.getAddress2();
         this.postCode = address.getPostCode();
         this.postAddress = address.getPostAddress();
-        this.type = address.getType().name();
+        this.type = type.name();
+
         return this;
     }
 

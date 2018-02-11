@@ -3,7 +3,6 @@
     <div ng-controller="newClientCtrl">
     <form name="newClientForm" ng-submit="save()">
       <input type="hidden" ng-model="client.user">
-
       <div style="-webkit-column-count: 2">
  <table>
    <tr>
@@ -18,19 +17,19 @@
    </tr>
    <tr>
   <td>Adress</td>
-     <td><input type="text" ng-model="client.address1"></td>
+     <td><input type="text" ng-model="client.mainAddress.address1"></td>
    </tr>
    <tr>
   <td>Adress</td>
-     <td><input type="text" ng-model="client.address2"></td>
+     <td><input type="text" ng-model="client.mainAddress.address2"></td>
    </tr>
    <tr>
   <td>Postnummer</td>
-     <td><input type="number" ng-model="client.postCode"></td>
+     <td><input type="number" ng-model="client.mainAddress.postCode"></td>
    </tr>
    <tr>
   <td>Postort</td>
-     <td><input type="text" ng-model="client.postAddress"></td>
+     <td><input type="text" ng-model="client.mainAddress.postAddress"></td>
    </tr>
    <tr>
    <td>Kontaktperson</td>
