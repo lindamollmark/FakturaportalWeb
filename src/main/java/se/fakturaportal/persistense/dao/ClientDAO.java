@@ -12,10 +12,11 @@ import java.util.List;
 @Transactional
 public interface ClientDAO extends JpaRepository<ClientEntity, Integer> {
 
-    public List<ClientEntity> findByClientNo(int clientNo);
+    List<ClientEntity> findByClientNo(int clientNo);
 
-    public List<ClientEntity> findByUserIdOrderByClientNoAsc(int userID);
-    public List<ClientEntity> findByClientNoAndUserId(int clientNo, int userId);
+    List<ClientEntity> findByUserIdOrderByClientNoAsc(int userID);
+
+    List<ClientEntity> findByClientNoAndUserId(int clientNo, int userId);
 
 
 
