@@ -1,14 +1,12 @@
 package se.fakturaportal.persistense.entity;
 
-import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 import se.fakturaportal.core.model.Client;
 import se.fakturaportal.core.model.Invoice;
 import se.fakturaportal.core.model.InvoiceRow;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -150,11 +148,9 @@ public class InvoiceEntity {
         invoice.setInvoiceDate(invoiceDate.toString());
         invoice.setDueDate(dueDate.toString());
         invoice.setClient(clientEntity.toModel());
-        List<InvoiceRow> rowList = new ArrayList<>();
-        for (InvoiceRowEntity ire : rowEntityList) {
-            InvoiceRow row = ire.toModel();
-            rowList.add(row);
-        }
+        final List<InvoiceRow> rowList = rowEntityList.stream()
+                .map(InvoiceRowEntity::toModel)
+                .collect(Collectors.toList());
         invoice.setInvoiceRows(rowList);
         invoice.setUser(user.toModel());
         return invoice;
